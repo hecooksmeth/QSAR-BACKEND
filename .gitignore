@@ -27,9 +27,6 @@ dist/
 .DS_Store
 Thumbs.db
 
-# Large datasets and model files
-CHEMBL_DATASET.csv
-*.h5
 
 # Generated molecular structure files
 static/generated/

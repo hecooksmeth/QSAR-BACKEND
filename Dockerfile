@@ -30,7 +30,6 @@ COPY qsar_file.py .
 COPY models/ ./models/
 COPY data/ ./data/
 COPY CHEMBL_DATASET.csv .
-COPY qsar_model.h5 .
 COPY scaler.pkl .
 COPY selector.pkl .
 
