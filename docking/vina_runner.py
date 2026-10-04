@@ -13,12 +13,25 @@ import re
 import subprocess
 import tempfile
 import logging
+import glob
 from typing import Dict, Any, List, Optional, Tuple
 
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
 logger = logging.getLogger("docking")
+
+# ── Deployment verification tag ──────────────────────────────────────────────
+_DOCKING_ENGINE_VERSION = "v2.1-no-gen3d"
+logger.info(
+    "=== DOCKING ENGINE VERSION: %s — NO OpenBabel --gen3d ===",
+    _DOCKING_ENGINE_VERSION,
+)
+logger.info(
+    "Configured timeouts: OBABEL=%ss, VINA=%ss",
+    os.environ.get("OBABEL_TIMEOUT_SECONDS", "120"),
+    os.environ.get("VINA_TIMEOUT_SECONDS", "600"),
+)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Tool paths
@@ -28,6 +41,16 @@ logger = logging.getLogger("docking")
 # ─────────────────────────────────────────────────────────────────────────────
 VINA_PATH   = os.environ.get("VINA_PATH",   "vina")
 OBABEL_PATH = os.environ.get("OBABEL_PATH", "obabel")
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Configurable timeouts (seconds)
+# OpenBabel conversion is fast when --gen3d is NOT used (RDKit already
+# generated 3D coords).  The old 60 s hard-coded limit hit on Render's slow
+# CPU because --gen3d was redundantly re-doing the 3D embedding.
+# Vina itself is the compute-heavy step and needs a generous timeout.
+# ─────────────────────────────────────────────────────────────────────────────
+OBABEL_TIMEOUT_SECONDS = int(os.environ.get("OBABEL_TIMEOUT_SECONDS", "120"))
+VINA_TIMEOUT_SECONDS   = int(os.environ.get("VINA_TIMEOUT_SECONDS",   "600"))
 
 # In Docker the layout is:
 #   /app/docking/vina_runner.py   ← this file
@@ -274,10 +297,27 @@ def convert_mol_to_pdbqt(mol_path: str, pdbqt_path: str) -> str:
     Raises:
         RuntimeError: If OpenBabel fails or the output file is not created.
     """
-    cmd = [OBABEL_PATH, mol_path, "-O", pdbqt_path, "--gen3d", "-h"]
-    logger.info("Running OpenBabel: %s", " ".join(cmd))
+    # NOTE: We do NOT pass --gen3d here.  RDKit already produced a fully
+    # optimised 3D conformation in generate_ligand_mol(); asking OpenBabel to
+    # redo 3D generation is redundant and was the primary cause of the
+    # timeout on Render's slow CPU.
+    cmd = [OBABEL_PATH, mol_path, "-O", pdbqt_path, "-h"]
+    logger.info(
+        "Running OpenBabel with timeout=%ds: %s",
+        OBABEL_TIMEOUT_SECONDS, " ".join(cmd),
+    )
 
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+    try:
+        result = subprocess.run(
+            cmd, capture_output=True, text=True,
+            timeout=OBABEL_TIMEOUT_SECONDS,
+        )
+    except subprocess.TimeoutExpired:
+        raise subprocess.TimeoutExpired(
+            cmd, OBABEL_TIMEOUT_SECONDS,
+            output=f"OpenBabel conversion timed out after {OBABEL_TIMEOUT_SECONDS}s",
+        )
+
     logger.debug("OpenBabel stdout: %s", result.stdout)
     logger.debug("OpenBabel stderr: %s", result.stderr)
 
@@ -289,7 +329,7 @@ def convert_mol_to_pdbqt(mol_path: str, pdbqt_path: str) -> str:
     if not os.path.isfile(pdbqt_path):
         raise RuntimeError("OpenBabel ran but .pdbqt output file was not created.")
 
-    logger.info("Ligand .pdbqt written: %s", pdbqt_path)
+    logger.info("OpenBabel completed successfully. Ligand .pdbqt written: %s", pdbqt_path)
     return pdbqt_path
 
 
@@ -338,8 +378,22 @@ def run_vina(
         "--exhaustiveness", str(exhaustiveness),
     ]
 
-    logger.info("Running Vina: %s", " ".join(cmd))
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+    logger.info(
+        "Running AutoDock Vina with timeout=%ds: %s",
+        VINA_TIMEOUT_SECONDS, " ".join(cmd),
+    )
+
+    try:
+        result = subprocess.run(
+            cmd, capture_output=True, text=True,
+            timeout=VINA_TIMEOUT_SECONDS,
+        )
+    except subprocess.TimeoutExpired:
+        raise subprocess.TimeoutExpired(
+            cmd, VINA_TIMEOUT_SECONDS,
+            output=f"AutoDock Vina timed out after {VINA_TIMEOUT_SECONDS}s",
+        )
+
     logger.debug("Vina stdout:\n%s", result.stdout)
 
     if result.returncode != 0:
@@ -347,6 +401,7 @@ def run_vina(
             f"AutoDock Vina failed (exit {result.returncode}):\n{result.stderr}"
         )
 
+    logger.info("AutoDock Vina completed successfully.")
     return result
 
 
@@ -474,6 +529,9 @@ def run_docking_pipeline(
     pdbqt_path  = os.path.join(LIGANDS_DIR, f"ligand_{suffix}.pdbqt")
     output_path = os.path.join(RESULTS_DIR, f"{target}_output_{suffix}.pdbqt")
 
+    # Track temp files for cleanup
+    temp_files = [mol_path, pdbqt_path, output_path]
+
     try:
         # Step 1: Generate 3D ligand
         logger.info("[%s] Step 1: Generating 3D ligand from SMILES...", target)
@@ -545,14 +603,18 @@ def run_docking_pipeline(
             "status": "error",
             "error":  str(exc),
         }
-    except subprocess.TimeoutExpired:
-        logger.error("[%s] Docking timed out", target)
+    except subprocess.TimeoutExpired as exc:
+        timeout_detail = str(exc.output or exc)
+        logger.error("[%s] Docking timed out: %s", target, timeout_detail)
         return {
             "target": target,
             "pdb_id": cfg["pdb_id"],
             "smiles": smiles,
-            "status": "error",
-            "error":  "Docking timed out (>5 minutes). Try reducing exhaustiveness.",
+            "status": "timeout",
+            "error":  (
+                f"Docking timed out: {timeout_detail}. "
+                f"Try reducing exhaustiveness or simplifying the molecule."
+            ),
         }
     except Exception as exc:
         logger.exception("[%s] Unexpected docking error: %s", target, exc)
@@ -563,3 +625,11 @@ def run_docking_pipeline(
             "status": "error",
             "error":  f"Unexpected error: {exc}",
         }
+    finally:
+        # Clean up temporary ligand / result files
+        for fpath in temp_files:
+            try:
+                if os.path.isfile(fpath):
+                    os.remove(fpath)
+            except OSError:
+                pass

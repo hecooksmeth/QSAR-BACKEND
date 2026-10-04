@@ -1132,6 +1132,17 @@ def get_pdb(smiles: str):
 # Molecular Docking Endpoints
 # =============================================================================
 
+@app.on_event("startup")
+def _startup_preload_docking():
+    """Eagerly import docking module at startup so the version marker appears
+    in logs immediately — proving the correct code is deployed."""
+    try:
+        import docking.vina_runner as vr  # noqa: F401
+        logger.info("Docking module loaded at startup: %s", getattr(vr, "_DOCKING_ENGINE_VERSION", "unknown"))
+    except Exception as exc:
+        logger.warning("Docking module not available at startup (non-fatal): %s", exc)
+
+
 def _get_docking_runner():
     """Lazy-import the docking module so the backend starts even if docking
     dependencies (rdkit, subprocess tools) have any issues."""
@@ -1210,6 +1221,8 @@ def dock(req: DockingRequest):
     )
 
     # Surface docking errors as HTTP errors so the frontend gets clean messages
+    if result.get("status") == "timeout":
+        raise HTTPException(504, result.get("error", "Docking timed out"))
     if result.get("status") == "error":
         raise HTTPException(422, result.get("error", "Docking failed"))
     if result.get("status") == "unavailable":
