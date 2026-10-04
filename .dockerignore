@@ -1,0 +1,34 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pycache
+
+# PyInstaller build artifacts
+build/
+dist/
+*.spec
+
+# Logs
+*.log
+
+# Training / evaluation scripts (not needed for serving)
+train_model.py
+evaluate_model.py
+run_flt3_cleaning.py
+test_installed.py
+test_load.py
+
+# Local dev / IDE
+.env
+.venv
+venv/
+*.ipynb
+
+# Git
+.git/
+.gitignore
+
+# Render config (not needed in Docker)
+render.yaml

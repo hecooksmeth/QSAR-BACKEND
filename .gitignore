@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Build files
+build/
+dist/
+*.spec
+
+
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment/secrets
+.env
+.env.*
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large datasets and model files
+CHEMBL_DATASET.csv
+*.h5
+
+# Generated molecular structure files
+static/generated/
