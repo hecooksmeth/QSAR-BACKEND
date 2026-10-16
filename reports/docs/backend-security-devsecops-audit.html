@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BACKEND SECURITY DEVSECOPS AUDIT — ResistAI / QSAR-BACKEND</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0f1d;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --border: rgba(148, 163, 184, 0.15);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .wrapper {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      background: rgba(99, 102, 241, 0.3);
+      transform: translateX(-2px);
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin: 1.5rem 0 1rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.25;
+    }
+    h2 { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 1rem; color: #e2e8f0; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+    h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #cbd5e1; }
+    h4 { font-size: 1.05rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: #94a3b8; }
+    p { margin-bottom: 1.25rem; color: #cbd5e1; }
+    ul, ol { margin: 0 0 1.5rem 1.75rem; color: #cbd5e1; }
+    li { margin-bottom: 0.5rem; }
+    hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { font-family: var(--font-mono); background: rgba(15, 23, 42, 0.8); padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.88em; color: #38bdf8; border: 1px solid rgba(148, 163, 184, 0.15); }
+    pre { background: #070b14; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+    pre code { background: none; padding: 0; border: none; color: #e2e8f0; font-size: 0.88rem; line-height: 1.6; }
+    .table-container { overflow-x: auto; margin: 1.75rem 0; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem; }
+    th { background: rgba(15, 23, 42, 0.9); padding: 0.85rem 1rem; font-weight: 600; color: #f1f5f9; border-bottom: 2px solid var(--border); }
+    td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); color: #cbd5e1; }
+    tr:hover td { background: rgba(51, 65, 85, 0.3); }
+    blockquote { border-left: 4px solid var(--primary); padding-left: 1rem; margin: 1.5rem 0; color: #94a3b8; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="nav-bar">
+      <a href="../index.html" class="back-btn">&larr; Return to Telemetry Portal</a>
+      <span style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">QSAR-BACKEND Documentation</span>
+    </div>
+    <h1>ResistAI — Backend Security Review & DevSecOps Audit</h1>
+<p><strong>Workflow Identifier:</strong> <a href="file:///c:/final_year_project/backend/.github/workflows/security-review.yml"><code>security-review.yml</code></a>  </p>
+<p><strong>Project Identity:</strong> <code>QSAR-BACKEND</code>  </p>
+<p><strong>Application Target:</strong> ResistAI Computational Chemistry FastAPI Backend & Docking Engine  </p>
+<p><strong>Pipeline Status:</strong> Specification & Proposed DevSecOps Implementation  </p>
+<p><strong>Document Classification:</strong> Cybersecurity Review, Static Analysis & DevSecOps Architecture  </p>
+<hr />
+<h2>1. Executive Summary & Security Review Scope</h2>
+<p>In modern computer-aided drug design (CADD) and AI-driven chemoinformatics, computational backend platforms handle intellectual property, proprietary chemical SMILES notations, machine learning models, and CPU-intensive molecular docking algorithms. Vulnerabilities in these services can lead to intellectual property exfiltration, remote code execution through tainted machine learning weights, denial-of-service (DoS) via resource-exhausting molecular docking calculations, or unauthorized cross-origin data exposure.</p>
+<p>The <strong>ResistAI Backend Security Review & DevSecOps Audit</strong> assesses the security architecture of the <code>QSAR-BACKEND</code> microservice. This report documents the target scope, evaluates static code analysis, reviews dependency vulnerabilities, audits secret management, details the automated DevSecOps pipeline specification (<code>security-review.yml</code>), provides an evidence-based risk assessment of verified vulnerabilities, and outlines remediation requirements.</p>
+<pre><code class="language-mermaid">flowchart TD
+    subgraph AUDIT_SCOPE ["DevSecOps Audit Scope: QSAR-BACKEND"]
+        A[FastAPI REST API - qsar_api.py]
+        B[AutoDock Vina &amp; OpenBabel Subprocesses]
+        C[ML Model Weights - Scikit-Learn / PyTorch / Joblib]
+        D[Container Environment - Dockerfile &amp; Render]
+        E[Dependencies - requirements.txt &amp; PyPI Stack]
+    end
+
+    subgraph SECURITY_PIPELINE ["DevSecOps CI/CD Automation (security-review.yml)"]
+        F[TruffleHog / Gitleaks: Secret Detection]
+        G[Pip-Audit / Safety: Dependency Scanning]
+        H[Bandit: Python AST Vulnerability Analysis]
+        I[Trivy: Container &amp; OS Package Vulnerability Scan]
+        J[CodeQL / Semgrep: Advanced SAST &amp; Data Flow]
+    end
+
+    subgraph FINDINGS ["Verified Vulnerability Registry"]
+        K[Critical: Pickle Insecurity via joblib.load]
+        L[High: Unrestricted Wildcard CORS Policy]
+        M[High: Unauthenticated High-Compute Endpoints]
+        N[Medium: Container Running as Root User]
+        O[Low: Exposed Interactive OpenAPI Docs in Production]
+    end
+
+    A &amp; B &amp; C &amp; D &amp; E --&gt; SECURITY_PIPELINE
+    SECURITY_PIPELINE --&gt; FINDINGS
+</code></pre>
+<hr />
+<h2>2. DevSecOps Tooling & Scanning Architecture</h2>
+<p>To establish continuous security visibility, the proposed <code>security-review.yml</code> workflow orchestrates an industry-standard DevSecOps scanning stack:</p>
+<div class="table-container"><table>
+<thead><tr><th>Tool Category</th><th>Tool Selection</th><th>Target Component</th><th>Purpose & Detection Capability</th></tr></thead>
+<tbody>
+<tr><td><strong>Secret Detection</strong></td><td><strong>TruffleHog & Gitleaks</strong></td><td>Git commit history & configs</td><td>Identifies accidentally committed API keys, database credentials, JWT secrets, and private certificates.</td></tr>
+<tr><td><strong>Software Composition (SCA)</strong></td><td><strong>pip-audit & Safety</strong></td><td><code>requirements.txt</code> & Python dependencies</td><td>Scans installed Python packages against the PyPA Advisory Database and CVE feeds for known vulnerabilities.</td></tr>
+<tr><td><strong>Static Application Security (SAST)</strong></td><td><strong>Bandit</strong></td><td><code>qsar_api.py</code>, <code>qsar_file.py</code>, <code>evaluate_model.py</code></td><td>AST-based static analyzer detecting common Python security flaws (e.g., <code>eval</code>, <code>pickle</code>, shell injections).</td></tr>
+<tr><td><strong>Deep Semantic SAST</strong></td><td><strong>GitHub CodeQL / Semgrep</strong></td><td>Entire Python codebase</td><td>Inter-procedural data flow analysis tracing untrusted inputs to security-sensitive sinks.</td></tr>
+<tr><td><strong>Container Image Scanning</strong></td><td><strong>Trivy</strong></td><td><code>Dockerfile</code> & base image <code>python:3.11-slim</code></td><td>Scans Linux OS packages (<code>libxrender1</code>, <code>openbabel</code>, <code>autodock-vina</code>) for unpatched CVEs and configuration flaws.</td></tr>
+</tbody></table></div>
+<hr />
+<h2>3. Workflow Triggers & Execution Stages</h2>
+<p>The security pipeline is specified in <a href="file:///c:/final_year_project/backend/.github/workflows/security-review.yml"><code>.github/workflows/security-review.yml</code></a>. The architecture adheres to GitHub Actions security best practices:</p>
+<h3>3.1 Triggers & Concurrency</h3>
+<ul>
+<li><strong>Triggers:</strong> Push to <code>main</code>, Pull Requests targeting <code>main</code>, weekly scheduled security audit (cron <code>0 0 <em> </em> 1</code> at 00:00 UTC Mondays), and <code>workflow_dispatch</code> for manual on-demand audits.</li>
+<li><strong>Least-Privilege Permissions:</strong> Explicitly configured with <code>contents: read</code> and <code>security-events: write</code> (for uploading SARIF reports to the GitHub Code Security dashboard). Tokens do <strong>not</strong> possess write access to contents or repository settings.</li>
+</ul>
+<h3>3.2 Structured Execution Stages</h3>
+<ol>
+<li><strong>Stage 1 - Environment & Code Checkout:</strong> Shallow clone with <code>fetch-depth: 0</code> to enable historical git commit secret scanning.</li>
+<li><strong>Stage 2 - Secret Scanning (TruffleHog / Gitleaks):</strong> Scans the entire repository history for leaked credentials, API tokens, and private keys.</li>
+<li><strong>Stage 3 - Dependency Vulnerability Audit (<code>pip-audit</code>):</strong> Installs dependencies and queries PyPI vulnerability databases for known CVEs.</li>
+<li><strong>Stage 4 - Static Code Analysis (<code>Bandit</code>):</strong> Scans all Python source files with high-confidence flags, generating JSON and SARIF reports.</li>
+<li><strong>Stage 5 - Container Security Audit (<code>Trivy</code>):</strong> Analyzes the multi-stage Docker build, base OS layers, and binary dependencies (<code>openbabel</code>, <code>autodock-vina</code>).</li>
+<li><strong>Stage 6 - SARIF Telemetry Aggregation:</strong> Consolidates security telemetry and publishes findings directly to GitHub Advanced Security.</li>
+</ol>
+<hr />
+<h2>4. Verified Security Findings & Severity Classifications</h2>
+<p><em>Note on Audit Rigor: In strict compliance with technical reporting standards, findings documented below represent verified architectural and code-level characteristics identified during inspection of the <code>QSAR-BACKEND</code> repository.</em></p>
+<h3>Finding SEC-001: Machine Learning Model Deserialization Insecurity (Severity: CRITICAL)</h3>
+<ul>
+<li><strong>Component:</strong> <a href="file:///c:/final_year_project/backend/qsar_api.py"><code>backend/qsar_api.py</code></a> (Lines 60–75, model loader routines)</li>
+<li><strong>Vulnerability Mechanism:</strong> Model weights, scalers, and feature selectors are loaded via Python's <code>joblib.load()</code>:</li>
+<pre><code class="language-python">  bundle["model"] = joblib.load(os.path.join(tdir, "model.pkl"))
+  bundle["scaler"] = joblib.load(os.path.join(tdir, "scaler.pkl"))
+  bundle["selector"] = joblib.load(os.path.join(tdir, "selector.pkl"))
+</code></pre>
+<p>  <code>joblib</code> uses <code>pickle</code> under the hood. In Python, unpickling untrusted or tampered data allows arbitrary code execution via the <code>__reduce__</code> exploit vector.</p>
+<li><strong>Impact:</strong> If an attacker modifies the binary pickle files stored on the server or in storage buckets, arbitrary shell commands can be executed with application privileges.</li>
+<li><strong>Remediation:</strong> Migrate model weights from pickle to safe serialization formats such as <strong>ONNX (Open Neural Network Exchange)</strong>, <strong>SafeTensors</strong>, or store model parameters as pure tensor arrays in HDF5 (<code>.h5</code>) format with cryptographic checksum validation (SHA-256) before loading.</li>
+</ul>
+<h3>Finding SEC-002: Overly Permissive Cross-Origin Resource Sharing (CORS) (Severity: HIGH)</h3>
+<ul>
+<li><strong>Component:</strong> <a href="file:///c:/final_year_project/backend/qsar_api.py"><code>backend/qsar_api.py</code></a> (Lines 51–57)</li>
+<li><strong>Vulnerability Mechanism:</strong> The FastAPI application applies unrestricted CORS middleware:</li>
+<pre><code class="language-python">  app.add_middleware(
+      CORSMiddleware,
+      allow_origins=["*"],
+      allow_credentials=True,
+      allow_methods=["*"],
+      allow_headers=["*"],
+  )
+</code></pre>
+<li><strong>Impact:</strong> Allowing <code>allow_origins=["*"]</code> combined with <code>allow_credentials=True</code> allows malicious websites running in a researcher's browser to execute unauthorized cross-origin requests and read chemical property predictions or active docking sessions.</li>
+<li><strong>Remediation:</strong> Restrict <code>allow_origins</code> to specific trusted domains (e.g., <code>https://hecooksmeth.github.io</code>, localhost for development, and specific production mobile client origins). Disallow wildcard origins when credentials are enabled.</li>
+</ul>
+<h3>Finding SEC-003: Unauthenticated High-Compute Endpoints & DoS Vector (Severity: HIGH)</h3>
+<ul>
+<li><strong>Component:</strong> <a href="file:///c:/final_year_project/backend/qsar_api.py"><code>backend/qsar_api.py</code></a> (Endpoints <code>/dock</code>, <code>/predict_batch</code>, <code>/filter_batch</code>)</li>
+<li><strong>Vulnerability Mechanism:</strong> The computational endpoints are exposed publicly without API keys, JWT authentication, or request rate-limiting middleware.</li>
+<li><strong>Impact:</strong> AutoDock Vina molecular docking is a CPU-intensive calculation. A malicious actor could launch hundreds of concurrent docking requests against target receptors (e.g., EGFR, PARP1), exhausting server CPU cores and RAM, leading to complete service denial on hosting platforms (Render / Cloud Run).</li>
+<li><strong>Remediation:</strong> Implement API key or JWT Bearer authentication headers. Integrate rate-limiting middleware using <code>slowapi</code> or Redis-backed token buckets (e.g., maximum 5 docking jobs per IP/user per hour).</li>
+</ul>
+<h3>Finding SEC-004: Container Execution Under Root Privileges (Severity: MEDIUM)</h3>
+<ul>
+<li><strong>Component:</strong> <a href="file:///c:/final_year_project/backend/Dockerfile"><code>backend/Dockerfile</code></a> (Lines 1–47)</li>
+<li><strong>Vulnerability Mechanism:</strong> The container executes all instructions and spawns <code>uvicorn</code> under the default <code>root</code> user (<code>uid 0</code>). No non-root <code>USER</code> directive is specified.</li>
+<li><strong>Impact:</strong> In the event of a remote code execution vulnerability (e.g., via OpenBabel or joblib deserialization), the attacker gains immediate root permissions inside the container, facilitating container escape or host namespace compromise.</li>
+<li><strong>Remediation:</strong> Add a non-root service account in <code>Dockerfile</code>:</li>
+<pre><code class="language-dockerfile">  RUN useradd -m -u 1000 appuser &amp;&amp; chown -R appuser:appuser /app
+  USER appuser
+</code></pre>
+</ul>
+<h3>Finding SEC-005: Exposed Swagger UI & OpenAPI Specification in Production (Severity: LOW)</h3>
+<ul>
+<li><strong>Component:</strong> <a href="file:///c:/final_year_project/backend/qsar_api.py"><code>backend/qsar_api.py</code></a> (Line 49)</li>
+<li><strong>Vulnerability Mechanism:</strong> <code>FastAPI(title="QSAR Discovery Suite v3.0")</code> is instantiated without disabling docs URLs in production environments.</li>
+<li><strong>Impact:</strong> Interactive API documentation (<code>/docs</code>, <code>/redoc</code>, and <code>/openapi.json</code>) is publicly accessible, facilitating target reconnaissance for potential attackers.</li>
+<li><strong>Remediation:</strong> Disable documentation endpoints conditionally when running in production:</li>
+<pre><code class="language-python">  is_prod = os.getenv("ENVIRONMENT") == "production"
+  app = FastAPI(
+      title="QSAR Discovery Suite v3.0",
+      docs_url=None if is_prod else "/docs",
+      redoc_url=None if is_prod else "/redoc",
+      openapi_url=None if is_prod else "/openapi.json"
+  )
+</code></pre>
+</ul>
+<hr />
+<h2>5. Remediation Status & Verification</h2>
+<div class="table-container"><table>
+<tr><td>Finding ID</td><td>Vulnerability Description</td><td>Verification Method</td><td>Current Status</td><td>Evidence / Commit Reference</td></tr>
+<tr><td><strong>SEC-001</strong></td><td>Joblib / Pickle Insecurity</td><td>Code Inspection</td><td><strong>Open Risk</strong></td><td>Models still loaded via <code>joblib.load()</code> in <code>qsar_api.py</code></td></tr>
+<tr><td><strong>SEC-002</strong></td><td>Wildcard CORS Configuration</td><td>Code Inspection</td><td><strong>Open Risk</strong></td><td><code>allow_origins=["*"]</code> active in <code>qsar_api.py</code></td></tr>
+<tr><td><strong>SEC-003</strong></td><td>Unauthenticated Compute Endpoints</td><td>API Schema Audit</td><td><strong>Open Risk</strong></td><td>No authentication dependency on <code>@app.post("/dock")</code></td></tr>
+<tr><td><strong>SEC-004</strong></td><td>Container Root Execution</td><td>Dockerfile Review</td><td><strong>Open Risk</strong></td><td>No <code>USER</code> directive in <code>backend/Dockerfile</code></td></tr>
+<tr><td><strong>SEC-005</strong></td><td>Public Swagger UI in Production</td><td>Endpoint Verification</td><td><strong>Open Risk</strong></td><td>Default FastAPI docs enabled</td></tr>
+<tr><td><strong>SEC-006</strong></td><td>Subprocess Hanging & Timeouts</td><td>Git Commit Audit</td><td>🟢 <strong>Remediated</strong></td><td>Resolved in commit <code>db6bdb4</code> via <code>OBABEL_TIMEOUT_SECONDS=120</code> and <code>VINA_TIMEOUT_SECONDS=600</code></td></tr>
+</tbody></table></div>
+<hr />
+<h2>6. Actual Audit Results & Risk Assessment</h2>
+<ol>
+<li><strong>Pipeline Execution Status:</strong>  </li>
+<p>   The <code>security-review.yml</code> workflow was not active in prior CI/CD runs. Therefore, <strong>no automated security pipeline has certified this repository as passed</strong>. This report documents the verified baseline resulting from manual code-level and architecture-level inspection.</p>
+</ol>
+<ol>
+<li><strong>Overall Risk Rating:</strong>  </li>
+<p>   <strong>HIGH RISK (Pre-Hardening Baseline).</strong> While the computational chemistry algorithms and OpenBabel timeout mitigations (commit <code>db6bdb4</code>) demonstrate solid functional stability, the lack of API authentication, wildcard CORS headers, root container execution, and Python pickle model deserialization present tangible security risks that should be addressed before enterprise deployment.</p>
+</ol>
+<hr />
+<h2>7. Recommended DevSecOps Roadmap</h2>
+<ol>
+<li><strong>Commit & Enable <code>security-review.yml</code>:</strong> Activate automated dependency scanning and Bandit AST analysis on every push.</li>
+<li><strong>Implement API Authentication:</strong> Enforce API token validation on all prediction and docking endpoints.</li>
+<li><strong>Restrict CORS Origins:</strong> Replace <code>allow_origins=["*"]</code> with an environment-driven domain whitelist.</li>
+<li><strong>Harden Docker Container:</strong> Adopt non-privileged user execution (<code>USER appuser</code>) and read-only root filesystems where practical.</li>
+<li><strong>Checksum Model Files:</strong> Implement SHA-256 integrity verification before deserializing any <code>.pkl</code> or <code>.h5</code> model files.</li>
+</ol>
+
+  </div>
+</body>
+</html>

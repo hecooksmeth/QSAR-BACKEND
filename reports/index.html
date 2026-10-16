@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResistAI & QSAR-BACKEND — DevOps, Telemetry & Documentation Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0f1d;
+      --bg-secondary: #0f172a;
+      --bg-card: rgba(30, 41, 59, 0.7);
+      --border-card: rgba(148, 163, 184, 0.12);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #06b6d4;
+      --accent-blue: #3b82f6;
+      --accent-indigo: #6366f1;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --glow-blue: rgba(59, 130, 246, 0.15);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      width: 100%;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .header-badge .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-emerald);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 780px;
+      margin: 0 auto 1.5rem;
+      font-weight: 400;
+    }
+
+    .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .meta-tag {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--border-card);
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* KPI Stats Bar */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+    }
+
+    .stat-card.emerald::before { background: linear-gradient(90deg, var(--accent-emerald), #34d399); }
+    .stat-card.indigo::before { background: linear-gradient(90deg, var(--accent-indigo), #818cf8); }
+    .stat-card.cyan::before { background: linear-gradient(90deg, var(--accent-cyan), #38bdf8); }
+    .stat-card.amber::before { background: linear-gradient(90deg, var(--accent-amber), #fbbf24); }
+
+    .stat-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      letter-spacing: -0.02em;
+    }
+
+    .stat-subtext {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 0.4rem;
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-card);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(6, 182, 212, 0.25);
+    }
+
+    /* Grids */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-header {
+      margin-bottom: 1rem;
+    }
+
+    .card-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .status-active {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .status-proposed {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-meta {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 6px;
+      border: 1px solid rgba(148, 163, 184, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.15rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-indigo), var(--accent-blue));
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(30, 41, 59, 0.8);
+      color: var(--text-primary);
+      border: 1px solid var(--border-card);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(51, 65, 85, 0.9);
+      border-color: rgba(148, 163, 184, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent-cyan);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+
+    .btn-outline:hover {
+      background: rgba(6, 182, 212, 0.1);
+      border-color: var(--accent-cyan);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid var(--border-card);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      background: rgba(15, 23, 42, 0.5);
+    }
+
+    footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="header-badge">
+        <span class="pulse-dot"></span>
+        <span>Enterprise Telemetry & Documentation Hub</span>
+      </div>
+      <h1>ResistAI · QSAR-BACKEND</h1>
+      <p class="subtitle">
+        High-performance computational chemistry bioactivity prediction, Android Appium E2E mobile automation, DevSecOps audits, and continuous cloud deployment.
+      </p>
+      <div class="meta-tags">
+        <div class="meta-tag"><span>Repository:</span> <strong>hecooksmeth/QSAR-BACKEND</strong></div>
+        <div class="meta-tag"><span>Branch:</span> <strong>main</strong></div>
+        <div class="meta-tag"><span>Target Device:</span> <strong>Android 13.0 (API 33)</strong></div>
+        <div class="meta-tag"><span>Appium Engine:</span> <strong>v2.11.3 UiAutomator2</strong></div>
+      </div>
+    </header>
+
+    <!-- KPI Metrics Bar -->
+    <div class="stats-grid">
+      <div class="stat-card emerald">
+        <div class="stat-title">Test Quality Gate</div>
+        <div class="stat-value">98.62%</div>
+        <div class="stat-subtext">🟢 Passed (Tolerance threshold &ge; 95.0%)</div>
+      </div>
+      <div class="stat-card indigo">
+        <div class="stat-title">Automated Scenarios</div>
+        <div class="stat-value">510</div>
+        <div class="stat-subtext">506 Executed across 20 modules</div>
+      </div>
+      <div class="stat-card cyan">
+        <div class="stat-title">Passing Tests</div>
+        <div class="stat-value">499</div>
+        <div class="stat-subtext">7 Failed · 4 Skipped · 0 Blocked</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-title">CI/CD Pipelines</div>
+        <div class="stat-value">4</div>
+        <div class="stat-subtext">2 Active · 2 Proposed Specifications</div>
+      </div>
+    </div>
+
+    <!-- Section 1: Execution Reports & QA Telemetry -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">📊 Execution Reports & Test Telemetry</h2>
+        <span class="section-badge">Live QA Telemetry</span>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Interactive Report -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-status status-active">Interactive Report</span>
+            <h3 class="card-title">Test Execution Report</h3>
+            <p class="card-desc">
+              Comprehensive searchable and filterable test grid displaying execution timing, verification status, and error logs for all 510 test cases.
+            </p>
+          </div>
+          <div class="card-meta">
+            <span>File: latest/execution-report.html</span>
+            <span>Size: 993 KB</span>
+          </div>
+          <div class="card-actions">
+            <a href="latest/execution-report.html" class="btn btn-primary" target="_blank">Open Interactive Report</a>
+          </div>
+        </div>
+
+        <!-- Executive Dashboard -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-status status-active">Visual Dashboard</span>
+            <h3 class="card-title">Executive QA Dashboard</h3>
+            <p class="card-desc">
+              Visual analytics dashboard featuring Donut pass/fail breakdown, module-by-module progress bars, and defect severity classification.
+            </p>
+          </div>
+          <div class="card-meta">
+            <span>File: latest/dashboard.html</span>
+            <span>Size: 28 KB</span>
+          </div>
+          <div class="card-actions">
+            <a href="latest/dashboard.html" class="btn btn-primary" target="_blank">View Visual Dashboard</a>
+          </div>
+        </div>
+
+        <!-- Historical Trends -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-status status-active">Trend Analytics</span>
+            <h3 class="card-title">Build Trends & Velocity</h3>
+            <p class="card-desc">
+              Historical performance trajectories, execution duration comparisons, and stability tracking across continuous integration runs.
+            </p>
+          </div>
+          <div class="card-meta">
+            <span>File: latest/trends.html</span>
+            <span>Size: 11 KB</span>
+          </div>
+          <div class="card-actions">
+            <a href="latest/trends.html" class="btn btn-primary" target="_blank">Analyze Trends</a>
+          </div>
+        </div>
+
+        <!-- Master Excel Report -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-status status-active">Excel Workbooks</span>
+            <h3 class="card-title">Master 7-Sheet Excel Report</h3>
+            <p class="card-desc">
+              Multi-tab executive spreadsheet generated via ExcelJS with detailed execution logs, defect registry, metrics, and pass rate summaries.
+            </p>
+          </div>
+          <div class="card-meta">
+            <span>File: latest/Automation_Test_Report.xlsx</span>
+            <span>Size: 52 KB</span>
+          </div>
+          <div class="card-actions">
+            <a href="latest/Automation_Test_Report.xlsx" class="btn btn-secondary" download>Download Master Excel</a>
+            <a href="latest/Passed_Test_Cases.xlsx" class="btn btn-outline" download>Passed (27 KB)</a>
+            <a href="latest/Failed_Test_Cases.xlsx" class="btn btn-outline" download>Failed (8 KB)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Technical Documentation Reports -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">📄 Technical Documentation Reports</h2>
+        <span class="section-badge">Architecture & Audits</span>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Deliverable 1 -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-status status-active">Active Workflow</span>
+            <h3 class="card-title">ResistAI — Android Appium E2E Automation & CI/CD Pipeline</h3>
+            <p class="card-desc">
+              Exhaustive technical report detailing the 21-stage macOS pipeline, Page Object Model across 12 screens, Appium 2.x setup, and 510 automated test cases.
+            </p>
+          </div>
+          <div class="card-meta">
+            <span>Workflow: android-e2e.yml</span>
+            <span>Doc: docs/android-appium-e2e-cicd.md</span>
+          </div>
+          <div class="card-actions">
+            <a href="docs/android-appium-e2e-cicd.html" class="btn btn-primary" target="_blank">Read Full Report</a>
+            <a href="https://github.com/hecooksmeth/QSAR-BACKEND/blob/main/docs/android-appium-e2e-cicd.md" class="btn btn-secondary" target="_blank">GitHub Markdown</a>
+          </div>
+        </div>
+
+        <!-- Deliverable 2 -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-status status-proposed">Proposed Specification</span>
+            <h3 class="card-title">ResistAI — Backend Security Review & DevSecOps Audit</h3>
+            <p class="card-desc">
+              DevSecOps security evaluation covering Bandit Python SAST, pip-audit dependency scanner, TruffleHog secrets scanning, and verified architectural findings.
+            </p>
+          </div>
+          <div class="card-meta">
+            <span>Workflow: security-review.yml</span>
+            <span>Doc: docs/backend-security-devsecops-audit.md</span>
+          </div>
+          <div class="card-actions">
+            <a href="docs/backend-security-devsecops-audit.html" class="btn btn-primary" target="_blank">Read Full Report</a>
+            <a href="https://github.com/hecooksmeth/QSAR-BACKEND/blob/main/docs/backend-security-devsecops-audit.md" class="btn btn-secondary" target="_blank">GitHub Markdown</a>
+          </div>
+        </div>
+
+        <!-- Deliverable 3 -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-status status-proposed">Proposed Specification</span>
+            <h3 class="card-title">ResistAI — CI/CD Build · Deploy · E2E Selenium Tests</h3>
+            <p class="card-desc">
+              Continuous deployment pipeline architecture for multi-stage Docker builds, Render deployment hooks, synthetic health probes, and headless Selenium testing.
+            </p>
+          </div>
+          <div class="card-meta">
+            <span>Workflow: ci-cd-e2e.yml</span>
+            <span>Doc: docs/cicd-build-deploy-selenium-e2e.md</span>
+          </div>
+          <div class="card-actions">
+            <a href="docs/cicd-build-deploy-selenium-e2e.html" class="btn btn-primary" target="_blank">Read Full Report</a>
+            <a href="https://github.com/hecooksmeth/QSAR-BACKEND/blob/main/docs/cicd-build-deploy-selenium-e2e.md" class="btn btn-secondary" target="_blank">GitHub Markdown</a>
+          </div>
+        </div>
+
+        <!-- Deliverable 4 -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-status status-active">Active Workflow</span>
+            <h3 class="card-title">ResistAI — Deploy Mobile Automation Reports to GitHub Pages</h3>
+            <p class="card-desc">
+              Report publishing architecture detailing decoupled artifact ingestion, historical build archiving, least-privilege permissions, and Pages configuration.
+            </p>
+          </div>
+          <div class="card-meta">
+            <span>Workflow: deploy-reports.yml</span>
+            <span>Doc: docs/mobile-automation-github-pages.md</span>
+          </div>
+          <div class="card-actions">
+            <a href="docs/mobile-automation-github-pages.html" class="btn btn-primary" target="_blank">Read Full Report</a>
+            <a href="https://github.com/hecooksmeth/QSAR-BACKEND/blob/main/docs/mobile-automation-github-pages.md" class="btn btn-secondary" target="_blank">GitHub Markdown</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      &copy; 2026 <strong>ResistAI / QSAR-BACKEND</strong>. Computational Chemistry Microservices & Mobile Test Automation Framework.
+      <br>
+      Maintained by <a href="https://github.com/hecooksmeth" target="_blank">@hecooksmeth</a> · Project Repository: <a href="https://github.com/hecooksmeth/QSAR-BACKEND" target="_blank">QSAR-BACKEND</a>
+    </p>
+  </footer>
+
+</body>
+</html>

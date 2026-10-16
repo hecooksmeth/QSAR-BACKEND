@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>README — ResistAI / QSAR-BACKEND</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0f1d;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --border: rgba(148, 163, 184, 0.15);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .wrapper {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      background: rgba(99, 102, 241, 0.3);
+      transform: translateX(-2px);
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin: 1.5rem 0 1rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.25;
+    }
+    h2 { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 1rem; color: #e2e8f0; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+    h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #cbd5e1; }
+    h4 { font-size: 1.05rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: #94a3b8; }
+    p { margin-bottom: 1.25rem; color: #cbd5e1; }
+    ul, ol { margin: 0 0 1.5rem 1.75rem; color: #cbd5e1; }
+    li { margin-bottom: 0.5rem; }
+    hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { font-family: var(--font-mono); background: rgba(15, 23, 42, 0.8); padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.88em; color: #38bdf8; border: 1px solid rgba(148, 163, 184, 0.15); }
+    pre { background: #070b14; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+    pre code { background: none; padding: 0; border: none; color: #e2e8f0; font-size: 0.88rem; line-height: 1.6; }
+    .table-container { overflow-x: auto; margin: 1.75rem 0; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem; }
+    th { background: rgba(15, 23, 42, 0.9); padding: 0.85rem 1rem; font-weight: 600; color: #f1f5f9; border-bottom: 2px solid var(--border); }
+    td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); color: #cbd5e1; }
+    tr:hover td { background: rgba(51, 65, 85, 0.3); }
+    blockquote { border-left: 4px solid var(--primary); padding-left: 1rem; margin: 1.5rem 0; color: #94a3b8; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="nav-bar">
+      <a href="../index.html" class="back-btn">&larr; Return to Telemetry Portal</a>
+      <span style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">QSAR-BACKEND Documentation</span>
+    </div>
+    <h1>QSAR-BACKEND & ResistAI — DevOps & CI/CD Documentation Hub</h1>
+<p>Welcome to the engineering documentation portal for the <strong>QSAR-BACKEND</strong> computational chemistry platform and <strong>ResistAI</strong> mobile test automation ecosystem. This portal provides exhaustive technical architecture reports, CI/CD pipeline definitions, DevSecOps security audits, and automated test reporting methodologies.</p>
+<hr />
+<h2>🌟 Executive Overview</h2>
+<p>The <strong>QSAR-BACKEND</strong> repository powers real-time chemoinformatics, QSAR bioactivity prediction (EGFR, BRAF, VEGFR2, FLT3, and other oncology kinase targets), and automated AutoDock Vina molecular docking. Coupled with this backend is an enterprise-grade quality assurance and deployment framework spanning mobile Appium automation, containerized continuous delivery, automated vulnerability audits, and static report publishing on GitHub Pages.</p>
+<pre><code class="language-mermaid">graph TD
+    subgraph SCM ["GitHub Repository: hecooksmeth/QSAR-BACKEND"]
+        WF1[".github/workflows/android-e2e.yml"]
+        WF2[".github/workflows/security-review.yml"]
+        WF3[".github/workflows/ci-cd-e2e.yml"]
+        WF4[".github/workflows/deploy-reports.yml"]
+    end
+
+    subgraph REPORTS ["Technical Documentation Reports (/docs)"]
+        DOC1["1. Android Appium E2E Automation &amp; CI/CD Pipeline&lt;br/&gt;(docs/android-appium-e2e-cicd.md)"]
+        DOC2["2. Backend Security Review &amp; DevSecOps Audit&lt;br/&gt;(docs/backend-security-devsecops-audit.md)"]
+        DOC3["3. CI/CD Build · Deploy · E2E Selenium Tests&lt;br/&gt;(docs/cicd-build-deploy-selenium-e2e.md)"]
+        DOC4["4. Deploy Mobile Automation Reports to GitHub Pages&lt;br/&gt;(docs/mobile-automation-github-pages.md)"]
+    end
+
+    subgraph TELEMETRY ["QA Telemetry &amp; Hosting"]
+        PUB["GitHub Pages Web Portal&lt;br/&gt;https://hecooksmeth.github.io/QSAR-BACKEND/"]
+        EXEC["Interactive Execution Report&lt;br/&gt;reports/latest/execution-report.html"]
+        DASH["Visual Metrics Dashboard&lt;br/&gt;reports/latest/dashboard.html"]
+        XLS["Excel 7-Sheet Master Report&lt;br/&gt;Automation_Test_Report.xlsx"]
+    end
+
+    WF1 -.-&gt; DOC1
+    WF2 -.-&gt; DOC2
+    WF3 -.-&gt; DOC3
+    WF4 -.-&gt; DOC4
+
+    WF1 --&gt; EXEC &amp; DASH &amp; XLS
+    WF4 --&gt; PUB
+</code></pre>
+<hr />
+<h2>📋 Deliverables & Pipeline Matrix</h2>
+<div class="table-container"><table>
+<thead><tr><th>#</th><th>Deliverable Topic Title</th><th>Workflow File</th><th>Status</th><th>Target Scope & Primary Tooling</th><th>Report Link</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><strong>ResistAI — Android Appium E2E Automation & CI/CD Pipeline</strong></td><td><a href="file:///c:/final_year_project/backend/.github/workflows/android-e2e.yml"><code>android-e2e.yml</code></a></td><td>🟢 <strong>Active</strong></td><td>21-stage macOS CI/CD pipeline, Android 13 emulator, Appium 2.x, 510 test cases, 7-sheet Excel & interactive HTML reports</td><td><a href="android-appium-e2e-cicd.html">Read Report</a></td></tr>
+<tr><td><strong>2</strong></td><td><strong>ResistAI — Backend Security Review & DevSecOps Audit</strong></td><td><a href="file:///c:/final_year_project/backend/.github/workflows/security-review.yml"><code>security-review.yml</code></a></td><td>🟡 <strong>Proposed</strong></td><td>Bandit Python SAST, pip-audit dependency scanner, TruffleHog secrets detection, Trivy container audit, CodeQL</td><td><a href="backend-security-devsecops-audit.html">Read Report</a></td></tr>
+<tr><td><strong>3</strong></td><td><strong>ResistAI — CI/CD Build · Deploy · E2E Selenium Tests</strong></td><td><a href="file:///c:/final_year_project/backend/.github/workflows/ci-cd-e2e.yml"><code>ci-cd-e2e.yml</code></a></td><td>🟡 <strong>Proposed</strong></td><td>Docker container build, Render cloud deploy hook, post-deploy synthetic health checks, Headless Selenium E2E</td><td><a href="cicd-build-deploy-selenium-e2e.html">Read Report</a></td></tr>
+<tr><td><strong>4</strong></td><td><strong>ResistAI — Deploy Mobile Automation Reports to GitHub Pages</strong></td><td><a href="file:///c:/final_year_project/backend/.github/workflows/deploy-reports.yml"><code>deploy-reports.yml</code></a></td><td>🟢 <strong>Active</strong></td><td>Decoupled workflow, artifact download, directory versioning, <code>peaceiris/actions-gh-pages@v4</code>, live web portal</td><td><a href="mobile-automation-github-pages.html">Read Report</a></td></tr>
+</tbody></table></div>
+<hr />
+<h2>🔍 Verified Status & Live Links</h2>
+<h3>Verified Workflow Runs</h3>
+<ul>
+<li><strong>Run Identifier:</strong> <a href="https://github.com/hecooksmeth/QSAR-BACKEND/actions/runs/38899032812"><code>38899032812</code></a></li>
+<li><strong>Workflow:</strong> <code>Android Appium E2E Automation & GitHub Pages CI/CD</code></li>
+<li><strong>Trigger:</strong> Push to <code>main</code> branch (Commit <code>8ce36f9</code>)</li>
+<li><strong>Status Audit:</strong> Verified via GitHub Actions API. Stage 1 (Checkout) succeeded; Stage 2 (Java setup) failed due to root Gradle cache discovery in the standalone backend repo. Fixes and workarounds are documented in <a href="file:///c:/final_year_project/backend/docs/android-appium-e2e-cicd.md#7-verified-execution-results">Report 1</a>.</li>
+</ul>
+<h3>Live Report Hosting on GitHub Pages</h3>
+<p><em>Upon administrator enablement of GitHub Pages on branch <code>gh-pages</code>:</em></p>
+<ul>
+<li><strong>Portal Landing Page:</strong> <a href="https://hecooksmeth.github.io/QSAR-BACKEND/">https://hecooksmeth.github.io/QSAR-BACKEND/</a></li>
+<li><strong>Latest Interactive Execution Report:</strong> <a href="https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/execution-report.html">https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/execution-report.html</a></li>
+<li><strong>Executive Metrics Dashboard:</strong> <a href="https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/dashboard.html">https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/dashboard.html</a></li>
+<li><strong>Historical Trend Analytics:</strong> <a href="https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/trends.html">https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/trends.html</a></li>
+<li><strong>Executive Summary Markdown:</strong> <a href="https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/summary.html">https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/summary.md</a></li>
+<li><strong>Historical Snapshot Archive:</strong> <code>https://hecooksmeth.github.io/QSAR-BACKEND/reports/history/build-001/execution-report.html</code></li>
+</ul>
+<hr />
+<h2>📁 Repository Directory Navigation</h2>
+<pre><code class="language-text">backend/
+├── .github/
+│   └── workflows/
+│       ├── android-e2e.yml              # 21-stage Android E2E CI/CD pipeline
+│       ├── deploy-reports.yml           # GitHub Pages report deployment
+│       ├── security-review.yml          # Proposed DevSecOps security audit
+│       └── ci-cd-e2e.yml                # Proposed build, deploy &amp; Selenium CI/CD
+│
+├── docs/
+│   ├── README.md                        # Documentation portal index (This file)
+│   ├── android-appium-e2e-cicd.md       # Report 1: Android Appium Automation
+│   ├── backend-security-devsecops-audit.md # Report 2: Security &amp; DevSecOps Audit
+│   ├── cicd-build-deploy-selenium-e2e.md   # Report 3: CI/CD Build &amp; Selenium Tests
+│   └── mobile-automation-github-pages.md   # Report 4: GitHub Pages Publishing
+│
+├── reports/                             # Test Execution Reports &amp; Dashboards
+│   └── latest/                          # HTML, Excel, and Markdown report deliverables
+│
+├── qsar_api.py                          # FastAPI computational chemistry backend
+├── render.yaml                          # Render cloud infrastructure deployment
+├── Dockerfile                           # Container specification (Python 3.11, Vina, OpenBabel)
+└── requirements.txt                     # Production Python dependencies
+</code></pre>
+
+  </div>
+</body>
+</html>
