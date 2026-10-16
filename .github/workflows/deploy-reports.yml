@@ -1,4 +1,4 @@
-name: Deploy Reports to GitHub Pages
+name: Deploy Mobile Automation Reports & Documentation to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -12,15 +12,21 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: 'pages-deploy-${{ github.ref }}'
+  cancel-in-progress: false
+
 jobs:
   deploy-pages:
-    name: Publish Historical & Latest QA Reports
+    name: Publish Documentation & Multi-Format QA Reports
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Stage 1 - Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Download Artifacts from E2E Run
+      - name: Stage 2 - Download Artifacts from E2E Run
         uses: actions/download-artifact@v4
         with:
           pattern: appium-e2e-test-results-*
@@ -28,24 +34,53 @@ jobs:
           merge-multiple: true
         continue-on-error: true
 
-      - name: Structure Reports for Hosting
+      - name: Stage 3 - Structure Unified Documentation & Telemetry Portal
         run: |
-          mkdir -p reports/latest
-          mkdir -p reports/history/build-${{ github.run_number }}
+          echo "Structuring static web hosting directory hierarchy..."
+          mkdir -p site/docs
+          mkdir -p site/latest
+          mkdir -p site/reports/latest
+          mkdir -p site/history/build-${{ github.run_number }}
+          mkdir -p site/reports/history/build-${{ github.run_number }}
 
-          # If artifacts were downloaded, copy them into the hosting tree
-          if [ -d "./downloaded-artifacts" ]; then
-            cp -r ./downloaded-artifacts/* reports/latest/ || true
-            cp -r ./downloaded-artifacts/* reports/history/build-${{ github.run_number }}/ || true
-          elif [ -d "./reports" ]; then
-            echo "Local reports directory present."
+          # 1. Populate Technical Documentation Hub
+          if [ -d "reports/docs" ]; then
+            cp -r reports/docs/* site/docs/
+          fi
+          if [ -d "docs" ]; then
+            cp -r docs/*.md site/docs/ || true
+            cp -r docs/*.html site/docs/ || true
           fi
 
-      - name: Deploy to GitHub Pages
+          # 2. Ingest Fresh Downloaded E2E Artifacts if available
+          if [ -d "./downloaded-artifacts" ] && [ "$(ls -A ./downloaded-artifacts 2>/dev/null)" ]; then
+            echo "Copying downloaded E2E artifacts to hosting directories..."
+            cp -r ./downloaded-artifacts/* site/latest/ || true
+            cp -r ./downloaded-artifacts/* site/reports/latest/ || true
+            cp -r ./downloaded-artifacts/* site/history/build-${{ github.run_number }}/ || true
+            cp -r ./downloaded-artifacts/* site/reports/history/build-${{ github.run_number }}/ || true
+          # 3. Fallback to repository committed reports
+          elif [ -d "reports/latest" ]; then
+            echo "Copying repository baseline reports to hosting directories..."
+            cp -r reports/latest/* site/latest/ || true
+            cp -r reports/latest/* site/reports/latest/ || true
+            cp -r reports/latest/* site/history/build-${{ github.run_number }}/ || true
+            cp -r reports/latest/* site/reports/history/build-${{ github.run_number }}/ || true
+          fi
+
+          # 4. Copy Root Navigation Landing Portal
+          if [ -f "reports/index.html" ]; then
+            cp reports/index.html site/index.html
+          fi
+
+          echo "Structured site layout:"
+          ls -la site/
+
+      - name: Stage 4 - Deploy to GitHub Pages Branch (gh-pages)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports
-          destination_dir: reports
+          publish_dir: ./site
+          destination_dir: ''
           keep_files: true
-          commit_message: "Manual/Post-run Deployment - GitHub Pages QA Reports"
+          commit_message: "Deploy ResistAI QA Reports & Docs [build-${{ github.run_number }}] - GitHub Pages"

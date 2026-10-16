@@ -41,7 +41,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'gradle'
 
       # ====================================================
       # STAGE 3: Setup Android SDK
@@ -191,7 +190,11 @@ jobs:
         run: |
           echo "Dumping device logcat and Appium logs..."
           mkdir -p "Test Results/Logs"
-          adb logcat -d -v time > "Test Results/Logs/logcat.log" || true
+          if adb get-state 1>/dev/null 2>&1; then
+            adb logcat -d -v time > "Test Results/Logs/logcat.log" || true
+          else
+            echo "No active Android device detected; skipped adb logcat." > "Test Results/Logs/logcat.log"
+          fi
 
       # ====================================================
       # STAGE 14 - 17: Reports Verification

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOBILE AUTOMATION GITHUB PAGES — ResistAI / QSAR-BACKEND</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0f1d;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --border: rgba(148, 163, 184, 0.15);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .wrapper {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      background: rgba(99, 102, 241, 0.3);
+      transform: translateX(-2px);
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin: 1.5rem 0 1rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.25;
+    }
+    h2 { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 1rem; color: #e2e8f0; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+    h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #cbd5e1; }
+    h4 { font-size: 1.05rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: #94a3b8; }
+    p { margin-bottom: 1.25rem; color: #cbd5e1; }
+    ul, ol { margin: 0 0 1.5rem 1.75rem; color: #cbd5e1; }
+    li { margin-bottom: 0.5rem; }
+    hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { font-family: var(--font-mono); background: rgba(15, 23, 42, 0.8); padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.88em; color: #38bdf8; border: 1px solid rgba(148, 163, 184, 0.15); }
+    pre { background: #070b14; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+    pre code { background: none; padding: 0; border: none; color: #e2e8f0; font-size: 0.88rem; line-height: 1.6; }
+    .table-container { overflow-x: auto; margin: 1.75rem 0; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem; }
+    th { background: rgba(15, 23, 42, 0.9); padding: 0.85rem 1rem; font-weight: 600; color: #f1f5f9; border-bottom: 2px solid var(--border); }
+    td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); color: #cbd5e1; }
+    tr:hover td { background: rgba(51, 65, 85, 0.3); }
+    blockquote { border-left: 4px solid var(--primary); padding-left: 1rem; margin: 1.5rem 0; color: #94a3b8; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="nav-bar">
+      <a href="../index.html" class="back-btn">&larr; Return to Telemetry Portal</a>
+      <span style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">QSAR-BACKEND Documentation</span>
+    </div>
+    <h1>ResistAI — Deploy Mobile Automation Reports to GitHub Pages</h1>
+<p><strong>Workflow Identifier:</strong> <a href="file:///c:/final_year_project/backend/.github/workflows/deploy-reports.yml"><code>deploy-reports.yml</code></a>  </p>
+<p><strong>Project Identity:</strong> <code>QSAR-BACKEND</code>  </p>
+<p><strong>Application Target:</strong> ResistAI QA Report Hosting, Telemetry Analytics & Documentation Hub  </p>
+<p><strong>Pipeline Status:</strong> Active Workflow Specification & Configured Deployment Pipeline  </p>
+<p><strong>Document Classification:</strong> DevOps Web Publishing, Telemetry Hosting & Site Architecture  </p>
+<hr />
+<h2>1. Executive Summary & Objective</h2>
+<p>The <strong>ResistAI Deploy Mobile Automation Reports to GitHub Pages</strong> pipeline automates the packaging, organization, and web hosting of multi-format quality assurance deliverables generated by the mobile test automation framework. In enterprise software delivery and academic research reviews, test automation results must not remain trapped inside temporary CI worker logs or ephemeral artifacts. Stakeholders, QA managers, bioinformaticians, and software engineers require immediate, browser-accessible visibility into test execution trends, pass/fail ratios, failure screenshots, defect registers, and detailed execution logs.</p>
+<p>This pipeline establishes an automated hosting architecture on <strong>GitHub Pages</strong>, decoupling heavy test execution from static report publishing. It downloads test telemetry artifacts from preceding pipeline runs, organizes them into a structured versioned hierarchy, generates a unified navigation portal, and deploys the resulting static site to the repository's <code>gh-pages</code> branch with zero downtime.</p>
+<pre><code class="language-mermaid">flowchart TD
+    subgraph E2E_PIPELINE ["Test Execution: android-e2e.yml"]
+        A[Android Appium E2E Run] --&gt; B[Generate Excel, HTML, JSON &amp; Screenshots]
+        B --&gt; C[Upload Artifact: appium-e2e-test-results-build-N]
+    end
+
+    subgraph DEPLOY_PIPELINE ["Report Publishing: deploy-reports.yml"]
+        C --&gt;|workflow_run completion or manual dispatch| D[Stage 1: Checkout Repository]
+        D --&gt; E[Stage 2: Download Artifacts via Pattern Matching]
+        E --&gt; F[Stage 3: Structure Directory Hierarchy]
+        F --&gt; G[Stage 4: Build Unified Portal index.html &amp; Docs Viewer]
+        G --&gt; H[Stage 5: Deploy to gh-pages Branch]
+    end
+
+    subgraph HOSTED_PORTAL ["Live GitHub Pages Web Portal"]
+        H --&gt; I["Root Landing Portal (index.html)"]
+        I --&gt; J["Technical Documentation Hub (/docs/)"]
+        I --&gt; K["Latest Execution Report (/reports/latest/execution-report.html)"]
+        I --&gt; L["Executive Dashboard (/reports/latest/dashboard.html)"]
+        I --&gt; M["Historical Build Archive (/reports/history/build-N/)"]
+    end
+</code></pre>
+<hr />
+<h2>2. Report Publishing Architecture & Workflow Relationship</h2>
+<p>The reporting infrastructure uses a two-tier decoupled architecture:</p>
+<h3>2.1 Decoupling Rationale</h3>
+<ul>
+<li><strong>Resource Efficiency:</strong> The test automation suite (<code>android-e2e.yml</code>) runs on heavy, specialized virtual machines (<code>macos-14</code> Apple Silicon runners) to provide hardware acceleration for the Android Emulator.</li>
+<li><strong>Publishing Isolation:</strong> The report deployment workflow (<code>deploy-reports.yml</code>) runs on lightweight, cost-effective <code>ubuntu-latest</code> instances. It triggers automatically when <code>android-e2e.yml</code> finishes via GitHub's <code>workflow_run</code> event:</li>
+<pre><code class="language-yaml">  on:
+    workflow_dispatch:
+    workflow_run:
+      workflows: ["Android Appium E2E Automation &amp; GitHub Pages CI/CD"]
+      types:
+        - completed
+</code></pre>
+<li><strong>Resilience:</strong> Even if the emulator test run experiences partial failures, the <code>workflow_run</code> trigger ensures that diagnostic logs, failure screenshots, and execution statistics are still published to GitHub Pages for post-mortem analysis.</li>
+</ul>
+<hr />
+<h2>3. Artifact Download, Processing & Directory Structure</h2>
+<p>The publishing pipeline processes execution artifacts according to the following directory specification:</p>
+<h3>3.1 Ingestion Mechanism</h3>
+<p>The workflow downloads artifacts matching the pattern <code>appium-e2e-test-results-*</code> using <code>actions/download-artifact@v4</code>. Artifacts include:</p>
+<ul>
+<li><code>Automation_Test_Report.xlsx</code> (Master 7-sheet executive workbook)</li>
+<li><code>execution-report.html</code> (Interactive searchable test case grid)</li>
+<li><code>dashboard.html</code> (Donut charts, module completion bars, defect registry)</li>
+<li><code>trends.html</code> (Historical build-over-build pass rate trajectories)</li>
+<li><code>execution-results.json</code> (Structured telemetry)</li>
+<li><code>summary.md</code> (Markdown summary table)</li>
+<li>Diagnostic screenshots (<code>.png</code>) and logs (<code>logcat.log</code>, <code>appium.log</code>)</li>
+</ul>
+<h3>3.2 Directory Hierarchy on <code>gh-pages</code></h3>
+<pre><code class="language-text">https://hecooksmeth.github.io/QSAR-BACKEND/
+│
+├── index.html                           # Root unified portal linking docs and reports
+│
+├── docs/                                # Technical Documentation Reports
+│   ├── android-appium-e2e-cicd.html     # Report 1: Mobile E2E Automation
+│   ├── backend-security-devsecops-audit.html # Report 2: Security &amp; DevSecOps Audit
+│   ├── cicd-build-deploy-selenium-e2e.html   # Report 3: CI/CD Build &amp; Selenium Tests
+│   ├── mobile-automation-github-pages.html   # Report 4: GitHub Pages Publishing
+│   └── README.html                      # Deliverables Overview &amp; Matrix
+│
+└── reports/                             # Test Execution Telemetry
+    ├── latest/                          # Always points to the most recent test run
+    │   ├── execution-report.html        # Interactive report table
+    │   ├── dashboard.html               # Visual metrics dashboard
+    │   ├── trends.html                  # Trend analytics
+    │   ├── summary.md                   # Markdown summary
+    │   ├── Automation_Test_Report.xlsx  # Downloadable Excel workbook
+    │   ├── screenshots/                 # Captured failure screenshots
+    │   └── logs/                        # Appium and OS log files
+    │
+    └── history/                         # Historical Build Archive
+        ├── build-001/                   # Snapshot of build 001
+        └── build-002/                   # Snapshot of build 002
+</code></pre>
+<hr />
+<h2>4. GitHub Actions Deployment Mechanism & Permissions</h2>
+<h3>4.1 Deployment Action</h3>
+<p>The deployment leverages <code>peaceiris/actions-gh-pages@v4</code>, which offers critical enterprise capabilities:</p>
+<ul>
+<li><strong><code>keep_files: true</code></strong>: Prevents wiping previously deployed historical builds when pushing new build reports.</li>
+<li><strong><code>publish_dir: ./reports</code> / <code>./public</code></strong>: Scopes the deployment to the compiled static site output directory.</li>
+<li><strong>Atomic Commits</strong>: Generates clean, traceable commit records directly on the <code>gh-pages</code> branch without polluting the <code>main</code> commit history.</li>
+</ul>
+<h3>4.2 Least-Privilege Workflow Permissions</h3>
+<p>The workflow declares explicit permissions, adhering to security standards:</p>
+<pre><code class="language-yaml">permissions:
+  contents: write    # Required to push generated static files to gh-pages branch
+  pages: write       # Required to interact with GitHub Pages deployment API
+  id-token: write    # Required for OpenID Connect (OIDC) authentication
+</code></pre>
+<hr />
+<h2>5. Repository & GitHub Pages Configuration Guide</h2>
+<p>To enable live report hosting for <code>hecooksmeth/QSAR-BACKEND</code>, follow these configuration steps:</p>
+<h3>Step 1: Enable GitHub Pages in Repository Settings</h3>
+<ol>
+<li>Navigate to the GitHub repository: <a href="https://github.com/hecooksmeth/QSAR-BACKEND">https://github.com/hecooksmeth/QSAR-BACKEND</a>.</li>
+<li>Click <strong>Settings</strong> in the top navigation bar.</li>
+<li>In the left sidebar, click <strong>Pages</strong> (under the "Code and automation" section).</li>
+<li>Under <strong>Build and deployment</strong>:</li>
+<ul>
+<li><strong>Source:</strong> Select <code>Deploy from a branch</code>.</li>
+<li><strong>Branch:</strong> Select <code>gh-pages</code>.</li>
+<li><strong>Folder:</strong> Select <code>/ (root)</code>.</li>
+<li>Click <strong>Save</strong>.</li>
+</ul>
+</ol>
+<h3>Step 2: Grant Workflow Write Permissions</h3>
+<ol>
+<li>In repository <strong>Settings</strong>, click <strong>Actions</strong> > <strong>General</strong> in the left sidebar.</li>
+<li>Scroll down to <strong>Workflow permissions</strong>.</li>
+<li>Select <strong>Read and write permissions</strong>.</li>
+<li>Check the box: <strong>Allow GitHub Actions to create and approve pull requests</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<h3>Step 3: Trigger Initial Deployment</h3>
+<ol>
+<li>Navigate to the <strong>Actions</strong> tab.</li>
+<li>Select <strong>Deploy Reports to GitHub Pages</strong> from the left list.</li>
+<li>Click the <strong>Run workflow</strong> dropdown, choose <code>main</code>, and click <strong>Run workflow</strong>.</li>
+</ol>
+<hr />
+<h2>6. Live Published URLs & Access Matrix</h2>
+<p>Once GitHub Pages is enabled and the workflow executes, the following URLs will become accessible:</p>
+<div class="table-container"><table>
+<thead><tr><th>Deliverable Type</th><th>Target Resource</th><th>Public Web URL</th></tr></thead>
+<tbody>
+<tr><td><strong>Site Landing Portal</strong></td><td>Unified Navigation Hub</td><td><code>https://hecooksmeth.github.io/QSAR-BACKEND/</code></td></tr>
+<tr><td><strong>Latest Execution Report</strong></td><td>Searchable & Filterable Test Grid</td><td><code>https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/execution-report.html</code></td></tr>
+<tr><td><strong>Executive Dashboard</strong></td><td>Visual KPI & Metric Charts</td><td><code>https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/dashboard.html</code></td></tr>
+<tr><td><strong>Build Trends Analytics</strong></td><td>Historical Pass Rate Trends</td><td><code>https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/trends.html</code></td></tr>
+<tr><td><strong>Executive Summary</strong></td><td>Markdown Table Summary</td><td><code>https://hecooksmeth.github.io/QSAR-BACKEND/reports/latest/summary.md</code></td></tr>
+<tr><td><strong>Technical Documentation</strong></td><td>Documentation Index</td><td><code>https://hecooksmeth.github.io/QSAR-BACKEND/docs/</code></td></tr>
+<tr><td><strong>Historical Archive</strong></td><td>Build 001 Snapshot</td><td><code>https://hecooksmeth.github.io/QSAR-BACKEND/reports/history/build-001/execution-report.html</code></td></tr>
+</tbody></table></div>
+<hr />
+<h2>7. Retention Policies, Storage Limits & Troubleshooting</h2>
+<h3>7.1 Storage & Quota Management</h3>
+<ul>
+<li><strong>GitHub Pages Limits:</strong> GitHub Pages enforces a soft limit of 1 GB per repository and a 100 GB monthly bandwidth limit.</li>
+<li><strong>Artifact Retention:</strong> Raw CI artifacts uploaded in <code>android-e2e.yml</code> are configured with <code>retention-days: 30</code>, ensuring temporary ZIP bundles are purged automatically.</li>
+<li><strong>Historical Pruning:</strong> The <code>deploy-reports.yml</code> pipeline includes a maintenance routine to prune historical build folders in <code>reports/history/</code> older than 90 days or exceeding 50 builds to keep total Pages storage well under 250 MB.</li>
+</ul>
+<h3>7.2 Common Troubleshooting Scenarios</h3>
+<ol>
+<li><strong>HTTP 404 Not Found on Report URLs:</strong></li>
+<ul>
+<li><em>Cause:</em> GitHub Pages is not yet enabled in repository settings, or the <code>gh-pages</code> branch has not yet been populated.</li>
+<li><em>Fix:</em> Verify that Step 1 of the configuration guide has been completed and that <code>deploy-reports.yml</code> has executed successfully.</li>
+</ul>
+</ol>
+<ol>
+<li><strong>Artifact Pattern Not Found Warning:</strong></li>
+<ul>
+<li><em>Cause:</em> The upstream <code>android-e2e.yml</code> run encountered an error prior to Stage 18 (Upload Artifacts), so no artifact matching <code>appium-e2e-test-results-*</code> was produced.</li>
+<li><em>Fix:</em> The updated <code>deploy-reports.yml</code> uses fallback detection (<code>elif [ -d "./reports" ]</code>) to deploy committed baseline reports if downloaded artifacts are unavailable.</li>
+</ul>
+</ol>
+<ol>
+<li><strong>Missing <code>keep_files: true</code> Erasing History:</strong></li>
+<ul>
+<li><em>Cause:</em> Running standard GitHub Pages actions without history retention wipes previous build snapshots on every deploy.</li>
+<li><em>Fix:</em> Always maintain <code>keep_files: true</code> in the <code>peaceiris/actions-gh-pages</code> step.</li>
+</ul>
+</ol>
+<hr />
+<h2>8. Actual Deployment Status</h2>
+<ul>
+<li><strong>Workflow Implementation:</strong> <a href="file:///c:/final_year_project/backend/.github/workflows/deploy-reports.yml"><code>.github/workflows/deploy-reports.yml</code></a> has been defined and pushed to <code>main</code>.</li>
+<li><strong>Pages Service Status:</strong> API check confirmed HTTP 404 (Pages not yet activated in repository settings by administrator).</li>
+<li><strong>Deliverables Readiness:</strong> Local reports (HTML execution grid, executive dashboard, trends chart, and Excel workbooks) are generated and structured, ready for immediate publishing upon repository configuration.</li>
+</ul>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CICD BUILD DEPLOY SELENIUM E2E — ResistAI / QSAR-BACKEND</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0f1d;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --border: rgba(148, 163, 184, 0.15);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .wrapper {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      background: rgba(99, 102, 241, 0.3);
+      transform: translateX(-2px);
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin: 1.5rem 0 1rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.25;
+    }
+    h2 { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 1rem; color: #e2e8f0; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+    h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #cbd5e1; }
+    h4 { font-size: 1.05rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: #94a3b8; }
+    p { margin-bottom: 1.25rem; color: #cbd5e1; }
+    ul, ol { margin: 0 0 1.5rem 1.75rem; color: #cbd5e1; }
+    li { margin-bottom: 0.5rem; }
+    hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { font-family: var(--font-mono); background: rgba(15, 23, 42, 0.8); padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.88em; color: #38bdf8; border: 1px solid rgba(148, 163, 184, 0.15); }
+    pre { background: #070b14; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+    pre code { background: none; padding: 0; border: none; color: #e2e8f0; font-size: 0.88rem; line-height: 1.6; }
+    .table-container { overflow-x: auto; margin: 1.75rem 0; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem; }
+    th { background: rgba(15, 23, 42, 0.9); padding: 0.85rem 1rem; font-weight: 600; color: #f1f5f9; border-bottom: 2px solid var(--border); }
+    td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); color: #cbd5e1; }
+    tr:hover td { background: rgba(51, 65, 85, 0.3); }
+    blockquote { border-left: 4px solid var(--primary); padding-left: 1rem; margin: 1.5rem 0; color: #94a3b8; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="nav-bar">
+      <a href="../index.html" class="back-btn">&larr; Return to Telemetry Portal</a>
+      <span style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">QSAR-BACKEND Documentation</span>
+    </div>
+    <h1>ResistAI — CI/CD Build · Deploy · E2E Selenium Tests</h1>
+<p><strong>Workflow Identifier:</strong> <a href="file:///c:/final_year_project/backend/.github/workflows/ci-cd-e2e.yml"><code>ci-cd-e2e.yml</code></a>  </p>
+<p><strong>Project Identity:</strong> <code>QSAR-BACKEND</code>  </p>
+<p><strong>Application Target:</strong> ResistAI Computational Chemistry Microservices, Web Dashboard & Render Deployment  </p>
+<p><strong>Pipeline Status:</strong> Specification & Proposed CI/CD Implementation  </p>
+<p><strong>Document Classification:</strong> Continuous Integration, Continuous Delivery & E2E Test Architecture  </p>
+<hr />
+<h2>1. Executive Summary & Objective</h2>
+<p>The <strong>ResistAI CI/CD Build · Deploy · E2E Selenium Tests</strong> pipeline establishes continuous delivery and post-deployment validation for the <code>QSAR-BACKEND</code> computational chemistry microservice. In high-performance computational chemistry and machine learning pipelines, code changes must be continuously built, validated against regression test suites, packaged into reproducible container images, deployed to cloud infrastructure (e.g., Render, Google Cloud Run), and verified via automated synthetic end-to-end tests before being released to researchers.</p>
+<p>This pipeline defines a multi-stage workflow automating code quality gates, Python integration testing, Docker container packaging, zero-downtime deployment triggers, and post-deployment browser/API synthetic tests using headless <strong>Selenium / WebdriverIO</strong>.</p>
+<pre><code class="language-mermaid">flowchart TD
+    subgraph CONTINUOUS_INTEGRATION ["Continuous Integration (CI)"]
+        A[Git Push / PR to main] --&gt; B[Stage 1: Lint &amp; Code Style Checks]
+        B --&gt; C[Stage 2: Python Unit &amp; Contract Tests]
+        C --&gt; D[Stage 3: Docker Container Build]
+        D --&gt; E[Stage 4: Container Vulnerability Scan]
+    end
+
+    subgraph CONTINUOUS_DEPLOYMENT ["Continuous Deployment (CD)"]
+        E -- Main Branch Only --&gt; F[Stage 5: Trigger Render Deploy Hook]
+        F --&gt; G[Stage 6: Poll Cloud Health Endpoint - HTTP 200]
+    end
+
+    subgraph SYNTHETIC_E2E ["Post-Deployment Validation"]
+        G --&gt; H[Stage 7: Headless Selenium / WebdriverIO E2E Tests]
+        H --&gt; I{Quality Gate: E2E Tests Passed?}
+        I -- Pass --&gt; J[Stage 8: Release Verified &amp; Tagged]
+        I -- Fail --&gt; K[Stage 9: Trigger Automated Rollback Alert]
+    end
+</code></pre>
+<hr />
+<h2>2. Pipeline Architecture & Orchestration</h2>
+<p>The pipeline is structured into three interdependent phases:</p>
+<ol>
+<li><strong>Continuous Integration (CI):</strong> Validates code syntax, runs unit tests on chemistry parsing and ML inference functions, and verifies that the container builds cleanly without dependency conflicts.</li>
+<li><strong>Continuous Deployment (CD):</strong> Once CI checks pass on the <code>main</code> branch, the pipeline invokes the cloud deployment webhook (Render Deploy Hook) to trigger an automated rolling container redeployment.</li>
+<li><strong>Synthetic End-to-End Testing:</strong> Following successful cloud deployment, an automated synthetic test suite executes headless Selenium tests against the web interface and verifies live API endpoints, confirming that the deployed system responds correctly in production.</li>
+</ol>
+<hr />
+<h2>3. Build, Test & Deployment Stages</h2>
+<p>The proposed pipeline specification in <a href="file:///c:/final_year_project/backend/.github/workflows/ci-cd-e2e.yml"><code>.github/workflows/ci-cd-e2e.yml</code></a> executes across seven stages:</p>
+<h3>3.1 Stage 1: Code Linting & Static Formatting</h3>
+<ul>
+<li><strong>Tools:</strong> <code>flake8</code>, <code>black</code>, <code>isort</code></li>
+<li><strong>Actions:</strong> Verifies adherence to PEP 8 standards, checks for syntax errors, and validates import order across <code>qsar_api.py</code>, <code>qsar_file.py</code>, and docking modules.</li>
+</ul>
+<h3>3.2 Stage 2: Python Unit & Contract Testing</h3>
+<ul>
+<li><strong>Tools:</strong> <code>pytest</code>, <code>pytest-cov</code>, <code>httpx</code></li>
+<li><strong>Actions:</strong> Spawns a local test instance of the FastAPI application via <code>TestClient</code> and executes regression suites covering:</li>
+<li>System health endpoint: <code>GET /health</code> -> HTTP 200 (<code>{"status": "ok"}</code>).</li>
+<li>Target kinase metadata: <code>GET /available_targets</code> -> validates EGFR, BRAF, VEGFR2, FLT3 metadata.</li>
+<li>Molecular SMILES prediction: <code>POST /predict_target</code> -> asserts valid probability outputs and SHAP feature rankings.</li>
+<li>Docking configuration validation: <code>GET /docking_targets</code>.</li>
+</ul>
+<h3>3.3 Stage 3: Container Image Packaging</h3>
+<ul>
+<li><strong>Tools:</strong> Docker Buildx, Docker Engine</li>
+<li><strong>Actions:</strong> Compiles the multi-stage production image defined in <a href="file:///c:/final_year_project/backend/Dockerfile"><code>backend/Dockerfile</code></a>:</li>
+<pre><code class="language-dockerfile">  FROM python:3.11-slim
+  RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends \
+      libxrender1 libxext6 libglib2.0-0 libsm6 libexpat1 gcc g++ autodock-vina openbabel
+  WORKDIR /app
+  COPY requirements-serve.txt .
+  RUN pip install --no-cache-dir -r requirements-serve.txt
+  COPY . .
+  EXPOSE 8080
+  CMD ["sh", "-c", "uvicorn qsar_api:app --host 0.0.0.0 --port ${PORT}"]
+</code></pre>
+</ul>
+<h3>3.4 Stage 4: Continuous Deployment to Cloud (Render)</h3>
+<ul>
+<li><strong>Deployment Platform:</strong> Render Cloud Platform (<code>render.yaml</code> configuration).</li>
+<li><strong>Trigger Mechanism:</strong> Secure HTTP POST request to the Render Deploy Hook:</li>
+<pre><code class="language-bash">  curl -s -X POST "$RENDER_DEPLOY_HOOK_URL"
+</code></pre>
+<li><strong>Service Identifier:</strong> <code>qsar-api</code> (Configured as a Python 3.11 web service with auto-deploy on git push).</li>
+</ul>
+<h3>3.5 Stage 5: Cloud Health Probe & Liveness Verification</h3>
+<ul>
+<li><strong>Mechanism:</strong> Polling loop querying the deployed service URL (<code>https://qsar-api.onrender.com/health</code>) with exponential backoff:</li>
+<pre><code class="language-bash">  retries=0
+  until [ "$retries" -ge 20 ]; do
+    status=$(curl -s -o /dev/null -w "%{http_code}" https://qsar-api.onrender.com/health || echo "000")
+    if [ "$status" -eq 200 ]; then
+      echo "Deployment healthy!"
+      break
+    fi
+    sleep 15
+    retries=$((retries + 1))
+  done
+</code></pre>
+</ul>
+<h3>3.6 Stage 6: Headless Selenium End-to-End Tests</h3>
+<ul>
+<li><strong>Tools:</strong> Selenium WebDriver / WebdriverIO with Headless Chrome.</li>
+<li><strong>Actions:</strong> Launches a headless browser container to navigate the web dashboard, submit chemical structures, trigger prediction requests, and verify that 2D/3D molecular visualization canvases render without DOM or JavaScript errors.</li>
+</ul>
+<h3>3.7 Stage 7: Telemetry Publishing & Failure Handling</h3>
+<ul>
+<li><strong>Actions:</strong> Emits JUnit XML test logs, publishes test summaries to <code>$GITHUB_STEP_SUMMARY</code>, and issues Slack/Discord webhook alerts if deployment or synthetic testing encounters failures.</li>
+</ul>
+<hr />
+<h2>4. Selenium Test Setup & Browser Configuration</h2>
+<p>For synthetic web testing, the runner provisions headless Chromium inside the GitHub Actions virtual runner (<code>ubuntu-latest</code>):</p>
+<pre><code class="language-typescript">// WebdriverIO / Selenium Headless Chrome Capabilities
+export const chromeCapabilities = {
+  browserName: 'chrome',
+  'goog:chromeOptions': {
+    args: [
+      '--headless=new',
+      '--no-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--window-size=1920,1080',
+      '--disable-extensions',
+      '--ignore-certificate-errors',
+    ],
+  },
+};
+</code></pre>
+<h3>Key Test Scenarios:</h3>
+<ol>
+<li><strong>Web Dashboard Hydration:</strong> Verifies that target kinase cards (EGFR, BRAF, PARP1) display real-time availability.</li>
+<li><strong>Interactive SMILES Submission:</strong> Types known SMILES strings (e.g., Erlotinib: <code>COCCOC1=C(C=C2C(=C1)N=CN=C2NC3=CC=CC(=C3)C#C)OCCOC</code>) into the query field and validates the rendered prediction badge.</li>
+<li><strong>Chemical Space Visualization Canvas:</strong> Verifies that PCA/t-SNE scatter plots initialize their HTML5 <code><canvas></code> elements with nonzero pixel data.</li>
+</ol>
+<hr />
+<h2>5. Dependencies, Secrets & Environment Variables</h2>
+<div class="table-container"><table>
+<thead><tr><th>Variable / Secret</th><th>Type</th><th>Source</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td><code>RENDER_DEPLOY_HOOK_URL</code></td><td>Secret</td><td>GitHub Repository Secrets</td><td>Webhook URL triggering automated zero-downtime deployment on Render</td></tr>
+<tr><td><code>RENDER_API_KEY</code></td><td>Secret</td><td>GitHub Repository Secrets</td><td>Administrative API key for status polling and automated rollback</td></tr>
+<tr><td><code>DOCKERHUB_USERNAME</code></td><td>Secret</td><td>GitHub Repository Secrets</td><td>Registry username for publishing container images</td></tr>
+<tr><td><code>DOCKERHUB_TOKEN</code></td><td>Secret</td><td>GitHub Repository Secrets</td><td>Access token for Docker Hub container registry</td></tr>
+<tr><td><code>PORT</code></td><td>Environment</td><td><code>Dockerfile</code> & <code>render.yaml</code></td><td>Application port (<code>8080</code> for Cloud Run, dynamic for Render)</td></tr>
+<tr><td><code>VINA_TIMEOUT_SECONDS</code></td><td>Environment</td><td>Runtime Config</td><td>Maximum docking execution duration (default: <code>600</code> seconds)</td></tr>
+<tr><td><code>OBABEL_TIMEOUT_SECONDS</code></td><td>Environment</td><td>Runtime Config</td><td>Maximum OpenBabel conversion duration (default: <code>120</code> seconds)</td></tr>
+<tr><td><code>PYTHON_VERSION</code></td><td>Environment</td><td><code>render.yaml</code></td><td>Target Python runtime version (<code>3.11.0</code>)</td></tr>
+</tbody></table></div>
+<hr />
+<h2>6. Actual Build, Deployment & Selenium Results</h2>
+<h3>6.1 Verified Deployment Configuration</h3>
+<ul>
+<li><strong>Render Configuration:</strong> Active in <a href="file:///c:/final_year_project/backend/render.yaml"><code>backend/render.yaml</code></a>.</li>
+<li><strong>Service Name:</strong> <code>qsar-api</code></li>
+<li><strong>Runtime:</strong> <code>python</code> (<code>3.11.0</code>)</li>
+<li><strong>Build Command:</strong> <code>pip install -r requirements.txt</code></li>
+<li><strong>Start Command:</strong> <code>uvicorn qsar_api:app --host 0.0.0.0 --port $PORT</code></li>
+<li><strong>Commit Baseline:</strong> Commit <code>70e281f</code> ("Prepare backend for Render deployment") and commit <code>db6bdb4</code> ("Remove redundant --gen3d from OpenBabel, configurable docking timeouts").</li>
+</ul>
+<h3>6.2 Status of Selenium Tests</h3>
+<ul>
+<li><strong>Current Status:</strong> <strong>Planned / Proposed Implementation</strong>.</li>
+<li><strong>Explanation:</strong> In the current repository structure, automated end-to-end testing has been implemented and validated for the <strong>Android Appium Mobile Application</strong> (510 test cases in <code>automation/</code>). The Selenium browser test suite represents the designated architectural roadmap for the complementary web interface and cloud synthetic health probes.</li>
+<li><em>Strict Reporting Disclosure:</em> In compliance with technical reporting standards, no synthetic Selenium test runs have yet been executed in production CI.</li>
+</ul>
+<hr />
+<h2>7. Limitations & Planned Improvements</h2>
+<ol>
+<li><strong>Synthetic Endpoint Probing:</strong> Implement synthetic HTTP health probes running every 15 minutes to monitor Render cold-start latency and prevent free-tier container spinning-down.</li>
+<li><strong>Automated Rollback Integration:</strong> Connect Render REST API to trigger instant version rollback if post-deployment synthetic tests return HTTP 5xx errors.</li>
+<li><strong>Blue-Green Container Deployments:</strong> Migrate from single-instance web services to managed Kubernetes or Google Cloud Run revisions with zero-downtime traffic splitting.</li>
+</ol>
+
+  </div>
+</body>
+</html>

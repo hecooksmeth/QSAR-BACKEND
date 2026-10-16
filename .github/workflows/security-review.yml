@@ -1,0 +1,130 @@
+# ==============================================================================
+# PIPELINE: ResistAI — Backend Security Review & DevSecOps Audit
+# IDENTIFIER: security-review.yml
+# PROJECT: QSAR-BACKEND
+# STATUS: PROPOSED DEVSECOPS IMPLEMENTATION SPECIFICATION
+# ==============================================================================
+name: Backend Security Review & DevSecOps Audit
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 0 * * 1' # Weekly security audit every Monday at 00:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+concurrency:
+  group: 'security-review-${{ github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  secret-detection:
+    name: 1. Secret & Credential Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository (Full History)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan Repository for Leaked Secrets & API Keys
+        uses: trufflesecurity/trufflehog@v3.74.0
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --only-verified
+
+  dependency-audit:
+    name: 2. Python SCA Dependency Audit (pip-audit)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python Runtime (3.11)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies & pip-audit
+        run: |
+          python -m pip install --upgrade pip
+          pip install pip-audit
+          if [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt || true
+          fi
+
+      - name: Audit Python Packages Against Known Vulnerabilities
+        run: |
+          pip-audit -r requirements.txt --format json --output pip-audit-report.json || true
+          pip-audit -r requirements.txt || echo "::warning::Dependency vulnerabilities identified. Review audit logs."
+
+      - name: Upload Dependency Audit Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pip-audit-results
+          path: pip-audit-report.json
+          retention-days: 14
+
+  python-sast:
+    name: 3. Python Static Analysis (Bandit SAST)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python Runtime (3.11)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Bandit SAST Scanner
+        run: |
+          python -m pip install --upgrade pip
+          pip install bandit bandit-sarif-formatter
+
+      - name: Execute AST Security Analysis on Python Codebase
+        run: |
+          bandit -r . -f sarif -o bandit-results.sarif -lll || true
+          bandit -r . -f screen -lll || echo "::warning::Bandit identified AST security notices."
+
+      - name: Upload Bandit SARIF Report to GitHub Security Tab
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: bandit-results.sarif
+        continue-on-error: true
+
+  container-audit:
+    name: 4. Dockerfile & Container Vulnerability Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Scan Dockerfile for Misconfigurations & CVEs
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+          scan-type: 'config'
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-docker-results.sarif'
+          severity: 'CRITICAL,HIGH'
+        continue-on-error: true
+
+      - name: Upload Trivy Config SARIF to GitHub Security Tab
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-docker-results.sarif
+        continue-on-error: true
