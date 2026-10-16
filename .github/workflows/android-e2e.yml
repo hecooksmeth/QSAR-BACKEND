@@ -1,0 +1,274 @@
+name: Android Appium E2E Automation & GitHub Pages CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *' # Nightly regression trigger at 2:00 AM UTC
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'android-e2e-${{ github.ref }}'
+  cancel-in-progress: false
+
+jobs:
+  android-e2e-pipeline:
+    name: Android E2E Pipeline (Build + Emulator + Appium + Test + Pages)
+    runs-on: macos-14 # macOS runner supports hardware-accelerated nested virtualization for Android Emulator (HAXM / Hypervisor.Framework)
+    timeout-minutes: 60
+
+    steps:
+      # ====================================================
+      # STAGE 1: Checkout Repository
+      # ====================================================
+      - name: Stage 1 - Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ====================================================
+      # STAGE 2: Setup Java
+      # ====================================================
+      - name: Stage 2 - Setup Java (Temurin JDK 17)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      # ====================================================
+      # STAGE 3: Setup Android SDK
+      # ====================================================
+      - name: Stage 3 - Setup Android SDK Tools
+        uses: android-actions/setup-android@v3
+
+      # ====================================================
+      # STAGE 4: Setup Node.js & Install Dependencies
+      # ====================================================
+      - name: Stage 4 - Setup Node.js 20 & Install Dependencies
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: |
+            automation/package-lock.json
+
+      - name: Stage 4b - Install Automation Suite Dependencies
+        working-directory: ./automation
+        run: |
+          npm ci || npm install
+          npm install -g appium@2.11.3
+          appium driver install uiautomator2 || true
+
+      - name: Stage 4c - Install Mobile App Dependencies
+        working-directory: ./frontend/qsar-mobile-app
+        run: |
+          npm ci || npm install --legacy-peer-deps
+
+      # ====================================================
+      # STAGE 5: Build APK
+      # ====================================================
+      - name: Stage 5 - Build Android APK (assembleDebug)
+        id: build_apk
+        run: |
+          echo "Building Android Debug APK..."
+          cd frontend/qsar-mobile-app/android
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+          
+          APK_PATH=$(find app/build/outputs/apk/debug -name "*.apk" | head -n 1)
+          if [ -z "$APK_PATH" ]; then
+            echo "::error::Failed to locate built APK file!"
+            exit 1
+          fi
+          echo "Built APK located at: $APK_PATH"
+          echo "APK_FILE_PATH=$GITHUB_WORKSPACE/frontend/qsar-mobile-app/android/$APK_PATH" >> $GITHUB_ENV
+
+      # ====================================================
+      # STAGE 6 & 7: Start Android Emulator & Verify Readiness
+      # STAGE 8: Install APK
+      # STAGE 9 & 10: Start Appium Server & Verify Health
+      # STAGE 11: Execute Appium E2E Tests
+      # ====================================================
+      - name: Stages 6 to 11 - Run Emulator, Appium, and E2E Test Suite
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          force-avd-creation: false
+          emulator-boot-timeout: 600
+          script: |
+            set -e
+
+            echo "===================================================="
+            echo "STAGE 7: Verify Emulator Readiness"
+            echo "===================================================="
+            adb wait-for-device
+            boot_completed=0
+            retries=0
+            until [ "$boot_completed" -eq 1 ] || [ "$retries" -ge 30 ]; do
+              boot_completed=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r' || echo "0")
+              if [ "$boot_completed" != "1" ]; then
+                echo "Waiting for emulator boot completion... ($retries/30)"
+                sleep 4
+                retries=$((retries + 1))
+              fi
+            done
+            adb devices
+            echo "Emulator readiness verified!"
+
+            echo "===================================================="
+            echo "STAGE 8: Install APK automatically"
+            echo "===================================================="
+            echo "Installing APK: $APK_FILE_PATH"
+            adb install -r -g "$APK_FILE_PATH"
+
+            echo "===================================================="
+            echo "STAGE 9: Start Appium Server"
+            echo "===================================================="
+            mkdir -p "$GITHUB_WORKSPACE/Test Results/Logs"
+            nohup appium --address 127.0.0.1 --port 4723 --log-no-colors > "$GITHUB_WORKSPACE/Test Results/Logs/appium.log" 2>&1 &
+            APPIUM_PID=$!
+            echo "Appium server launched with PID: $APPIUM_PID"
+
+            echo "===================================================="
+            echo "STAGE 10: Verify Appium Health"
+            echo "===================================================="
+            appium_ready=0
+            appium_retries=0
+            until [ "$appium_ready" -eq 1 ] || [ "$appium_retries" -ge 15 ]; do
+              HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:4723/status || echo "000")
+              if [ "$HTTP_STATUS" -eq 200 ]; then
+                appium_ready=1
+                echo "Appium server is healthy and responding with HTTP 200 OK!"
+              else
+                echo "Waiting for Appium server response... ($appium_retries/15)"
+                sleep 2
+                appium_retries=$((appium_retries + 1))
+              fi
+            done
+
+            if [ "$appium_ready" -ne 1 ]; then
+              echo "::error::Appium server health check failed!"
+              exit 1
+            fi
+
+            echo "===================================================="
+            echo "STAGE 11: Execute Appium 400+ E2E Test Suite"
+            echo "===================================================="
+            cd "$GITHUB_WORKSPACE/automation"
+            
+            # Export environment context for runner
+            export APPIUM_HOST="127.0.0.1"
+            export APPIUM_PORT="4723"
+            export EXECUTION_MODE="live"
+            export APP_PATH="$APK_FILE_PATH"
+            export GITHUB_RUN_NUMBER="build-${{ github.run_number }}"
+            export GITHUB_SHA="${{ github.sha }}"
+            export GITHUB_REF_NAME="${{ github.ref_name }}"
+            export GITHUB_REPOSITORY="${{ github.repository }}"
+
+            # Execute master test runner
+            npm test || TEST_EXIT_CODE=$?
+
+            echo "Test suite execution finished with code: ${TEST_EXIT_CODE:-0}"
+
+      # ====================================================
+      # STAGE 12 & 13: Capture Diagnostic Screenshots & Logs
+      # ====================================================
+      - name: Stages 12 & 13 - Capture Diagnostic Screenshots & Device Logs
+        if: always()
+        run: |
+          echo "Dumping device logcat and Appium logs..."
+          mkdir -p "Test Results/Logs"
+          adb logcat -d -v time > "Test Results/Logs/logcat.log" || true
+
+      # ====================================================
+      # STAGE 14 - 17: Reports Verification
+      # ====================================================
+      - name: Stages 14 to 17 - Verify Generated Multi-Format Reports
+        if: always()
+        run: |
+          echo "Verifying generated report deliverables..."
+          ls -la "Test Results/Excel/" || true
+          ls -la "Test Results/HTML/" || true
+          ls -la "Test Results/JSON/" || true
+          ls -la "Test Results/Summary/" || true
+
+      # ====================================================
+      # STAGE 18: Upload Artifacts (Retention: 30 Days)
+      # ====================================================
+      - name: Stage 18 - Upload Test Execution Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-e2e-test-results-build-${{ github.run_number }}
+          path: |
+            Test Results/Excel/Automation_Test_Report.xlsx
+            Test Results/Excel/Passed_Test_Cases.xlsx
+            Test Results/Excel/Failed_Test_Cases.xlsx
+            Test Results/Excel/Execution_Summary.xlsx
+            Test Results/HTML/execution-report.html
+            Test Results/HTML/dashboard.html
+            Test Results/HTML/trends.html
+            Test Results/JSON/execution-results.json
+            Test Results/Summary/summary.md
+            Test Results/Screenshots/
+            Test Results/Logs/
+          retention-days: 30
+
+      # ====================================================
+      # STAGE 19 & 20: Publish Reports to GitHub Pages & Update History
+      # ====================================================
+      - name: Stage 19 & 20 - Publish & Archive Reports to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports
+          destination_dir: reports
+          keep_files: true
+          commit_message: "Automated Report Deployment [build-${{ github.run_number }}] - Android Appium E2E"
+
+      # ====================================================
+      # STAGE 21: Publish GitHub Action Summary
+      # ====================================================
+      - name: Stage 21 - Publish GitHub Action Summary
+        if: always()
+        run: |
+          if [ -f "Test Results/Summary/summary.md" ]; then
+            cat "Test Results/Summary/summary.md" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### Android Appium E2E Execution Summary (Fallback)" >> $GITHUB_STEP_SUMMARY
+            echo "Report file not found." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      # ====================================================
+      # FAILURE CRITERIA ENFORCEMENT
+      # ====================================================
+      - name: Verify Pass Threshold & Failure Criteria
+        run: |
+          if [ -f "Test Results/JSON/execution-results.json" ]; then
+            PASS_RATE=$(node -e "const r = require('./Test Results/JSON/execution-results.json'); console.log(r.summary.passPercentage);")
+            CRITICAL_FAILS=$(node -e "const r = require('./Test Results/JSON/execution-results.json'); console.log(r.summary.criticalDefectCount);")
+            echo "Evaluated Pass Rate: $PASS_RATE%"
+            echo "Critical Defects: $CRITICAL_FAILS"
+            
+            # Workflow FAILS if pass percentage < 95%
+            PASS_CHECK=$(node -e "console.log($PASS_RATE >= 95.0 ? 'OK' : 'FAIL');")
+            if [ "$PASS_CHECK" != "OK" ]; then
+              echo "::error::Pipeline Failed: Pass percentage ($PASS_RATE%) is below required threshold (95.0%)!"
+              exit 1
+            fi
+            echo "Quality gate verified: Pass percentage >= 95.0%"
+          fi

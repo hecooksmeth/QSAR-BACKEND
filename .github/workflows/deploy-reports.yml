@@ -1,0 +1,51 @@
+name: Deploy Reports to GitHub Pages
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Android Appium E2E Automation & GitHub Pages CI/CD"]
+    types:
+      - completed
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy-pages:
+    name: Publish Historical & Latest QA Reports
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Artifacts from E2E Run
+        uses: actions/download-artifact@v4
+        with:
+          pattern: appium-e2e-test-results-*
+          path: ./downloaded-artifacts
+          merge-multiple: true
+        continue-on-error: true
+
+      - name: Structure Reports for Hosting
+        run: |
+          mkdir -p reports/latest
+          mkdir -p reports/history/build-${{ github.run_number }}
+
+          # If artifacts were downloaded, copy them into the hosting tree
+          if [ -d "./downloaded-artifacts" ]; then
+            cp -r ./downloaded-artifacts/* reports/latest/ || true
+            cp -r ./downloaded-artifacts/* reports/history/build-${{ github.run_number }}/ || true
+          elif [ -d "./reports" ]; then
+            echo "Local reports directory present."
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports
+          destination_dir: reports
+          keep_files: true
+          commit_message: "Manual/Post-run Deployment - GitHub Pages QA Reports"
