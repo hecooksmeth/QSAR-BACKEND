@@ -1,0 +1,5 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+POST,[POST] /filter_batch,HTTPError('404 Client Error: Not Found for url: [POST] /filter_batch'),168,2026-11-02T07:27:42Z,2026-11-02T07:28:39Z
+GET,[GET] /available_targets,HTTPError('404 Client Error: Not Found for url: [GET] /available_targets'),511,2026-11-02T07:27:41Z,2026-11-02T07:28:40Z
+GET,[GET] /docking_status,HTTPError('404 Client Error: Not Found for url: [GET] /docking_status'),356,2026-11-02T07:27:41Z,2026-11-02T07:28:39Z
+GET,[GET] /docking_targets,HTTPError('404 Client Error: Not Found for url: [GET] /docking_targets'),537,2026-11-02T07:27:41Z,2026-11-02T07:28:39Z

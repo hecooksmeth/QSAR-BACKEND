@@ -1,4 +1,11 @@
-name: Android Appium E2E Automation & GitHub Pages CI/CD
+# ==============================================================================
+# PIPELINE: QSAR-BACKEND — Comprehensive Automated Verification & 510 Test Suite
+# IDENTIFIER: android-e2e.yml
+# TARGET REPO: hecooksmeth/QSAR-BACKEND
+# ARCHITECTURE: 510 Test Catalog, 100-User Load Testing, Multi-Format Reporting
+# ==============================================================================
+
+name: QSAR-BACKEND — Automated Verification & 510 Test Suite
 
 on:
   push:
@@ -6,6 +13,11 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'Target BASE_URL for live deployment probes & load testing'
+        required: false
+        default: 'https://qsar-api.onrender.com'
   schedule:
     - cron: '0 2 * * *' # Nightly regression trigger at 2:00 AM UTC
 
@@ -13,265 +25,187 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  deployments: write
 
 concurrency:
-  group: 'android-e2e-${{ github.ref }}'
+  group: 'qsar-suite-${{ github.ref }}'
   cancel-in-progress: false
 
+env:
+  BASE_URL: ${{ github.event.inputs.base_url || vars.BASE_URL || 'https://qsar-api.onrender.com' }}
+  RENDER_SERVICE_URL: 'https://qsar-api.onrender.com'
+  PYTHONUNBUFFERED: '1'
+
 jobs:
-  android-e2e-pipeline:
-    name: Android E2E Pipeline (Build + Emulator + Appium + Test + Pages)
-    runs-on: macos-14 # macOS runner supports hardware-accelerated nested virtualization for Android Emulator (HAXM / Hypervisor.Framework)
-    timeout-minutes: 60
+  # ============================================================================
+  # JOB 1: Complete Automated Test Suite (510 Tests) & Performance Load Testing
+  # ============================================================================
+  test-and-performance:
+    name: 1. Build, 510 Tests, Load Test & Reporting
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
 
     steps:
-      # ====================================================
-      # STAGE 1: Checkout Repository
-      # ====================================================
+      # STAGE 1: Checkout
       - name: Stage 1 - Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # ====================================================
-      # STAGE 2: Setup Java
-      # ====================================================
-      - name: Stage 2 - Setup Java (Temurin JDK 17)
-        uses: actions/setup-java@v4
+      # STAGE 2: Python Runtime Setup
+      - name: Stage 2 - Setup Python 3.11 Runtime
+        uses: actions/setup-python@v5
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          python-version: '3.11'
+          cache: 'pip'
 
-      # ====================================================
-      # STAGE 3: Setup Android SDK
-      # ====================================================
-      - name: Stage 3 - Setup Android SDK Tools
-        uses: android-actions/setup-android@v3
-
-      # ====================================================
-      # STAGE 4: Setup Node.js & Install Dependencies
-      # ====================================================
-      - name: Stage 4 - Setup Node.js 20 & Install Dependencies
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-          cache-dependency-path: |
-            automation/package-lock.json
-
-      - name: Stage 4b - Install Automation Suite Dependencies
-        working-directory: ./automation
+      # STAGE 3: Dependency Installation
+      - name: Stage 3 - Install Application & Testing Dependencies
         run: |
-          npm ci || npm install
-          npm install -g appium@2.11.3
-          appium driver install uiautomator2 || true
-
-      - name: Stage 4c - Install Mobile App Dependencies
-        working-directory: ./frontend/qsar-mobile-app
-        run: |
-          npm ci || npm install --legacy-peer-deps
-
-      # ====================================================
-      # STAGE 5: Build APK
-      # ====================================================
-      - name: Stage 5 - Build Android APK (assembleDebug)
-        id: build_apk
-        run: |
-          echo "Building Android Debug APK..."
-          cd frontend/qsar-mobile-app/android
-          chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon --stacktrace
-          
-          APK_PATH=$(find app/build/outputs/apk/debug -name "*.apk" | head -n 1)
-          if [ -z "$APK_PATH" ]; then
-            echo "::error::Failed to locate built APK file!"
-            exit 1
+          python -m pip install --upgrade pip
+          if [ -f "requirements-serve.txt" ]; then
+            pip install -r requirements-serve.txt
+          elif [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt
           fi
-          echo "Built APK located at: $APK_PATH"
-          echo "APK_FILE_PATH=$GITHUB_WORKSPACE/frontend/qsar-mobile-app/android/$APK_PATH" >> $GITHUB_ENV
+          pip install -r requirements-test.txt
 
-      # ====================================================
-      # STAGE 6 & 7: Start Android Emulator & Verify Readiness
-      # STAGE 8: Install APK
-      # STAGE 9 & 10: Start Appium Server & Verify Health
-      # STAGE 11: Execute Appium E2E Tests
-      # ====================================================
-      - name: Stages 6 to 11 - Run Emulator, Appium, and E2E Test Suite
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 33
-          target: google_apis
-          arch: x86_64
-          profile: pixel_6
-          disable-animations: true
-          force-avd-creation: false
-          emulator-boot-timeout: 600
-          script: |
-            set -e
-
-            echo "===================================================="
-            echo "STAGE 7: Verify Emulator Readiness"
-            echo "===================================================="
-            adb wait-for-device
-            boot_completed=0
-            retries=0
-            until [ "$boot_completed" -eq 1 ] || [ "$retries" -ge 30 ]; do
-              boot_completed=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r' || echo "0")
-              if [ "$boot_completed" != "1" ]; then
-                echo "Waiting for emulator boot completion... ($retries/30)"
-                sleep 4
-                retries=$((retries + 1))
-              fi
-            done
-            adb devices
-            echo "Emulator readiness verified!"
-
-            echo "===================================================="
-            echo "STAGE 8: Install APK automatically"
-            echo "===================================================="
-            echo "Installing APK: $APK_FILE_PATH"
-            adb install -r -g "$APK_FILE_PATH"
-
-            echo "===================================================="
-            echo "STAGE 9: Start Appium Server"
-            echo "===================================================="
-            mkdir -p "$GITHUB_WORKSPACE/Test Results/Logs"
-            nohup appium --address 127.0.0.1 --port 4723 --log-no-colors > "$GITHUB_WORKSPACE/Test Results/Logs/appium.log" 2>&1 &
-            APPIUM_PID=$!
-            echo "Appium server launched with PID: $APPIUM_PID"
-
-            echo "===================================================="
-            echo "STAGE 10: Verify Appium Health"
-            echo "===================================================="
-            appium_ready=0
-            appium_retries=0
-            until [ "$appium_ready" -eq 1 ] || [ "$appium_retries" -ge 15 ]; do
-              HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:4723/status || echo "000")
-              if [ "$HTTP_STATUS" -eq 200 ]; then
-                appium_ready=1
-                echo "Appium server is healthy and responding with HTTP 200 OK!"
-              else
-                echo "Waiting for Appium server response... ($appium_retries/15)"
-                sleep 2
-                appium_retries=$((appium_retries + 1))
-              fi
-            done
-
-            if [ "$appium_ready" -ne 1 ]; then
-              echo "::error::Appium server health check failed!"
-              exit 1
-            fi
-
-            echo "===================================================="
-            echo "STAGE 11: Execute Appium 400+ E2E Test Suite"
-            echo "===================================================="
-            cd "$GITHUB_WORKSPACE/automation"
-            
-            # Export environment context for runner
-            export APPIUM_HOST="127.0.0.1"
-            export APPIUM_PORT="4723"
-            export EXECUTION_MODE="live"
-            export APP_PATH="$APK_FILE_PATH"
-            export GITHUB_RUN_NUMBER="build-${{ github.run_number }}"
-            export GITHUB_SHA="${{ github.sha }}"
-            export GITHUB_REF_NAME="${{ github.ref_name }}"
-            export GITHUB_REPOSITORY="${{ github.repository }}"
-
-            # Execute master test runner
-            npm test || TEST_EXIT_CODE=$?
-
-            echo "Test suite execution finished with code: ${TEST_EXIT_CODE:-0}"
-
-      # ====================================================
-      # STAGE 12 & 13: Capture Diagnostic Screenshots & Logs
-      # ====================================================
-      - name: Stages 12 & 13 - Capture Diagnostic Screenshots & Device Logs
-        if: always()
+      # STAGE 4: Static Analysis & Syntax Validation
+      - name: Stage 4 - Lint & Static Analysis (Flake8)
         run: |
-          echo "Dumping device logcat and Appium logs..."
-          mkdir -p "Test Results/Logs"
-          if adb get-state 1>/dev/null 2>&1; then
-            adb logcat -d -v time > "Test Results/Logs/logcat.log" || true
-          else
-            echo "No active Android device detected; skipped adb logcat." > "Test Results/Logs/logcat.log"
-          fi
+          echo "Executing static analysis for critical syntax errors..."
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=15 --max-line-length=127 --statistics
 
-      # ====================================================
-      # STAGE 14 - 17: Reports Verification
-      # ====================================================
-      - name: Stages 14 to 17 - Verify Generated Multi-Format Reports
-        if: always()
+      # STAGE 5: Application Build & Container Validation
+      - name: Stage 5 - Container Build Validation (Docker)
         run: |
-          echo "Verifying generated report deliverables..."
-          ls -la "Test Results/Excel/" || true
-          ls -la "Test Results/HTML/" || true
-          ls -la "Test Results/JSON/" || true
-          ls -la "Test Results/Summary/" || true
+          echo "Validating Docker container build for QSAR-BACKEND..."
+          docker build -t qsar-backend:latest .
+          echo "Docker container build validated successfully."
 
-      # ====================================================
-      # STAGE 18: Upload Artifacts (Retention: 30 Days)
-      # ====================================================
-      - name: Stage 18 - Upload Test Execution Artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: appium-e2e-test-results-build-${{ github.run_number }}
-          path: |
-            Test Results/Excel/Automation_Test_Report.xlsx
-            Test Results/Excel/Passed_Test_Cases.xlsx
-            Test Results/Excel/Failed_Test_Cases.xlsx
-            Test Results/Excel/Execution_Summary.xlsx
-            Test Results/HTML/execution-report.html
-            Test Results/HTML/dashboard.html
-            Test Results/HTML/trends.html
-            Test Results/JSON/execution-results.json
-            Test Results/Summary/summary.md
-            Test Results/Screenshots/
-            Test Results/Logs/
-          retention-days: 30
+      # STAGE 6: Application Startup & Liveness Check
+      - name: Stage 6 - Application Startup & Liveness Check
+        run: |
+          echo "Validating application startup integrity..."
+          python -c "
+          import qsar_api
+          print('QSAR Application Title:', qsar_api.app.title)
+          print('Loaded Endpoint Count:', len(qsar_api.app.routes))
+          assert len(qsar_api.app.routes) >= 15
+          "
 
-      # ====================================================
-      # STAGE 19 & 20: Publish Reports to GitHub Pages & Update History
-      # ====================================================
-      - name: Stage 19 & 20 - Publish & Archive Reports to GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports
-          destination_dir: reports
-          keep_files: true
-          commit_message: "Automated Report Deployment [build-${{ github.run_number }}] - Android Appium E2E"
+      # STAGE 7: Automated Test Discovery (510 Unique Tests)
+      - name: Stage 7 - Verify Test Catalog Discovery (Exactly 510 Tests)
+        run: |
+          echo "Executing test discovery against catalog..."
+          pytest --collect-only -q
 
-      # ====================================================
-      # STAGE 21: Publish GitHub Action Summary
-      # ====================================================
-      - name: Stage 21 - Publish GitHub Action Summary
+      # STAGE 8: Automated Test Execution (510 Catalog Tests)
+      - name: Stage 8 - Execute Automated Test Suite (510 Tests across 11 Modules)
+        env:
+          BASE_URL: ${{ env.BASE_URL }}
+        run: |
+          echo "Executing 510 tests across API, Validation, QSAR, Docking, Files, Security & Mobile..."
+          pytest tests -v --tb=short
+
+      # STAGE 9: Baseline / Load Testing (100 Users, 60s)
+      - name: Stage 9 - Execute Baseline / Load Testing (100 Virtual Users)
+        env:
+          BASE_URL: ${{ env.BASE_URL }}
+        run: |
+          echo "Executing 100-user baseline load test against target API..."
+          python performance/run_load_test.py
+
+      # STAGE 10: Final Quality Gate
+      - name: Stage 10 - Evaluate Final Quality Gate
+        run: |
+          echo "Evaluating Quality Gate thresholds (>=95% pass rate, 0 critical failures)..."
+          python reporting/quality_gate.py
+
+      # STAGE 11: GitHub Actions Step Summary
+      - name: Stage 11 - Publish Summary to GitHub Actions
         if: always()
         run: |
           if [ -f "Test Results/Summary/summary.md" ]; then
             cat "Test Results/Summary/summary.md" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "### Android Appium E2E Execution Summary (Fallback)" >> $GITHUB_STEP_SUMMARY
-            echo "Report file not found." >> $GITHUB_STEP_SUMMARY
           fi
 
-      # ====================================================
-      # FAILURE CRITERIA ENFORCEMENT
-      # ====================================================
-      - name: Verify Pass Threshold & Failure Criteria
+      # STAGE 12: Upload Full Test Artifacts
+      - name: Stage 12 - Upload All Test & Performance Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qsar-backend-test-results-${{ github.run_number }}
+          path: Test Results/
+          retention-days: 30
+
+      # STAGE 13: Upload Pass-Only Test Artifacts
+      - name: Stage 13 - Upload Filtered Pass-Only Test Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qsar-backend-passed-test-cases-only-${{ github.run_number }}
+          path: |
+            Test Results/Excel/Passed_Test_Cases.xlsx
+            Test Results/HTML/passed-tests.html
+            Test Results/JSON/passed-tests.json
+            Test Results/Summary/passed-summary.md
+          retention-days: 30
+
+  # ============================================================================
+  # JOB 2: Publish Multi-Format Reports & Archive to GitHub Pages
+  # ============================================================================
+  deploy-pages:
+    name: 2. Publish Reports to GitHub Pages
+    needs: test-and-performance
+    if: always() && (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stage 1 - Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Stage 2 - Structure Static Site & Historical Archive
         run: |
-          if [ -f "Test Results/JSON/execution-results.json" ]; then
-            PASS_RATE=$(node -e "const r = require('./Test Results/JSON/execution-results.json'); console.log(r.summary.passPercentage);")
-            CRITICAL_FAILS=$(node -e "const r = require('./Test Results/JSON/execution-results.json'); console.log(r.summary.criticalDefectCount);")
-            echo "Evaluated Pass Rate: $PASS_RATE%"
-            echo "Critical Defects: $CRITICAL_FAILS"
-            
-            # Workflow FAILS if pass percentage < 95%
-            PASS_CHECK=$(node -e "console.log($PASS_RATE >= 95.0 ? 'OK' : 'FAIL');")
-            if [ "$PASS_CHECK" != "OK" ]; then
-              echo "::error::Pipeline Failed: Pass percentage ($PASS_RATE%) is below required threshold (95.0%)!"
-              exit 1
-            fi
-            echo "Quality gate verified: Pass percentage >= 95.0%"
+          echo "Structuring static web hosting directory hierarchy..."
+          mkdir -p site/docs
+          mkdir -p site/latest
+          mkdir -p site/reports/latest
+          mkdir -p site/history/build-${{ github.run_number }}
+          mkdir -p site/reports/history/build-${{ github.run_number }}
+
+          # Synchronize latest reports
+          if [ -d "reports/latest" ]; then
+            cp -r reports/latest/* site/latest/ || true
+            cp -r reports/latest/* site/reports/latest/ || true
+            cp -r reports/latest/* site/history/build-${{ github.run_number }}/ || true
+            cp -r reports/latest/* site/reports/history/build-${{ github.run_number }}/ || true
           fi
+
+          # Synchronize documentation
+          if [ -d "reports/docs" ]; then
+            cp -r reports/docs/* site/docs/ || true
+          fi
+          if [ -d "docs" ]; then
+            cp -r docs/*.md site/docs/ || true
+            cp -r docs/*.html site/docs/ || true
+          fi
+
+          # Copy root landing portal
+          if [ -f "reports/index.html" ]; then
+            cp reports/index.html site/index.html
+          fi
+
+          echo "Structured site layout:"
+          ls -la site/
+
+      - name: Stage 3 - Deploy Static Portal to GitHub Pages Branch (gh-pages)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          destination_dir: ''
+          keep_files: true
+          commit_message: "Deploy QSAR-BACKEND 510 QA Reports & Docs [build-${{ github.run_number }}] - GitHub Pages"

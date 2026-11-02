@@ -1,0 +1,130 @@
+# ==============================================================================
+# PIPELINE: QSAR-BACKEND — Dedicated Locust Performance & Load Testing
+# IDENTIFIER: load-test.yml
+# TARGET REPO: hecooksmeth/QSAR-BACKEND
+# BENCHMARK: 100 Virtual Users · 60s Load Duration · Multi-Format Telemetry
+# ==============================================================================
+
+name: QSAR-BACKEND — Performance & Load Testing
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'Target BASE_URL for load testing'
+        required: true
+        default: 'https://qsar-api.onrender.com'
+      users:
+        description: 'Number of concurrent virtual users'
+        required: true
+        default: '100'
+      duration:
+        description: 'Test duration in seconds'
+        required: true
+        default: '60'
+      spawn_rate:
+        description: 'Spawn rate (users spawned per second)'
+        required: true
+        default: '20'
+  schedule:
+    - cron: '0 3 * * 0' # Weekly performance benchmark on Sunday at 3:00 AM UTC
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+env:
+  PYTHONUNBUFFERED: '1'
+  BASE_URL: ${{ github.event.inputs.base_url || 'https://qsar-api.onrender.com' }}
+  LOAD_USERS: ${{ github.event.inputs.users || '100' }}
+  LOAD_DURATION: ${{ github.event.inputs.duration || '60' }}
+  LOAD_SPAWN_RATE: ${{ github.event.inputs.spawn_rate || '20' }}
+
+jobs:
+  load-test:
+    name: Locust High-Concurrency Load Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Stage 1 - Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Stage 2 - Setup Python 3.11 Runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Stage 3 - Install Performance Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-test.txt
+
+      - name: Stage 4 - Target Health Pre-flight Probe
+        run: |
+          echo "Probing target API at: $BASE_URL ..."
+          python -c "
+          import os, httpx
+          target = os.getenv('BASE_URL', 'https://qsar-api.onrender.com').rstrip('/') + '/health'
+          try:
+              res = httpx.get(target, timeout=10.0)
+              print(f'Health probe HTTP {res.status_code}: {res.text}')
+          except Exception as exc:
+              print(f'Warning: Target service probe failed: {exc}')
+          "
+
+      - name: Stage 5 - Execute Locust Load Test
+        run: |
+          echo "============================================================"
+          echo " Executing Locust Load Test:"
+          echo " Target:     $BASE_URL"
+          echo " Users:      $LOAD_USERS"
+          echo " Duration:   ${LOAD_DURATION}s"
+          echo " Spawn Rate: $LOAD_SPAWN_RATE/s"
+          echo "============================================================"
+          python performance/run_load_test.py --url "$BASE_URL" --users "$LOAD_USERS" --duration "$LOAD_DURATION" --spawn-rate "$LOAD_SPAWN_RATE"
+
+      - name: Stage 6 - Publish Step Summary
+        if: always()
+        run: |
+          echo "## 🚀 QSAR-BACKEND Performance & Load Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Parameter | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Target URL** | \`$BASE_URL\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Concurrent Users** | \`$LOAD_USERS\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Test Duration** | \`${LOAD_DURATION}s\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Spawn Rate** | \`${LOAD_SPAWN_RATE}/s\` |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f "Test Results/JSON/performance-results.json" ]; then
+            python -c "
+          import json
+          with open('Test Results/JSON/performance-results.json') as f:
+              d = json.load(f)
+          print('### Metrics Summary')
+          print(f'- **Total Requests:** {d.get(\"total_requests\", \"N/A\")}')
+          print(f'- **Requests per Second (RPS):** {d.get(\"requests_per_second\", \"N/A\")}')
+          print(f'- **Successful Requests:** {d.get(\"successful_requests\", \"N/A\")}')
+          print(f'- **Failed Requests:** {d.get(\"failed_requests\", \"N/A\")}')
+          print(f'- **Error Rate:** {d.get(\"error_rate_pct\", \"N/A\")}%')
+          print(f'- **Average Latency:** {d.get(\"average_response_time_ms\", \"N/A\")} ms')
+          print(f'- **P95 Latency:** {d.get(\"p95_ms\", \"N/A\")} ms')
+          print(f'- **P99 Latency:** {d.get(\"p99_ms\", \"N/A\")} ms')
+          print(f'- **Status:** **{d.get(\"status\", \"N/A\")}**')
+          " >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Stage 7 - Upload Performance Evidence Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qsar-backend-load-test-results-${{ github.run_number }}
+          path: |
+            Test Results/Excel/Performance_Report.xlsx
+            Test Results/HTML/performance-report.html
+            Test Results/JSON/performance-results.json
+          retention-days: 30

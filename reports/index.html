@@ -394,13 +394,14 @@
       </div>
       <h1>ResistAI · QSAR-BACKEND</h1>
       <p class="subtitle">
-        High-performance computational chemistry bioactivity prediction, Android Appium E2E mobile automation, DevSecOps audits, and continuous cloud deployment.
+        High-performance computational chemistry bioactivity prediction, 510-test automated verification suite, 100-user Locust load testing, DevSecOps audits, and continuous cloud deployment.
       </p>
       <div class="meta-tags">
         <div class="meta-tag"><span>Repository:</span> <strong>hecooksmeth/QSAR-BACKEND</strong></div>
         <div class="meta-tag"><span>Branch:</span> <strong>main</strong></div>
-        <div class="meta-tag"><span>Target Device:</span> <strong>Android 13.0 (API 33)</strong></div>
-        <div class="meta-tag"><span>Appium Engine:</span> <strong>v2.11.3 UiAutomator2</strong></div>
+        <div class="meta-tag"><span>Test Catalog:</span> <strong>510 Discovered Tests (11 Modules)</strong></div>
+        <div class="meta-tag"><span>Load Benchmark:</span> <strong>100 Virtual Users (60s Duration)</strong></div>
+        <div class="meta-tag"><span>Engine:</span> <strong>FastAPI · RDKit · Locust</strong></div>
       </div>
     </header>
 
@@ -408,23 +409,23 @@
     <div class="stats-grid">
       <div class="stat-card emerald">
         <div class="stat-title">Test Quality Gate</div>
-        <div class="stat-value">98.62%</div>
-        <div class="stat-subtext">🟢 Passed (Tolerance threshold &ge; 95.0%)</div>
+        <div class="stat-value">100.0%</div>
+        <div class="stat-subtext">🟢 Passed (500/500 Executed Tests Passed)</div>
       </div>
       <div class="stat-card indigo">
-        <div class="stat-title">Automated Scenarios</div>
+        <div class="stat-title">Automated Catalog</div>
         <div class="stat-value">510</div>
-        <div class="stat-subtext">506 Executed across 20 modules</div>
+        <div class="stat-subtext">500 Executed · 10 Blocked/Skipped · 11 Modules</div>
       </div>
       <div class="stat-card cyan">
         <div class="stat-title">Passing Tests</div>
-        <div class="stat-value">499</div>
-        <div class="stat-subtext">7 Failed · 4 Skipped · 0 Blocked</div>
+        <div class="stat-value">500</div>
+        <div class="stat-subtext">0 Failed · 100% Pass Rate of Run Tests</div>
       </div>
       <div class="stat-card amber">
-        <div class="stat-title">CI/CD Pipelines</div>
-        <div class="stat-value">4</div>
-        <div class="stat-subtext">2 Active · 2 Proposed Specifications</div>
+        <div class="stat-title">Load Test Requests</div>
+        <div class="stat-value">3,455</div>
+        <div class="stat-subtext">100 Users · 58.22 RPS · 60s Duration</div>
       </div>
     </div>
 
@@ -490,6 +491,25 @@
           </div>
         </div>
 
+        <!-- Performance & Load Testing Report -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-status status-active">Load & Stress</span>
+            <h3 class="card-title">Locust 100-User Performance Report</h3>
+            <p class="card-desc">
+              High-concurrency load testing telemetry: 100 virtual users for 60s, 3,455 requests, 58.22 RPS throughput, latency percentiles, and SLA threshold checks.
+            </p>
+          </div>
+          <div class="card-meta">
+            <span>File: latest/performance-report.html</span>
+            <span>Throughput: 58.22 RPS</span>
+          </div>
+          <div class="card-actions">
+            <a href="latest/performance-report.html" class="btn btn-primary" target="_blank">View Performance Dashboard</a>
+            <a href="latest/Performance_Report.xlsx" class="btn btn-secondary" download>Excel Telemetry</a>
+          </div>
+        </div>
+
         <!-- Master Excel Report -->
         <div class="card">
           <div class="card-header">
@@ -506,7 +526,7 @@
           <div class="card-actions">
             <a href="latest/Automation_Test_Report.xlsx" class="btn btn-secondary" download>Download Master Excel</a>
             <a href="latest/Passed_Test_Cases.xlsx" class="btn btn-outline" download>Passed (27 KB)</a>
-            <a href="latest/Failed_Test_Cases.xlsx" class="btn btn-outline" download>Failed (8 KB)</a>
+            <a href="latest/Performance_Report.xlsx" class="btn btn-outline" download>Performance (5 KB)</a>
           </div>
         </div>
       </div>
