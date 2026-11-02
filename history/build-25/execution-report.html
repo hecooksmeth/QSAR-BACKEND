@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QSAR-BACKEND — API Automated Execution Report</title>
+    <style>
+        :root { --bg: #F8FAFC; --card: #FFFFFF; --text: #0F172A; --subtext: #64748B; --border: #E2E8F0; --primary: #2563EB; --success: #15803D; --danger: #DC2626; --warn: #D97706; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 24px; }
+        .header { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 16px 0; }
+        .metric-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+        .metric-val { font-size: 28px; font-weight: bold; margin-top: 4px; }
+        table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; }
+        th { background: #1E293B; color: #FFF; text-align: left; padding: 12px; }
+        td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+        .badge { padding: 4px 8px; border-radius: 4px; font-weight: 600; font-size: 11px; }
+        .badge-pass { background: #DCFCE7; color: #166534; }
+        .badge-fail { background: #FEE2E2; color: #991B1B; }
+        .badge-block { background: #FEF3C7; color: #92400E; }
+        .badge-prio { background: #E2E8F0; color: #334155; }
+        code { background: #F1F5F9; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 style="margin: 0 0 8px 0;">QSAR-BACKEND — API Automated Execution Report</h1>
+        <div style="color: var(--subtext); font-size: 14px;">Repository: <code>hecooksmeth/QSAR-BACKEND</code> | Commit: <code>HEAD</code> | Branch: <code>main</code> | Timestamp: 2026-11-02 06:27:34 UTC</div>
+        <div class="metrics-grid">
+            <div class="metric-card"><div>Total Discovered</div><div class="metric-val">55</div></div>
+            <div class="metric-card"><div>Executed</div><div class="metric-val">54</div></div>
+            <div class="metric-card"><div>Passed</div><div class="metric-val" style="color: var(--success);">54</div></div>
+            <div class="metric-card"><div>Failed</div><div class="metric-val" style="color: var(--danger);">0</div></div>
+            <div class="metric-card"><div>Blocked (Selenium / Live)</div><div class="metric-val" style="color: var(--warn);">1</div></div>
+            <div class="metric-card"><div>Pass Rate (Executed)</div><div class="metric-val" style="color: var(--primary);">100.0%</div></div>
+        </div>
+    </div>
+    <table>
+        <thead><tr><th>Test ID</th><th>Module</th><th>Test Name</th><th>Priority</th><th>Status</th><th>Duration</th><th>Details / Reason</th></tr></thead>
+        <tbody>
+            <tr data-status="PASSED" data-module="API Contract">
+                <td><code>TC_API_001</code></td>
+                <td>API Contract</td>
+                <td><strong>Verify FastAPI application initializes with valid title and routes</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0002s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="API Contract">
+                <td><code>TC_API_002</code></td>
+                <td>API Contract</td>
+                <td><strong>Verify /openapi.json returns valid OpenAPI 3.x schema definition</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0478s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="API Contract">
+                <td><code>TC_API_003</code></td>
+                <td>API Contract</td>
+                <td><strong>Verify Swagger documentation endpoint /docs returns HTTP 200</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0045s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="API Contract">
+                <td><code>TC_API_004</code></td>
+                <td>API Contract</td>
+                <td><strong>Verify ReDoc documentation endpoint /redoc returns HTTP 200</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0051s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="API Contract">
+                <td><code>TC_API_005</code></td>
+                <td>API Contract</td>
+                <td><strong>Verify /health response structure contains required service metadata</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0079s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="API Contract">
+                <td><code>TC_API_006</code></td>
+                <td>API Contract</td>
+                <td><strong>Verify /available_targets returns dictionary mapping of supported targets</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0154s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="API Contract">
+                <td><code>TC_API_007</code></td>
+                <td>API Contract</td>
+                <td><strong>Verify /docking_targets returns dictionary mapping of receptor target identifiers</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0101s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="API Contract">
+                <td><code>TC_API_008</code></td>
+                <td>API Contract</td>
+                <td><strong>Verify /docking_status returns molecular docking engine status</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0474s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="API Contract">
+                <td><code>TC_API_009</code></td>
+                <td>API Contract</td>
+                <td><strong>Verify CORS headers are returned for preflight cross-origin options request</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.004s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="API Contract">
+                <td><code>TC_API_010</code></td>
+                <td>API Contract</td>
+                <td><strong>Verify application release version tag matches 3.0</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0055s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_001</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /predict_all with missing payload returns 422 Unprocessable Entity</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0061s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_002</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /predict_all with empty JSON object returns 422 Unprocessable Entity</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0052s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_003</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /predict_all with non-string SMILES field returns 422</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0033s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_004</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /predict_all with syntactically invalid SMILES returns HTTP 400</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0097s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_005</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /predict_target with missing target parameter returns 422</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0055s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_006</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /predict_target with invalid chemical string returns 400 or 404</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0063s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_007</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /explain_prediction with missing SMILES returns 422</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0063s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_008</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /explain_prediction with invalid SMILES returns 400 or 404</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0059s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_009</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /similarity_search with invalid SMILES returns 400</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0065s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_010</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /drug_likeness with invalid SMILES returns 400</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0074s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_011</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /chemical_space with empty list handles request gracefully</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0069s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_012</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /chemical_space with missing smiles_list field returns 422</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0041s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_013</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /filter_batch with missing smiles_list returns 422</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0053s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_014</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify POST /dock with missing smiles or target returns 422</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0048s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Input Validation">
+                <td><code>TC_VAL_015</code></td>
+                <td>Input Validation</td>
+                <td><strong>Verify request to undefined route returns HTTP 404 Not Found</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0038s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Live Deployment">
+                <td><code>TC_LIVE_001</code></td>
+                <td>Live Deployment</td>
+                <td><strong>Verify BASE_URL environment variable adheres to scheme and domain standards</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0002s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Live Deployment">
+                <td><code>TC_LIVE_002</code></td>
+                <td>Live Deployment</td>
+                <td><strong>Verify live deployment configuration strictly rejects localhost or loopback targets</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0005s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="BLOCKED" data-module="Live Deployment">
+                <td><code>TC_LIVE_003</code></td>
+                <td>Live Deployment</td>
+                <td><strong>Formally classify Selenium browser tests as NOT APPLICABLE for API microservice</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-block">BLOCKED</span></td>
+                <td>0.0002s</td>
+                <td>QSAR-BACKEND is a FastAPI REST API microservice with no bundled web interface. Browser Selenium testing is not applicable. Backend validation is performed via HTTP integration.</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Live Deployment">
+                <td><code>TC_LIVE_004</code></td>
+                <td>Live Deployment</td>
+                <td><strong>Probe live deployed service if BASE_URL is configured and reachable</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>1.2128s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Live Deployment">
+                <td><code>TC_LIVE_005</code></td>
+                <td>Live Deployment</td>
+                <td><strong>Verify quality gate minimum pass rate policy threshold is 95.0%</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0001s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Model Inference">
+                <td><code>TC_MOD_001</code></td>
+                <td>Model Inference</td>
+                <td><strong>Verify MODEL_ROOT resolution points to an existing directory</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0001s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Model Inference">
+                <td><code>TC_MOD_002</code></td>
+                <td>Model Inference</td>
+                <td><strong>Verify _supported_targets contains expected target proteins</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0062s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Model Inference">
+                <td><code>TC_MOD_003</code></td>
+                <td>Model Inference</td>
+                <td><strong>Verify Morgan fingerprint generator produces 2048-bit bit-vector</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0004s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Model Inference">
+                <td><code>TC_MOD_004</code></td>
+                <td>Model Inference</td>
+                <td><strong>Unit test verifying TargetBundle inference structure with mocked model</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0121s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Model Inference">
+                <td><code>TC_MOD_005</code></td>
+                <td>Model Inference</td>
+                <td><strong>Unit test verifying applicability domain distance threshold classification</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0005s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Model Inference">
+                <td><code>TC_MOD_006</code></td>
+                <td>Model Inference</td>
+                <td><strong>Unit test verifying POST /predict_target endpoint returns 200 with mock</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0147s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Model Inference">
+                <td><code>TC_MOD_007</code></td>
+                <td>Model Inference</td>
+                <td><strong>Unit test verifying POST /predict_all endpoint returns 200 with mock</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0159s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Model Inference">
+                <td><code>TC_MOD_008</code></td>
+                <td>Model Inference</td>
+                <td><strong>Unit test verifying POST /explain_prediction structure with mock</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0178s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Model Inference">
+                <td><code>TC_MOD_009</code></td>
+                <td>Model Inference</td>
+                <td><strong>Verify POST /predict_all raises 503 when no models are loaded in memory</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0052s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Model Inference">
+                <td><code>TC_MOD_010</code></td>
+                <td>Model Inference</td>
+                <td><strong>Verify _target_label returns human-readable label or target name</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0001s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_001</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify RDKit accurately parses Aspirin canonical SMILES into Mol object</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0004s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_002</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify RDKit accurately parses Caffeine SMILES with bicyclic purine ring</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0003s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_003</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify RDKit parses Paracetamol aromatic amide and phenol motifs</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0002s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_004</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify _mol_properties computes MW, LogP, TPSA, HBD, HBA for Aspirin</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0007s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_005</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify _drug_likeness evaluates Lipinski Rule of 5 compliance</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0008s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_006</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify _drug_likeness evaluates Veber rotatable bond constraints</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0011s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_007</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify _admet_heuristics estimates absorption and permeability profiles</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0007s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_008</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify _mol_svg generates 2D vector depiction of molecule</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0012s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_009</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify POST /drug_likeness returns 200 with complete evaluation</strong></td>
+                <td><span class="badge badge-prio">P0</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0055s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_010</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify POST /chemical_space computes PCA coordinate projections</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0058s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_011</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify POST /similarity_search returns ranked reference compounds</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0056s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_012</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify similarity score coefficients fall within [0.0, 1.0]</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.006s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_013</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify POST /pharmacophore returns feature coordinates and counts</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0231s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_014</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify POST /filter_batch applies property thresholds across compound list</strong></td>
+                <td><span class="badge badge-prio">P1</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0076s</td>
+                <td>-</td>
+            </tr>
+            
+            <tr data-status="PASSED" data-module="Cheminformatics">
+                <td><code>TC_CHEM_015</code></td>
+                <td>Cheminformatics</td>
+                <td><strong>Verify Murcko Scaffold decomposition extracts benzene core from Aspirin</strong></td>
+                <td><span class="badge badge-prio">P2</span></td>
+                <td><span class="badge badge-pass">PASSED</span></td>
+                <td>0.0005s</td>
+                <td>-</td>
+            </tr>
+            </tbody>
+    </table>
+</body>
+</html>
