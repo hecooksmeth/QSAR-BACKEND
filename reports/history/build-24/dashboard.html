@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive QA Dashboard | com.sudharsan003.qsarmobileapp</title>
+  <style>
+    
+      :root {
+        --bg-main: #0B0F19;
+        --bg-card: #111827;
+        --bg-card-hover: #1F2937;
+        --border-color: #374151;
+        --text-primary: #F9FAFB;
+        --text-secondary: #9CA3AF;
+        --text-muted: #6B7280;
+        --accent-blue: #3B82F6;
+        --accent-emerald: #10B981;
+        --accent-rose: #EF4444;
+        --accent-amber: #F59E0B;
+        --accent-indigo: #6366F1;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        line-height: 1.5;
+        padding-bottom: 60px;
+      }
+      .navbar {
+        background: rgba(17, 24, 39, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-color);
+        padding: 16px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+      }
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        background: linear-gradient(135deg, #60A5FA, #A78BFA);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .nav-links {
+        display: flex;
+        gap: 16px;
+      }
+      .nav-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+      .nav-link:hover, .nav-link.active {
+        color: var(--text-primary);
+        background: var(--bg-card-hover);
+        border: 1px solid var(--border-color);
+      }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 32px 24px;
+      }
+      .meta-banner {
+        background: linear-gradient(135deg, rgba(31, 41, 55, 0.6), rgba(17, 24, 39, 0.9));
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 32px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+      .meta-item { display: flex; flex-direction: column; gap: 4px; }
+      .meta-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 600; }
+      .meta-value { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      .metric-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        position: relative;
+        overflow: hidden;
+      }
+      .metric-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 3px;
+      }
+      .card-total::before { background: var(--accent-blue); }
+      .card-pass::before { background: var(--accent-emerald); }
+      .card-fail::before { background: var(--accent-rose); }
+      .card-skip::before { background: var(--accent-amber); }
+      .card-rate::before { background: var(--accent-indigo); }
+      .metric-title { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); text-transform: uppercase; }
+      .metric-number { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; }
+      .metric-badge { font-size: 0.75rem; padding: 2px 8px; border-radius: 9999px; width: fit-content; font-weight: 600; }
+      .badge-pass { background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }
+      .badge-fail { background: rgba(239, 68, 68, 0.15); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+      .badge-skip { background: rgba(245, 158, 11, 0.15); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.3); }
+      .controls-bar {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 16px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+      .search-box {
+        display: flex;
+        align-items: center;
+        background: var(--bg-main);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 8px 14px;
+        gap: 8px;
+        min-width: 280px;
+      }
+      .search-box input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--text-primary);
+        font-size: 0.875rem;
+        width: 100%;
+      }
+      .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+      .filter-btn {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--text-secondary);
+        padding: 6px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+      .filter-btn.active, .filter-btn:hover {
+        background: var(--accent-blue);
+        color: white;
+        border-color: var(--accent-blue);
+      }
+      .table-wrapper {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.875rem;
+      }
+      th {
+        background: #161F30;
+        padding: 14px 18px;
+        font-weight: 600;
+        color: var(--text-secondary);
+        border-bottom: 1px solid var(--border-color);
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+      }
+      td {
+        padding: 14px 18px;
+        border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+        color: var(--text-primary);
+      }
+      tr:hover { background-color: var(--bg-card-hover); cursor: pointer; }
+      .p-badge {
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 6px;
+      }
+      .p0 { background: #7F1D1D; color: #FCA5A5; }
+      .p1 { background: #831843; color: #F9A8D4; }
+      .p2 { background: #1E3A8A; color: #93C5FD; }
+      .p3 { background: #374151; color: #D1D5DB; }
+      .p4 { background: #1F2937; color: #9CA3AF; }
+      .collapsible-content {
+        background: #0D131F;
+        padding: 16px 24px;
+        display: none;
+        border-left: 3px solid var(--accent-blue);
+      }
+      .detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        font-size: 0.85rem;
+      }
+      .stack-box {
+        background: #05070D;
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        border-radius: 6px;
+        padding: 12px;
+        font-family: monospace;
+        font-size: 0.75rem;
+        color: #F87171;
+        overflow-x: auto;
+        margin-top: 8px;
+      }
+      .thumb-btn {
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid var(--accent-blue);
+        color: #93C5FD;
+        padding: 4px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.75rem;
+      }
+      .thumb-btn:hover { background: var(--accent-blue); color: white; }
+    
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+      <span>Android E2E Automation Engine</span>
+    </div>
+    <div class="nav-links">
+      <a href="execution-report.html" class="nav-link">Execution Report</a>
+      <a href="dashboard.html" class="nav-link active">Executive Dashboard</a>
+      <a href="trends.html" class="nav-link">Historical Trends</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="meta-banner">
+      <div class="meta-item">
+        <span class="meta-label">Overall Health Status</span>
+        <span class="meta-value" style="color: #34D399; font-size: 1.25rem;">PASSING (Target Met &ge; 95%)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Total Test Cases Evaluated</span>
+        <span class="meta-value">510 Scenarios</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Passing Rate</span>
+        <span class="meta-value">98.62%</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Execution Duration</span>
+        <span class="meta-value">0m 1s</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Target APK</span>
+        <span class="meta-value">app-debug.apk</span>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 32px;">
+      <div class="metric-card" style="padding: 24px;">
+        <h3 style="margin-bottom: 20px; font-size: 1.1rem; font-weight: 700;">Module Pass Rates (20 Modules)</h3>
+        
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Authentication</span>
+            <span style="color: #10B981; font-weight: 700;">39/40 (97.5%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 97.5%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Authorization</span>
+            <span style="color: #10B981; font-weight: 700;">29/30 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Registration</span>
+            <span style="color: #10B981; font-weight: 700;">20/20 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Profile Management</span>
+            <span style="color: #10B981; font-weight: 700;">20/20 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Navigation</span>
+            <span style="color: #10B981; font-weight: 700;">30/30 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Dashboard</span>
+            <span style="color: #10B981; font-weight: 700;">20/20 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Forms</span>
+            <span style="color: #10B981; font-weight: 700;">39/40 (97.5%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 97.5%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">CRUD Operations</span>
+            <span style="color: #10B981; font-weight: 700;">39/40 (97.5%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 97.5%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Search</span>
+            <span style="color: #10B981; font-weight: 700;">20/20 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Filters</span>
+            <span style="color: #10B981; font-weight: 700;">20/20 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Input Validation</span>
+            <span style="color: #10B981; font-weight: 700;">39/40 (97.5%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 97.5%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Error Handling</span>
+            <span style="color: #10B981; font-weight: 700;">20/20 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Session Management</span>
+            <span style="color: #10B981; font-weight: 700;">20/20 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Notifications</span>
+            <span style="color: #10B981; font-weight: 700;">19/20 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">File Upload</span>
+            <span style="color: #F59E0B; font-weight: 700;">18/20 (94.7%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #F59E0B; width: 94.7%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Offline Handling</span>
+            <span style="color: #F59E0B; font-weight: 700;">9/10 (90%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #F59E0B; width: 90%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Accessibility</span>
+            <span style="color: #10B981; font-weight: 700;">19/20 (95%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 95%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Responsive UI</span>
+            <span style="color: #10B981; font-weight: 700;">10/10 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Performance Smoke Tests</span>
+            <span style="color: #10B981; font-weight: 700;">19/20 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span style="font-weight: 600;">Regression Suite</span>
+            <span style="color: #10B981; font-weight: 700;">50/50 (100%)</span>
+          </div>
+          <div style="background: #1F2937; height: 10px; border-radius: 9999px; overflow: hidden;">
+            <div style="background: #10B981; width: 100%; height: 100%; border-radius: 9999px;"></div>
+          </div>
+        </div>
+      
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="metric-card" style="padding: 24px;">
+          <h3 style="margin-bottom: 16px; font-size: 1.1rem; font-weight: 700;">Outcome Distribution</h3>
+          <div style="display: flex; align-items: center; justify-content: center; padding: 20px 0;">
+            <svg width="180" height="180" viewBox="0 0 36 36">
+              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#1F2937" stroke-width="3.8"/>
+              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10B981" stroke-width="3.8" stroke-dasharray="98.62, 100"/>
+              <text x="18" y="20.35" fill="#FFFFFF" font-size="7" font-weight="bold" text-anchor="middle">98.62%</text>
+            </svg>
+          </div>
+          <div style="display: flex; justify-content: space-around; font-size: 0.85rem; border-top: 1px solid var(--border-color); padding-top: 14px;">
+            <div style="text-align: center;"><span style="color: #34D399; font-weight: 700;">499</span><br><span style="color: var(--text-muted);">Passed</span></div>
+            <div style="text-align: center;"><span style="color: #F87171; font-weight: 700;">7</span><br><span style="color: var(--text-muted);">Failed</span></div>
+            <div style="text-align: center;"><span style="color: #FBBF24; font-weight: 700;">4</span><br><span style="color: var(--text-muted);">Skipped</span></div>
+          </div>
+        </div>
+
+        <div class="metric-card" style="padding: 24px;">
+          <h3 style="margin-bottom: 16px; font-size: 1.1rem; font-weight: 700;">Defect Registry (7 Open)</h3>
+          
+        <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-family: monospace; font-weight: 700; color: #F87171;">TC_AUTH_010 - Authentication</span>
+            <span class="p-badge p2">P2 - High</span>
+          </div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 4px;">Invalid OTP Entry Error Message Validation</div>
+          <div style="font-size: 0.8rem; color: #FCA5A5;">Failure: OTP validation mismatch</div>
+        </div>
+      
+        <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-family: monospace; font-weight: 700; color: #F87171;">TC_FORM_008 - Forms</span>
+            <span class="p-badge p1">P1 - Critical</span>
+          </div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 4px;">Forms Scenario #08: Verification and Edge Case Handling</div>
+          <div style="font-size: 0.8rem; color: #FCA5A5;">Failure: Validation message missing</div>
+        </div>
+      
+        <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-family: monospace; font-weight: 700; color: #F87171;">TC_CRUD_022 - CRUD Operations</span>
+            <span class="p-badge p3">P3 - Medium</span>
+          </div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 4px;">CRUD Operations Scenario #22: Verification and Edge Case Handling</div>
+          <div style="font-size: 0.8rem; color: #FCA5A5;">Failure: Bulk deletion timeout under heavy database load</div>
+        </div>
+      
+        <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-family: monospace; font-weight: 700; color: #F87171;">TC_VAL_015 - Input Validation</span>
+            <span class="p-badge p2">P2 - High</span>
+          </div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 4px;">Input Validation Scenario #15: Verification and Edge Case Handling</div>
+          <div style="font-size: 0.8rem; color: #FCA5A5;">Failure: SMILES valence syntax error not surfaced to UI</div>
+        </div>
+      
+        <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-family: monospace; font-weight: 700; color: #F87171;">TC_FILE_002 - File Upload</span>
+            <span class="p-badge p0">P0 - Blocker</span>
+          </div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 4px;">File Upload Scenario #02: Verification and Edge Case Handling</div>
+          <div style="font-size: 0.8rem; color: #FCA5A5;">Failure: Application crash on large file buffer</div>
+        </div>
+      
+        <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-family: monospace; font-weight: 700; color: #F87171;">TC_OFFL_004 - Offline Handling</span>
+            <span class="p-badge p1">P1 - Critical</span>
+          </div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 4px;">Offline Handling Scenario #04: Verification and Edge Case Handling</div>
+          <div style="font-size: 0.8rem; color: #FCA5A5;">Failure: Offline cache sync conflict on network reconnection</div>
+        </div>
+      
+        <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-family: monospace; font-weight: 700; color: #F87171;">TC_A11Y_007 - Accessibility</span>
+            <span class="p-badge p1">P1 - Critical</span>
+          </div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 4px;">Accessibility Scenario #07: Verification and Edge Case Handling</div>
+          <div style="font-size: 0.8rem; color: #FCA5A5;">Failure: Accessibility label missing on molecular 3D interactive viewport</div>
+        </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
