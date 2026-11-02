@@ -5,13 +5,9 @@
 # TECHNOLOGY: Python 3.11, FastAPI, RDKit, Pytest, Docker, Render, GitHub Pages
 # ==============================================================================
 
-name: CI/CD Build · Deploy · Automated Test Suite
+name: CI/CD Build · Deploy · Automated Test Suite (Legacy)
 
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
   workflow_dispatch:
     inputs:
       base_url:

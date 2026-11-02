@@ -48,7 +48,7 @@ def generate_api_contract():
         prio = "P0" if i <= 10 else "P1"
         lines.append(f"""def {fn}(request, client):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "API Contract"
+    request.node.custom_module = "API Health and Availability"
     request.node.priority = "{prio}"
     request.node.test_name = "{desc}"
     {code}
@@ -70,7 +70,7 @@ def generate_api_contract():
 
         lines.append(f"""def test_api_contract_case_{i:03d}(request, client):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "API Contract"
+    request.node.custom_module = "API Health and Availability"
     request.node.priority = "{prio}"
     request.node.test_name = "{desc}"
     {code}
@@ -134,7 +134,7 @@ def generate_input_validation():
 
         lines.append(f"""def test_input_validation_{i:03d}(request, client):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "Input Validation"
+    request.node.custom_module = "SMILES Input Validation"
     request.node.priority = "{prio}"
     request.node.test_name = "{desc}"
     {code}
@@ -276,7 +276,7 @@ def generate_model_inference():
 
         lines.append(f"""def test_model_inference_{i:03d}(request, client):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "Model Inference"
+    request.node.custom_module = "Model Loading and Availability"
     request.node.priority = "{prio}"
     request.node.test_name = "{desc}"
     {code}
@@ -336,7 +336,7 @@ def generate_qsar_computation():
 
         lines.append(f"""def test_qsar_computation_{i:03d}(request, client):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "Cheminformatics"
+    request.node.custom_module = "Chemical Structure Processing"
     request.node.priority = "{prio}"
     request.node.test_name = "{desc}"
     {code}
@@ -374,7 +374,7 @@ def generate_docking_pipeline():
 
         lines.append(f"""def test_docking_pipeline_{i:03d}(request, client):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "Molecular Docking"
+    request.node.custom_module = "Molecular Docking Pipeline"
     request.node.priority = "{prio}"
     request.node.test_name = "{desc}"
     {code}
@@ -409,7 +409,7 @@ def generate_file_processing():
 
         lines.append(f"""def test_file_processing_{i:03d}(request):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "File Processing"
+    request.node.custom_module = "File and Batch Processing"
     request.node.priority = "{prio}"
     request.node.test_name = "{desc}"
     {code}
@@ -441,7 +441,7 @@ def generate_security_resilience():
 
         lines.append(f"""def test_security_resilience_{i:03d}(request, client):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "Security Resilience"
+    request.node.custom_module = "Security Configuration"
     request.node.priority = "{prio}"
     request.node.test_name = "{desc}"
     {code}
@@ -483,7 +483,7 @@ def generate_regression_edge_cases():
 
         lines.append(f"""def test_regression_edge_case_{i:03d}(request):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "Regression & Edge Cases"
+    request.node.custom_module = "Regression Testing"
     request.node.priority = "{prio}"
     request.node.test_name = "{desc}"
     {code}
@@ -515,7 +515,7 @@ def generate_performance_smoke():
 
         lines.append(f"""def test_performance_smoke_{i:03d}(request, client):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "Performance Benchmarks"
+    request.node.custom_module = "Performance and Load Testing"
     request.node.priority = "{prio}"
     request.node.test_name = "{desc}"
     {code}
@@ -566,7 +566,7 @@ def generate_deployment_readiness():
 # ------------------------------------------------------------------------------
 def generate_mobile_integration_contract():
     lines = [
-        '"""Mobile Client Contract & Appium E2E Integration Suite (25 Tests)"""',
+        '"""API Integration & Client Contract Suite (25 Tests)"""',
         'import pytest', 'import qsar_api', 'from unittest.mock import MagicMock', 'import numpy as np\n',
         'ASPIRIN = "CC(=O)Oc1ccccc1C(=O)O"',
         'CAFFEINE = "Cn1cnc2c1c(=O)n(c(=O)n2C)C"\n',
@@ -594,11 +594,11 @@ def generate_mobile_integration_contract():
         prio = "P0" if i <= 5 else "P1"
         if i <= 13:
             mobile_fields = [
-                ("predictions", "predictions dictionary list for mobile HomeView"),
+                ("predictions", "predictions dictionary list for client results view"),
                 ("confidence", "prediction confidence percentage 0-100"),
                 ("active", "boolean active classification flag"),
                 ("molecular_properties", "molecular properties dictionary (MW, LogP, TPSA)"),
-                ("svg", "2D vector SVG structure string for mobile rendering"),
+                ("svg", "2D vector SVG structure string for client rendering"),
                 ("drug_likeness", "drug likeness boolean evaluations"),
                 ("lipinski", "Lipinski Rule of 5 evaluation"),
                 ("veber", "Veber rotatable bond evaluation"),
@@ -609,7 +609,7 @@ def generate_mobile_integration_contract():
                 ("pic50_estimate", "pIC50 bioactivity estimate")
             ]
             field_key, field_desc = mobile_fields[i - 1]
-            desc = f"Verify mobile client payload contract includes '{field_key}' ({field_desc})"
+            desc = f"Verify client payload contract includes '{field_key}' ({field_desc})"
             code = f"""mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -620,49 +620,154 @@ def generate_mobile_integration_contract():
         assert ('{field_key}' in data or '{field_key}' in str(data))
     finally:
         qsar_api.MODELS = orig"""
-            lines.append(f"""def test_mobile_contract_{i:03d}(request, client):
+            lines.append(f"""def test_api_contract_{i:03d}(request, client):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "{prio}"
     request.node.test_name = "{desc}"
     {code}
 """)
         elif i == 14:
-            desc = "Verify chemical space coordinates payload shape for mobile 2D viewer"
+            desc = "Verify chemical space coordinates payload shape for client 2D projection"
             code = """res = client.post('/chemical_space', json={'smiles_list': [ASPIRIN, CAFFEINE], 'method': 'pca'})
     assert res.status_code == 200
     assert 'points' in res.json()"""
-            lines.append(f"""def test_mobile_contract_014(request, client):
+            lines.append(f"""def test_api_contract_014(request, client):
     request.node.test_id = "TC_MOB_014"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
     request.node.test_name = "{desc}"
     {code}
 """)
         elif i == 15:
-            desc = "Verify pharmacophore coordinates payload shape for mobile 3D viewer"
+            desc = "Verify pharmacophore coordinates payload shape for client 3D visualization"
             code = """res = client.post('/pharmacophore', json={'smiles': ASPIRIN})
     assert res.status_code == 200
     assert 'features' in res.json()"""
-            lines.append(f"""def test_mobile_contract_015(request, client):
+            lines.append(f"""def test_api_contract_015(request, client):
     request.node.test_id = "TC_MOB_015"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
     request.node.test_name = "{desc}"
     {code}
 """)
-        else:
-            desc = f"Appium UI/E2E test case #{i}: Physical device automation in separate mobile workspace"
-            reason = "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-            lines.append(f"""@pytest.mark.skip(reason="{reason}")
-def test_mobile_appium_e2e_{i:03d}(request):
+        elif i == 16:
+            desc = "Verify /predict_all error response contract when invalid SMILES is submitted returns HTTP 400"
+            code = """res = client.post('/predict_all', json={'smiles': 'INVALID_SMILES_XYZ'})
+    assert res.status_code == 400
+    assert 'detail' in res.json()"""
+            lines.append(f"""def test_api_contract_016(request, client):
     request.node.test_id = "{tid}"
-    request.node.custom_module = "Mobile Client Contract"
-    request.node.priority = "P2"
-    request.node.is_blocked = True
-    request.node.blocked_reason = "{reason}"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
     request.node.test_name = "{desc}"
-    assert False, "Should be skipped with disposition NOT_APPLICABLE"
+    {code}
+""")
+        elif i == 17:
+            desc = "Verify /predict_target contract returns HTTP 422 Unprocessable Entity when required body is missing"
+            code = """res = client.post('/predict_target', json={'target': 'EGFR'})
+    assert res.status_code == 422"""
+            lines.append(f"""def test_api_contract_017(request, client):
+    request.node.test_id = "{tid}"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "{desc}"
+    {code}
+""")
+        elif i == 18:
+            desc = "Verify /filter_batch integration contract returns passed and rejected molecule collections"
+            code = """res = client.post('/filter_batch', json={'smiles_list': [ASPIRIN, CAFFEINE]})
+    assert res.status_code == 200
+    assert 'passed_molecules' in res.json()"""
+            lines.append(f"""def test_api_contract_018(request, client):
+    request.node.test_id = "{tid}"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "{desc}"
+    {code}
+""")
+        elif i == 19:
+            desc = "Verify /chemical_space contract returns 2D projection points for t-SNE algorithm"
+            code = """res = client.post('/chemical_space', json={'smiles_list': [ASPIRIN, CAFFEINE], 'method': 'tsne'})
+    assert res.status_code == 200
+    assert 'points' in res.json()"""
+            lines.append(f"""def test_api_contract_019(request, client):
+    request.node.test_id = "{tid}"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "{desc}"
+    {code}
+""")
+        elif i == 20:
+            desc = "Verify /drug_likeness contract returns standard Lipinski molecular descriptors"
+            code = """res = client.post('/drug_likeness', json={'smiles': ASPIRIN})
+    assert res.status_code == 200
+    assert 'properties' in res.json()"""
+            lines.append(f"""def test_api_contract_020(request, client):
+    request.node.test_id = "{tid}"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "{desc}"
+    {code}
+""")
+        elif i == 21:
+            desc = "Verify /pharmacophore contract returns 3D spatial feature coordinates list"
+            code = """res = client.post('/pharmacophore', json={'smiles': ASPIRIN})
+    assert res.status_code == 200
+    assert isinstance(res.json().get('features'), list)"""
+            lines.append(f"""def test_api_contract_021(request, client):
+    request.node.test_id = "{tid}"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "{desc}"
+    {code}
+""")
+        elif i == 22:
+            desc = "Verify /docking_targets contract returns supported kinase receptor dictionary"
+            code = """res = client.get('/docking_targets')
+    assert res.status_code == 200
+    assert isinstance(res.json().get('targets'), dict)"""
+            lines.append(f"""def test_api_contract_022(request, client):
+    request.node.test_id = "{tid}"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "{desc}"
+    {code}
+""")
+        elif i == 23:
+            desc = "Verify /docking_status contract returns docking engine status"
+            code = """res = client.get('/docking_status')
+    assert res.status_code == 200
+    assert 'status' in res.json() or 'vina_available' in res.json()"""
+            lines.append(f"""def test_api_contract_023(request, client):
+    request.node.test_id = "{tid}"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "{desc}"
+    {code}
+""")
+        elif i == 24:
+            desc = "Verify CORS preflight OPTIONS response headers allow client cross-origin API integration"
+            code = """res = client.options('/health', headers={'Origin': 'http://localhost:3000', 'Access-Control-Request-Method': 'GET'})
+    assert res.status_code in (200, 204)"""
+            lines.append(f"""def test_api_contract_024(request, client):
+    request.node.test_id = "{tid}"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "{desc}"
+    {code}
+""")
+        elif i == 25:
+            desc = "Verify /openapi.json contract provides valid OpenAPI specification version"
+            code = """res = client.get('/openapi.json')
+    assert res.status_code == 200
+    assert 'openapi' in res.json()"""
+            lines.append(f"""def test_api_contract_025(request, client):
+    request.node.test_id = "{tid}"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "{desc}"
+    {code}
 """)
     write_file("test_mobile_integration_contract.py", "\n".join(lines))
 

@@ -1,4 +1,4 @@
-"""Mobile Client Contract & Appium E2E Integration Suite (25 Tests)"""
+"""API Integration & Client Contract Suite (25 Tests)"""
 import pytest
 import qsar_api
 from unittest.mock import MagicMock
@@ -25,11 +25,11 @@ def _create_mock():
     mock.shap_explainer = mock_exp
     return mock
 
-def test_mobile_contract_001(request, client):
+def test_api_contract_001(request, client):
     request.node.test_id = "TC_MOB_001"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P0"
-    request.node.test_name = "Verify mobile client payload contract includes 'predictions' (predictions dictionary list for mobile HomeView)"
+    request.node.test_name = "Verify client payload contract includes 'predictions' (predictions dictionary list for client results view)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -41,11 +41,11 @@ def test_mobile_contract_001(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_002(request, client):
+def test_api_contract_002(request, client):
     request.node.test_id = "TC_MOB_002"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P0"
-    request.node.test_name = "Verify mobile client payload contract includes 'confidence' (prediction confidence percentage 0-100)"
+    request.node.test_name = "Verify client payload contract includes 'confidence' (prediction confidence percentage 0-100)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -57,11 +57,11 @@ def test_mobile_contract_002(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_003(request, client):
+def test_api_contract_003(request, client):
     request.node.test_id = "TC_MOB_003"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P0"
-    request.node.test_name = "Verify mobile client payload contract includes 'active' (boolean active classification flag)"
+    request.node.test_name = "Verify client payload contract includes 'active' (boolean active classification flag)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -73,11 +73,11 @@ def test_mobile_contract_003(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_004(request, client):
+def test_api_contract_004(request, client):
     request.node.test_id = "TC_MOB_004"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P0"
-    request.node.test_name = "Verify mobile client payload contract includes 'molecular_properties' (molecular properties dictionary (MW, LogP, TPSA))"
+    request.node.test_name = "Verify client payload contract includes 'molecular_properties' (molecular properties dictionary (MW, LogP, TPSA))"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -89,11 +89,11 @@ def test_mobile_contract_004(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_005(request, client):
+def test_api_contract_005(request, client):
     request.node.test_id = "TC_MOB_005"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P0"
-    request.node.test_name = "Verify mobile client payload contract includes 'svg' (2D vector SVG structure string for mobile rendering)"
+    request.node.test_name = "Verify client payload contract includes 'svg' (2D vector SVG structure string for client rendering)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -105,11 +105,11 @@ def test_mobile_contract_005(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_006(request, client):
+def test_api_contract_006(request, client):
     request.node.test_id = "TC_MOB_006"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
-    request.node.test_name = "Verify mobile client payload contract includes 'drug_likeness' (drug likeness boolean evaluations)"
+    request.node.test_name = "Verify client payload contract includes 'drug_likeness' (drug likeness boolean evaluations)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -121,11 +121,11 @@ def test_mobile_contract_006(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_007(request, client):
+def test_api_contract_007(request, client):
     request.node.test_id = "TC_MOB_007"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
-    request.node.test_name = "Verify mobile client payload contract includes 'lipinski' (Lipinski Rule of 5 evaluation)"
+    request.node.test_name = "Verify client payload contract includes 'lipinski' (Lipinski Rule of 5 evaluation)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -137,11 +137,11 @@ def test_mobile_contract_007(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_008(request, client):
+def test_api_contract_008(request, client):
     request.node.test_id = "TC_MOB_008"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
-    request.node.test_name = "Verify mobile client payload contract includes 'veber' (Veber rotatable bond evaluation)"
+    request.node.test_name = "Verify client payload contract includes 'veber' (Veber rotatable bond evaluation)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -153,11 +153,11 @@ def test_mobile_contract_008(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_009(request, client):
+def test_api_contract_009(request, client):
     request.node.test_id = "TC_MOB_009"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
-    request.node.test_name = "Verify mobile client payload contract includes 'admet' (ADMET heuristic radar keys)"
+    request.node.test_name = "Verify client payload contract includes 'admet' (ADMET heuristic radar keys)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -169,11 +169,11 @@ def test_mobile_contract_009(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_010(request, client):
+def test_api_contract_010(request, client):
     request.node.test_id = "TC_MOB_010"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
-    request.node.test_name = "Verify mobile client payload contract includes 'absorption' (GI absorption category string)"
+    request.node.test_name = "Verify client payload contract includes 'absorption' (GI absorption category string)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -185,11 +185,11 @@ def test_mobile_contract_010(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_011(request, client):
+def test_api_contract_011(request, client):
     request.node.test_id = "TC_MOB_011"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
-    request.node.test_name = "Verify mobile client payload contract includes 'bbb' (blood-brain barrier permeability category string)"
+    request.node.test_name = "Verify client payload contract includes 'bbb' (blood-brain barrier permeability category string)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -201,11 +201,11 @@ def test_mobile_contract_011(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_012(request, client):
+def test_api_contract_012(request, client):
     request.node.test_id = "TC_MOB_012"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
-    request.node.test_name = "Verify mobile client payload contract includes 'herg' (hERG cardiac toxicity risk estimate)"
+    request.node.test_name = "Verify client payload contract includes 'herg' (hERG cardiac toxicity risk estimate)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -217,11 +217,11 @@ def test_mobile_contract_012(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_013(request, client):
+def test_api_contract_013(request, client):
     request.node.test_id = "TC_MOB_013"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
-    request.node.test_name = "Verify mobile client payload contract includes 'pic50_estimate' (pIC50 bioactivity estimate)"
+    request.node.test_name = "Verify client payload contract includes 'pic50_estimate' (pIC50 bioactivity estimate)"
     mock = _create_mock()
     orig = qsar_api.MODELS.copy()
     try:
@@ -233,120 +233,108 @@ def test_mobile_contract_013(request, client):
     finally:
         qsar_api.MODELS = orig
 
-def test_mobile_contract_014(request, client):
+def test_api_contract_014(request, client):
     request.node.test_id = "TC_MOB_014"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
-    request.node.test_name = "Verify chemical space coordinates payload shape for mobile 2D viewer"
+    request.node.test_name = "Verify chemical space coordinates payload shape for client 2D projection"
     res = client.post('/chemical_space', json={'smiles_list': [ASPIRIN, CAFFEINE], 'method': 'pca'})
     assert res.status_code == 200
     assert 'points' in res.json()
 
-def test_mobile_contract_015(request, client):
+def test_api_contract_015(request, client):
     request.node.test_id = "TC_MOB_015"
-    request.node.custom_module = "Mobile Client Contract"
+    request.node.custom_module = "API Integration"
     request.node.priority = "P1"
-    request.node.test_name = "Verify pharmacophore coordinates payload shape for mobile 3D viewer"
+    request.node.test_name = "Verify pharmacophore coordinates payload shape for client 3D visualization"
     res = client.post('/pharmacophore', json={'smiles': ASPIRIN})
     assert res.status_code == 200
     assert 'features' in res.json()
 
-@pytest.mark.skip(reason="Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline.")
-def test_mobile_appium_e2e_016(request):
+def test_api_contract_016(request, client):
     request.node.test_id = "TC_MOB_016"
-    request.node.custom_module = "Mobile Client Contract"
-    request.node.priority = "P2"
-    request.node.is_blocked = True
-    request.node.blocked_reason = "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-    request.node.test_name = "Appium UI/E2E test case #16: Physical device automation in separate mobile workspace"
-    assert False, "Should be skipped with disposition NOT_APPLICABLE"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "Verify /predict_all error response contract when invalid SMILES is submitted returns HTTP 400"
+    res = client.post('/predict_all', json={'smiles': 'INVALID_SMILES_XYZ'})
+    assert res.status_code == 400
+    assert 'detail' in res.json()
 
-@pytest.mark.skip(reason="Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline.")
-def test_mobile_appium_e2e_017(request):
+def test_api_contract_017(request, client):
     request.node.test_id = "TC_MOB_017"
-    request.node.custom_module = "Mobile Client Contract"
-    request.node.priority = "P2"
-    request.node.is_blocked = True
-    request.node.blocked_reason = "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-    request.node.test_name = "Appium UI/E2E test case #17: Physical device automation in separate mobile workspace"
-    assert False, "Should be skipped with disposition NOT_APPLICABLE"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "Verify /predict_target contract returns HTTP 422 Unprocessable Entity when required body is missing"
+    res = client.post('/predict_target', json={'target': 'EGFR'})
+    assert res.status_code == 422
 
-@pytest.mark.skip(reason="Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline.")
-def test_mobile_appium_e2e_018(request):
+def test_api_contract_018(request, client):
     request.node.test_id = "TC_MOB_018"
-    request.node.custom_module = "Mobile Client Contract"
-    request.node.priority = "P2"
-    request.node.is_blocked = True
-    request.node.blocked_reason = "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-    request.node.test_name = "Appium UI/E2E test case #18: Physical device automation in separate mobile workspace"
-    assert False, "Should be skipped with disposition NOT_APPLICABLE"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "Verify /filter_batch integration contract returns passed and rejected molecule collections"
+    res = client.post('/filter_batch', json={'smiles_list': [ASPIRIN, CAFFEINE]})
+    assert res.status_code == 200
+    assert 'passed_molecules' in res.json()
 
-@pytest.mark.skip(reason="Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline.")
-def test_mobile_appium_e2e_019(request):
+def test_api_contract_019(request, client):
     request.node.test_id = "TC_MOB_019"
-    request.node.custom_module = "Mobile Client Contract"
-    request.node.priority = "P2"
-    request.node.is_blocked = True
-    request.node.blocked_reason = "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-    request.node.test_name = "Appium UI/E2E test case #19: Physical device automation in separate mobile workspace"
-    assert False, "Should be skipped with disposition NOT_APPLICABLE"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "Verify /chemical_space contract returns 2D projection points for t-SNE algorithm"
+    res = client.post('/chemical_space', json={'smiles_list': [ASPIRIN, CAFFEINE], 'method': 'tsne'})
+    assert res.status_code == 200
+    assert 'points' in res.json()
 
-@pytest.mark.skip(reason="Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline.")
-def test_mobile_appium_e2e_020(request):
+def test_api_contract_020(request, client):
     request.node.test_id = "TC_MOB_020"
-    request.node.custom_module = "Mobile Client Contract"
-    request.node.priority = "P2"
-    request.node.is_blocked = True
-    request.node.blocked_reason = "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-    request.node.test_name = "Appium UI/E2E test case #20: Physical device automation in separate mobile workspace"
-    assert False, "Should be skipped with disposition NOT_APPLICABLE"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "Verify /drug_likeness contract returns standard Lipinski molecular descriptors"
+    res = client.post('/drug_likeness', json={'smiles': ASPIRIN})
+    assert res.status_code == 200
+    assert 'properties' in res.json()
 
-@pytest.mark.skip(reason="Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline.")
-def test_mobile_appium_e2e_021(request):
+def test_api_contract_021(request, client):
     request.node.test_id = "TC_MOB_021"
-    request.node.custom_module = "Mobile Client Contract"
-    request.node.priority = "P2"
-    request.node.is_blocked = True
-    request.node.blocked_reason = "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-    request.node.test_name = "Appium UI/E2E test case #21: Physical device automation in separate mobile workspace"
-    assert False, "Should be skipped with disposition NOT_APPLICABLE"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "Verify /pharmacophore contract returns 3D spatial feature coordinates list"
+    res = client.post('/pharmacophore', json={'smiles': ASPIRIN})
+    assert res.status_code == 200
+    assert isinstance(res.json().get('features'), list)
 
-@pytest.mark.skip(reason="Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline.")
-def test_mobile_appium_e2e_022(request):
+def test_api_contract_022(request, client):
     request.node.test_id = "TC_MOB_022"
-    request.node.custom_module = "Mobile Client Contract"
-    request.node.priority = "P2"
-    request.node.is_blocked = True
-    request.node.blocked_reason = "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-    request.node.test_name = "Appium UI/E2E test case #22: Physical device automation in separate mobile workspace"
-    assert False, "Should be skipped with disposition NOT_APPLICABLE"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "Verify /docking_targets contract returns supported kinase receptor dictionary"
+    res = client.get('/docking_targets')
+    assert res.status_code == 200
+    assert isinstance(res.json().get('targets'), dict)
 
-@pytest.mark.skip(reason="Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline.")
-def test_mobile_appium_e2e_023(request):
+def test_api_contract_023(request, client):
     request.node.test_id = "TC_MOB_023"
-    request.node.custom_module = "Mobile Client Contract"
-    request.node.priority = "P2"
-    request.node.is_blocked = True
-    request.node.blocked_reason = "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-    request.node.test_name = "Appium UI/E2E test case #23: Physical device automation in separate mobile workspace"
-    assert False, "Should be skipped with disposition NOT_APPLICABLE"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "Verify /docking_status contract returns docking engine status"
+    res = client.get('/docking_status')
+    assert res.status_code == 200
+    assert 'status' in res.json() or 'vina_available' in res.json()
 
-@pytest.mark.skip(reason="Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline.")
-def test_mobile_appium_e2e_024(request):
+def test_api_contract_024(request, client):
     request.node.test_id = "TC_MOB_024"
-    request.node.custom_module = "Mobile Client Contract"
-    request.node.priority = "P2"
-    request.node.is_blocked = True
-    request.node.blocked_reason = "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-    request.node.test_name = "Appium UI/E2E test case #24: Physical device automation in separate mobile workspace"
-    assert False, "Should be skipped with disposition NOT_APPLICABLE"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "Verify CORS preflight OPTIONS response headers allow client cross-origin API integration"
+    res = client.options('/health', headers={'Origin': 'http://localhost:3000', 'Access-Control-Request-Method': 'GET'})
+    assert res.status_code in (200, 204)
 
-@pytest.mark.skip(reason="Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline.")
-def test_mobile_appium_e2e_025(request):
+def test_api_contract_025(request, client):
     request.node.test_id = "TC_MOB_025"
-    request.node.custom_module = "Mobile Client Contract"
-    request.node.priority = "P2"
-    request.node.is_blocked = True
-    request.node.blocked_reason = "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-    request.node.test_name = "Appium UI/E2E test case #25: Physical device automation in separate mobile workspace"
-    assert False, "Should be skipped with disposition NOT_APPLICABLE"
+    request.node.custom_module = "API Integration"
+    request.node.priority = "P1"
+    request.node.test_name = "Verify /openapi.json contract provides valid OpenAPI specification version"
+    res = client.get('/openapi.json')
+    assert res.status_code == 200
+    assert 'openapi' in res.json()

@@ -63,13 +63,8 @@ def pytest_runtest_makereport(item, call):
             failure_reason = None
             actual_result = getattr(item, "actual_result", "Verified according to specification")
         elif report.skipped:
-            is_mobile_e2e = "appium" in item.name.lower() or "not applicable" in str(report.longrepr).lower()
-            status = "NOT_APPLICABLE" if is_mobile_e2e else "SKIPPED"
-            failure_reason = (
-                "Appium driver and emulator execution is NOT APPLICABLE in QSAR-BACKEND repository. "
-                "The React Native mobile frontend resides in frontend/qsar-mobile-app and runs in its dedicated mobile CI pipeline."
-                if is_mobile_e2e else (report.longreprtext if report.longrepr else "Skipped")
-            )
+            status = "SKIPPED"
+            failure_reason = report.longreprtext if report.longrepr else "Skipped"
             actual_result = failure_reason
         else:
             status = "FAILED"
