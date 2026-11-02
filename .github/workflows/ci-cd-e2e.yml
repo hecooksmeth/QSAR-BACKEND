@@ -1,10 +1,11 @@
 # ==============================================================================
-# PIPELINE: ResistAI — CI/CD Build · Deploy · E2E Selenium Tests
+# PIPELINE: QSAR-BACKEND — Complete Enterprise CI/CD Deployment & Test Reporting
 # IDENTIFIER: ci-cd-e2e.yml
-# PROJECT: QSAR-BACKEND
-# STATUS: PROPOSED CI/CD & SYNTHETIC TESTING IMPLEMENTATION SPECIFICATION
+# TARGET REPO: hecooksmeth/QSAR-BACKEND
+# TECHNOLOGY: Python 3.11, FastAPI, RDKit, Pytest, Docker, Render, GitHub Pages
 # ==============================================================================
-name: CI/CD Build · Deploy · E2E Selenium Tests
+
+name: CI/CD Build · Deploy · Automated Test Suite
 
 on:
   push:
@@ -12,22 +13,39 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'Target BASE_URL for live deployment probes'
+        required: false
+        default: 'https://qsar-api.onrender.com'
 
 permissions:
-  contents: read
+  contents: write
+  pages: write
+  id-token: write
   deployments: write
 
 concurrency:
   group: 'ci-cd-backend-${{ github.ref }}'
   cancel-in-progress: false
 
+env:
+  BASE_URL: ${{ github.event.inputs.base_url || vars.BASE_URL || 'https://qsar-api.onrender.com' }}
+  RENDER_SERVICE_URL: 'https://qsar-api.onrender.com'
+  PYTHONUNBUFFERED: '1'
+
 jobs:
-  build-and-test:
-    name: 1. Build, Lint & Python Contract Tests
+  # ============================================================================
+  # JOB 1: Build, Lint, Container Packaging, Test Suite & Quality Gate
+  # ============================================================================
+  build-test-report:
+    name: 1. Build, Lint, Test & Report Generation
     runs-on: ubuntu-latest
     steps:
       - name: Stage 1 - Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Stage 2 - Setup Python 3.11 Runtime
         uses: actions/setup-python@v5
@@ -35,56 +53,74 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Stage 3 - Install Build & Test Dependencies
+      - name: Stage 3 - Install Application & Testing Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 pytest pytest-cov httpx
-          if [ -f "requirements.txt" ]; then
-            pip install -r requirements.txt || true
+          if [ -f "requirements-serve.txt" ]; then
+            pip install -r requirements-serve.txt
+          elif [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt
+          fi
+          pip install -r requirements-test.txt
+
+      - name: Stage 4 - Lint & Static Analysis (Flake8)
+        run: |
+          # Critical syntax or undefined names stop the build
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # Complexity and line length treated as non-fatal warnings
+          flake8 . --count --exit-zero --max-complexity=15 --max-line-length=127 --statistics
+
+      - name: Stage 5 - Container Build Validation (Docker)
+        run: |
+          echo "Building Docker container image for QSAR-BACKEND..."
+          docker build -t qsar-backend:latest .
+          echo "Docker container build completed successfully."
+
+      - name: Stage 6 - Execute Automated Test Suite (55 Tests across 5 Modules)
+        env:
+          BASE_URL: ${{ env.BASE_URL }}
+        run: |
+          echo "Executing Pytest suite with real QSAR inference and cheminformatics validation..."
+          pytest tests -v --tb=short
+
+      - name: Stage 7 - Evaluate Quality Gate Policies
+        run: |
+          echo "Evaluating Quality Gate thresholds (>=95% pass rate, 0 critical failures)..."
+          python reporting/quality_gate.py
+
+      - name: Stage 8 - Publish Summary to GitHub Actions Step Summary
+        if: always()
+        run: |
+          if [ -f "Test Results/Summary/summary.md" ]; then
+            cat "Test Results/Summary/summary.md" >> $GITHUB_STEP_SUMMARY
           fi
 
-      - name: Stage 4 - Lint Python Codebase (PEP 8)
-        run: |
-          # Stop build if there are Python syntax errors or undefined names
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics || true
-          # Exit-zero treats all errors as warnings
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-
-      - name: Stage 5 - Execute Python API Contract Smoke Tests
-        run: |
-          python -c "
-          try:
-              import qsar_api
-              print('qsar_api module imported successfully!')
-              print('Available routes:', len(qsar_api.app.routes))
-          except Exception as e:
-              print('Import warning:', e)
-          " || true
-
-  docker-packaging:
-    name: 2. Docker Container Packaging
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build Docker Container Image
-        uses: docker/build-push-action@v5
+      - name: Stage 9 - Upload Comprehensive Test Results Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          context: .
-          file: ./Dockerfile
-          push: false
-          tags: qsar-backend:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          name: qsar-backend-test-results-${{ github.run_number }}
+          path: Test Results/
+          retention-days: 30
 
+      - name: Stage 10 - Upload Filtered Pass-Only Test Results Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qsar-backend-passed-test-cases-only-${{ github.run_number }}
+          path: |
+            Test Results/Excel/Passed_Test_Cases.xlsx
+            Test Results/HTML/passed-tests.html
+            Test Results/JSON/passed-tests.json
+            Test Results/Summary/passed-summary.md
+          retention-days: 30
+
+  # ============================================================================
+  # JOB 2: Trigger Continuous Deployment to Render Cloud
+  # ============================================================================
   deploy-render:
-    name: 3. Trigger Continuous Deployment to Render Cloud
-    needs: [build-and-test, docker-packaging]
+    name: 2. Continuous Deployment to Render Cloud
+    needs: build-test-report
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
@@ -93,37 +129,71 @@ jobs:
           RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
           if [ -n "$RENDER_DEPLOY_HOOK" ]; then
-            echo "Triggering automated deployment on Render cloud..."
+            echo "Invoking automated Render deploy webhook..."
             HTTP_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$RENDER_DEPLOY_HOOK")
-            echo "Deploy webhook invoked. HTTP Status: $HTTP_RESPONSE"
+            echo "Render webhook invoked with response code: $HTTP_RESPONSE"
           else
-            echo "RENDER_DEPLOY_HOOK_URL secret not set. Skipping automated cloud deployment."
+            echo "RENDER_DEPLOY_HOOK_URL secret not set. Skipping webhook invocation."
           fi
 
-      - name: Verify Live Service Liveness
+      - name: Verify Live Service Health Endpoint
         run: |
-          echo "Probing cloud service endpoint..."
-          curl -s --connect-timeout 10 https://qsar-api.onrender.com/health || echo "Service probe complete."
+          echo "Probing live service health at $BASE_URL/health..."
+          curl -s --connect-timeout 10 "$BASE_URL/health" || echo "Service probe completed (service may be spinning up)."
 
-  synthetic-selenium-e2e:
-    name: 4. Post-Deployment Synthetic Selenium E2E Tests
-    needs: deploy-render
+  # ============================================================================
+  # JOB 3: Publish Unified QA Documentation & Reports Portal to GitHub Pages
+  # ============================================================================
+  deploy-reports-pages:
+    name: 3. Publish Reports to GitHub Pages
+    needs: build-test-report
     if: always() && (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Stage 1 - Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Setup Node.js Runtime for Synthetic Runner
-        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          fetch-depth: 0
 
-      - name: Execute Headless Synthetic Browser & Health Validation
+      - name: Stage 2 - Structure Static GitHub Pages Site Hierarchy
         run: |
-          echo "Executing headless synthetic smoke tests against target APIs..."
-          node -e "
-            console.log('Initiating synthetic endpoint probes...');
-            console.log('Validating HTTP status on /available_targets, /health, /docking_targets');
-            console.log('Status: Proposed Synthetic Selenium Pipeline verified.');
-          "
+          echo "Structuring static web hosting directory hierarchy..."
+          mkdir -p site/docs
+          mkdir -p site/latest
+          mkdir -p site/reports/latest
+          mkdir -p site/history/build-${{ github.run_number }}
+          mkdir -p site/reports/history/build-${{ github.run_number }}
+
+          # Synchronize latest reports
+          if [ -d "reports/latest" ]; then
+            cp -r reports/latest/* site/latest/ || true
+            cp -r reports/latest/* site/reports/latest/ || true
+            cp -r reports/latest/* site/history/build-${{ github.run_number }}/ || true
+            cp -r reports/latest/* site/reports/history/build-${{ github.run_number }}/ || true
+          fi
+
+          # Synchronize documentation
+          if [ -d "reports/docs" ]; then
+            cp -r reports/docs/* site/docs/ || true
+          fi
+          if [ -d "docs" ]; then
+            cp -r docs/*.md site/docs/ || true
+            cp -r docs/*.html site/docs/ || true
+          fi
+
+          # Copy root landing portal
+          if [ -f "reports/index.html" ]; then
+            cp reports/index.html site/index.html
+          fi
+
+          echo "Structured site layout:"
+          ls -la site/
+
+      - name: Stage 3 - Deploy Static Portal to GitHub Pages Branch (gh-pages)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          destination_dir: ''
+          keep_files: true
+          commit_message: "Deploy QSAR-BACKEND QA Reports & Docs [build-${{ github.run_number }}] - GitHub Pages"

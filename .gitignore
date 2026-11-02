@@ -13,8 +13,6 @@ build/
 dist/
 *.spec
 
-
-
 # Jupyter
 .ipynb_checkpoints/
 
@@ -27,6 +25,8 @@ dist/
 .DS_Store
 Thumbs.db
 
+# Large Model Binaries
+*.h5
 
 # Generated molecular structure files
 static/generated/
