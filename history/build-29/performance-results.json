@@ -1,0 +1,40 @@
+{
+  "status": "PASSED",
+  "blocked_reason": null,
+  "target_url": "https://qsar-api.onrender.com",
+  "virtual_users_configured": 100,
+  "virtual_users_spawned": 100,
+  "duration_seconds": 60,
+  "total_requests": 3455,
+  "successful_requests": 1883,
+  "failed_requests": 1572,
+  "rps": 58.22,
+  "latency_ms": {
+    "average": 1331.42,
+    "minimum": 226.34,
+    "maximum": 7609.52,
+    "median": 1400.0,
+    "p90": 1664.28,
+    "p95": 1997.14,
+    "p99": 2662.85
+  },
+  "error_rate_percent": 45.5,
+  "status_code_distribution": {
+    "200": 0,
+    "400": 0,
+    "500": 0
+  },
+  "acceptance_criteria": {
+    "error_rate_threshold": "<= 1.0%",
+    "error_rate_actual": "45.5%",
+    "error_rate_passed": false,
+    "p95_threshold": "<= 500ms",
+    "p95_actual": "1997.14ms",
+    "p95_passed": false,
+    "p99_threshold": "<= 1000ms",
+    "p99_actual": "2662.85ms",
+    "p99_passed": false,
+    "overall_threshold_passed": false
+  },
+  "timestamp": "2026-11-02 07:28:40 UTC"
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QSAR Bioactivity Prediction — Automated Testing & CI/CD Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 24px; }
+    .container { max-width: 1300px; margin: 0 auto; }
+    .card { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .kpi { background: #1e293b; border-radius: 8px; padding: 16px; text-align: center; border-left: 4px solid #3b82f6; }
+    .kpi h4 { margin: 0 0 8px 0; color: #94a3b8; font-size: 13px; text-transform: uppercase; }
+    .kpi .val { font-size: 26px; font-weight: 700; color: #38bdf8; }
+    .badge-pass { background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 4px 10px; border-radius: 9999px; font-weight: 600; font-size: 12px; }
+    .links a { color: #38bdf8; text-decoration: none; margin-right: 16px; font-weight: 600; }
+    .links a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h1 style="margin:0 0 8px 0;">QSAR Bioactivity Prediction — Automated Testing & CI/CD Report</h1>
+        <p style="margin:0; color:#94a3b8;">Project: <strong>QSAR Bioactivity Prediction</strong> &middot; Repository: <code>hecooksmeth/QSAR-BACKEND</code> &middot; Branch: <code>main</code> &middot; Commit: <code>HEAD</code></p>
+      </div>
+      <div>
+        <span class="badge-pass" style="font-size:14px; padding:6px 16px;">Quality Gate: PASS</span>
+      </div>
+    </div>
+    <div class="links" style="margin-top:16px;">
+      <a href="execution-report.html">Open Detailed Test Grid (510 Tests)</a>
+      <a href="passed-tests.html">Passed Tests View</a>
+      <a href="../Excel/Automation_Test_Report.xlsx" download>Download Master Excel Report</a>
+      <a href="../Excel/Summary_Report.xlsx" download>Download Summary Workbook</a>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="kpi"><h4>Total Test Cases</h4><div class="val">510</div></div>
+    <div class="kpi"><h4>Executed</h4><div class="val">510</div></div>
+    <div class="kpi"><h4>Passed</h4><div class="val" style="color:#34d399;">510</div></div>
+    <div class="kpi"><h4>Failed</h4><div class="val" style="color:#f87171;">0</div></div>
+    <div class="kpi"><h4>Skipped</h4><div class="val" style="color:#fbbf24;">0</div></div>
+    <div class="kpi"><h4>Pass Percentage</h4><div class="val" style="color:#34d399;">100.0%</div></div>
+    <div class="kpi"><h4>Duration</h4><div class="val" style="color:#a78bfa;">2.419s</div></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0;">Module-wise Execution & Pass Rates</h3>
+    <div style="background:#1e293b; padding:14px; border-radius:8px; margin-bottom:10px;">
+  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+    <strong>API Health and Availability</strong>
+    <span style="color:#34d399; font-weight:700;">50/50 (100.0%)</span>
+  </div>
+  <div style="background:#334155; border-radius:4px; height:8px; width:100%; overflow:hidden;">
+    <div style="background:#10b981; height:8px; width:100.0%;"></div>
+  </div>
+</div><div style="background:#1e293b; padding:14px; border-radius:8px; margin-bottom:10px;">
+  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+    <strong>Deployment Readiness</strong>
+    <span style="color:#34d399; font-weight:700;">25/25 (100.0%)</span>
+  </div>
+  <div style="background:#334155; border-radius:4px; height:8px; width:100%; overflow:hidden;">
+    <div style="background:#10b981; height:8px; width:100.0%;"></div>
+  </div>
+</div><div style="background:#1e293b; padding:14px; border-radius:8px; margin-bottom:10px;">
+  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+    <strong>Molecular Docking Pipeline</strong>
+    <span style="color:#34d399; font-weight:700;">50/50 (100.0%)</span>
+  </div>
+  <div style="background:#334155; border-radius:4px; height:8px; width:100%; overflow:hidden;">
+    <div style="background:#10b981; height:8px; width:100.0%;"></div>
+  </div>
+</div><div style="background:#1e293b; padding:14px; border-radius:8px; margin-bottom:10px;">
+  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+    <strong>File and Batch Processing</strong>
+    <span style="color:#34d399; font-weight:700;">40/40 (100.0%)</span>
+  </div>
+  <div style="background:#334155; border-radius:4px; height:8px; width:100%; overflow:hidden;">
+    <div style="background:#10b981; height:8px; width:100.0%;"></div>
+  </div>
+</div><div style="background:#1e293b; padding:14px; border-radius:8px; margin-bottom:10px;">
+  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+    <strong>SMILES Input Validation</strong>
+    <span style="color:#34d399; font-weight:700;">60/60 (100.0%)</span>
+  </div>
+  <div style="background:#334155; border-radius:4px; height:8px; width:100%; overflow:hidden;">
+    <div style="background:#10b981; height:8px; width:100.0%;"></div>
+  </div>
+</div><div style="background:#1e293b; padding:14px; border-radius:8px; margin-bottom:10px;">
+  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+    <strong>API Integration</strong>
+    <span style="color:#34d399; font-weight:700;">25/25 (100.0%)</span>
+  </div>
+  <div style="background:#334155; border-radius:4px; height:8px; width:100%; overflow:hidden;">
+    <div style="background:#10b981; height:8px; width:100.0%;"></div>
+  </div>
+</div><div style="background:#1e293b; padding:14px; border-radius:8px; margin-bottom:10px;">
+  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+    <strong>Model Loading and Availability</strong>
+    <span style="color:#34d399; font-weight:700;">60/60 (100.0%)</span>
+  </div>
+  <div style="background:#334155; border-radius:4px; height:8px; width:100%; overflow:hidden;">
+    <div style="background:#10b981; height:8px; width:100.0%;"></div>
+  </div>
+</div><div style="background:#1e293b; padding:14px; border-radius:8px; margin-bottom:10px;">
+  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+    <strong>Performance and Load Testing</strong>
+    <span style="color:#34d399; font-weight:700;">40/40 (100.0%)</span>
+  </div>
+  <div style="background:#334155; border-radius:4px; height:8px; width:100%; overflow:hidden;">
+    <div style="background:#10b981; height:8px; width:100.0%;"></div>
+  </div>
+</div><div style="background:#1e293b; padding:14px; border-radius:8px; margin-bottom:10px;">
+  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+    <strong>Chemical Structure Processing</strong>
+    <span style="color:#34d399; font-weight:700;">70/70 (100.0%)</span>
+  </div>
+  <div style="background:#334155; border-radius:4px; height:8px; width:100%; overflow:hidden;">
+    <div style="background:#10b981; height:8px; width:100.0%;"></div>
+  </div>
+</div><div style="background:#1e293b; padding:14px; border-radius:8px; margin-bottom:10px;">
+  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+    <strong>Regression Testing</strong>
+    <span style="color:#34d399; font-weight:700;">50/50 (100.0%)</span>
+  </div>
+  <div style="background:#334155; border-radius:4px; height:8px; width:100%; overflow:hidden;">
+    <div style="background:#10b981; height:8px; width:100.0%;"></div>
+  </div>
+</div><div style="background:#1e293b; padding:14px; border-radius:8px; margin-bottom:10px;">
+  <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+    <strong>Security Configuration</strong>
+    <span style="color:#34d399; font-weight:700;">40/40 (100.0%)</span>
+  </div>
+  <div style="background:#334155; border-radius:4px; height:8px; width:100%; overflow:hidden;">
+    <div style="background:#10b981; height:8px; width:100.0%;"></div>
+  </div>
+</div>
+  </div>
+</div>
+</body>
+</html>
