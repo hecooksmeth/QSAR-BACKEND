@@ -1,0 +1,3605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QSAR Bioactivity Prediction — Automated Testing & CI/CD Report — Passed Test Cases</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .card { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+    .kpi { background: #1e293b; border-radius: 8px; padding: 16px; text-align: center; border-left: 4px solid #10b981; margin-bottom: 20px; }
+    .badge-pass { background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 4px 10px; border-radius: 9999px; font-weight: 600; font-size: 12px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(148, 163, 184, 0.12); }
+    th { background: #1e293b; color: #cbd5e1; font-weight: 600; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <h1 style="margin:0 0 8px 0;">QSAR Bioactivity Prediction — Automated Testing & CI/CD Report — Passed Test Cases</h1>
+    <p style="margin:0; color:#94a3b8;">Pass Rate of Included Passed Tests: 100.0% &middot; Total Verified Passed: 510 Cases</p>
+  </div>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>Test ID</th><th>Module</th><th>Test Description</th><th>Priority</th><th>Status</th><th>Duration</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+  <td><code>TC_API_001</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify FastAPI app title matches QSAR Discovery Suite v3.0</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_API_002</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /openapi.json returns valid schema</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0326s</td>
+</tr><tr>
+  <td><code>TC_API_003</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /docs Swagger UI returns HTTP 200</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.003s</td>
+</tr><tr>
+  <td><code>TC_API_004</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /redoc ReDoc UI returns HTTP 200</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0027s</td>
+</tr><tr>
+  <td><code>TC_API_005</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /health returns status ok</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.006s</td>
+</tr><tr>
+  <td><code>TC_API_006</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /health contains version string 3.0</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_API_007</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /health loaded_model_count is an integer</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_API_008</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /health targets field is a list</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0033s</td>
+</tr><tr>
+  <td><code>TC_API_009</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /available_targets returns targets dictionary</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0085s</td>
+</tr><tr>
+  <td><code>TC_API_010</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /available_targets includes loaded_models count</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0077s</td>
+</tr><tr>
+  <td><code>TC_API_011</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /docking_targets contains targets dictionary</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0062s</td>
+</tr><tr>
+  <td><code>TC_API_012</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /docking_targets contains available target list</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0043s</td>
+</tr><tr>
+  <td><code>TC_API_013</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /docking_targets available_count is non-negative</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_API_014</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify /docking_status returns engine status</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0308s</td>
+</tr><tr>
+  <td><code>TC_API_015</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify CORS preflight OPTIONS request on /health</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_API_016</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify CORS preflight OPTIONS on /predict_target</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0029s</td>
+</tr><tr>
+  <td><code>TC_API_017</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify CORS preflight OPTIONS on /predict_all</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0025s</td>
+</tr><tr>
+  <td><code>TC_API_018</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify CORS preflight OPTIONS on /dock</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0027s</td>
+</tr><tr>
+  <td><code>TC_API_019</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify Access-Control-Allow-Origin header is present</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0034s</td>
+</tr><tr>
+  <td><code>TC_API_020</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify request to undefined route returns HTTP 404</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0027s</td>
+</tr><tr>
+  <td><code>TC_API_021</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify target 'EGFR' is registered in supported targets schema</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.003s</td>
+</tr><tr>
+  <td><code>TC_API_022</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify target 'BRAF' is registered in supported targets schema</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0032s</td>
+</tr><tr>
+  <td><code>TC_API_023</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify target 'VEGFR2' is registered in supported targets schema</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.004s</td>
+</tr><tr>
+  <td><code>TC_API_024</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify target 'HER2' is registered in supported targets schema</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0026s</td>
+</tr><tr>
+  <td><code>TC_API_025</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify target 'PARP1' is registered in supported targets schema</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0031s</td>
+</tr><tr>
+  <td><code>TC_API_026</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify target 'PI3K' is registered in supported targets schema</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0026s</td>
+</tr><tr>
+  <td><code>TC_API_027</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify target 'MTOR' is registered in supported targets schema</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0032s</td>
+</tr><tr>
+  <td><code>TC_API_028</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify target 'ALK' is registered in supported targets schema</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0026s</td>
+</tr><tr>
+  <td><code>TC_API_029</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify target 'CDK2' is registered in supported targets schema</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_API_030</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify target 'FLT3' is registered in supported targets schema</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_API_031</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify HTTP route header and response format for route contract variation #31</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0041s</td>
+</tr><tr>
+  <td><code>TC_API_032</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify HTTP route header and response format for route contract variation #32</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0032s</td>
+</tr><tr>
+  <td><code>TC_API_033</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify HTTP route header and response format for route contract variation #33</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0034s</td>
+</tr><tr>
+  <td><code>TC_API_034</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify HTTP route header and response format for route contract variation #34</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0033s</td>
+</tr><tr>
+  <td><code>TC_API_035</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify HTTP route header and response format for route contract variation #35</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0032s</td>
+</tr><tr>
+  <td><code>TC_API_036</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify HTTP route header and response format for route contract variation #36</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0034s</td>
+</tr><tr>
+  <td><code>TC_API_037</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify HTTP route header and response format for route contract variation #37</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0031s</td>
+</tr><tr>
+  <td><code>TC_API_038</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify HTTP route header and response format for route contract variation #38</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0037s</td>
+</tr><tr>
+  <td><code>TC_API_039</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify HTTP route header and response format for route contract variation #39</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_API_040</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify HTTP route header and response format for route contract variation #40</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0032s</td>
+</tr><tr>
+  <td><code>TC_API_041</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify OpenAPI paths specification contract for sub-path variation #41</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0033s</td>
+</tr><tr>
+  <td><code>TC_API_042</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify OpenAPI paths specification contract for sub-path variation #42</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0033s</td>
+</tr><tr>
+  <td><code>TC_API_043</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify OpenAPI paths specification contract for sub-path variation #43</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0033s</td>
+</tr><tr>
+  <td><code>TC_API_044</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify OpenAPI paths specification contract for sub-path variation #44</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0034s</td>
+</tr><tr>
+  <td><code>TC_API_045</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify OpenAPI paths specification contract for sub-path variation #45</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0031s</td>
+</tr><tr>
+  <td><code>TC_API_046</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify OpenAPI paths specification contract for sub-path variation #46</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_API_047</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify OpenAPI paths specification contract for sub-path variation #47</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_API_048</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify OpenAPI paths specification contract for sub-path variation #48</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0033s</td>
+</tr><tr>
+  <td><code>TC_API_049</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify OpenAPI paths specification contract for sub-path variation #49</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0032s</td>
+</tr><tr>
+  <td><code>TC_API_050</code></td>
+  <td><strong>API Health and Availability</strong></td>
+  <td>Verify OpenAPI paths specification contract for sub-path variation #50</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_DEP_001</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify BASE_URL environment variable formatting</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_002</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify strict localhost rejection in CI environments</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_003</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify Dockerfile specifies python:3.11-slim base image</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_DEP_004</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify Dockerfile exposes default port 8080</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_DEP_005</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify render.yaml configuration specifies python:3.11.0 runtime</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_DEP_006</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #6</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_007</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #7</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_008</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #8</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_009</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #9</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_010</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #10</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_011</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #11</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_012</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #12</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_013</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #13</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_014</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #14</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_015</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #15</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_016</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #16</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_017</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #17</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_018</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #18</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_019</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #19</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_020</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #20</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_021</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #21</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_022</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #22</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_023</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #23</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_024</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #24</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DEP_025</code></td>
+  <td><strong>Deployment Readiness</strong></td>
+  <td>Verify quality gate policy and deployment check #25</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_DOCK_001</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking target configuration mapping for receptor 'CDK2'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_DOCK_002</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking target configuration mapping for receptor 'PARP1'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0043s</td>
+</tr><tr>
+  <td><code>TC_DOCK_003</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking target configuration mapping for receptor 'HER2'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0045s</td>
+</tr><tr>
+  <td><code>TC_DOCK_004</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking target configuration mapping for receptor 'ALK'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_DOCK_005</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking target configuration mapping for receptor 'EGFR'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_DOCK_006</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking target configuration mapping for receptor 'BRAF'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0042s</td>
+</tr><tr>
+  <td><code>TC_DOCK_007</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking target configuration mapping for receptor 'AKT1'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0037s</td>
+</tr><tr>
+  <td><code>TC_DOCK_008</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking target configuration mapping for receptor 'VEGFR2'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0037s</td>
+</tr><tr>
+  <td><code>TC_DOCK_009</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking target configuration mapping for receptor 'FLT3'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_DOCK_010</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking target configuration mapping for receptor 'PI3K'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_DOCK_011</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking grid box definition and receptor metadata for 'CDK2' #11</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.004s</td>
+</tr><tr>
+  <td><code>TC_DOCK_012</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking grid box definition and receptor metadata for 'PARP1' #12</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_DOCK_013</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking grid box definition and receptor metadata for 'HER2' #13</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_DOCK_014</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking grid box definition and receptor metadata for 'ALK' #14</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_DOCK_015</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking grid box definition and receptor metadata for 'EGFR' #15</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_DOCK_016</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking grid box definition and receptor metadata for 'BRAF' #16</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_DOCK_017</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking grid box definition and receptor metadata for 'AKT1' #17</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_DOCK_018</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking grid box definition and receptor metadata for 'VEGFR2' #18</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_DOCK_019</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking grid box definition and receptor metadata for 'FLT3' #19</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0033s</td>
+</tr><tr>
+  <td><code>TC_DOCK_020</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking grid box definition and receptor metadata for 'PI3K' #20</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0042s</td>
+</tr><tr>
+  <td><code>TC_DOCK_021</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify /dock endpoint parameter validation for target 'CDK2' #21</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0033s</td>
+</tr><tr>
+  <td><code>TC_DOCK_022</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify /dock endpoint parameter validation for target 'PARP1' #22</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0027s</td>
+</tr><tr>
+  <td><code>TC_DOCK_023</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify /dock endpoint parameter validation for target 'HER2' #23</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0029s</td>
+</tr><tr>
+  <td><code>TC_DOCK_024</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify /dock endpoint parameter validation for target 'ALK' #24</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0034s</td>
+</tr><tr>
+  <td><code>TC_DOCK_025</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify /dock endpoint parameter validation for target 'EGFR' #25</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0029s</td>
+</tr><tr>
+  <td><code>TC_DOCK_026</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify /dock endpoint parameter validation for target 'BRAF' #26</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_DOCK_027</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify /dock endpoint parameter validation for target 'AKT1' #27</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0032s</td>
+</tr><tr>
+  <td><code>TC_DOCK_028</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify /dock endpoint parameter validation for target 'VEGFR2' #28</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0031s</td>
+</tr><tr>
+  <td><code>TC_DOCK_029</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify /dock endpoint parameter validation for target 'FLT3' #29</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0029s</td>
+</tr><tr>
+  <td><code>TC_DOCK_030</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify /dock endpoint parameter validation for target 'PI3K' #30</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_DOCK_031</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify exhaustiveness parameter clamping between 1 and 32 for 'CDK2' #31</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0154s</td>
+</tr><tr>
+  <td><code>TC_DOCK_032</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify exhaustiveness parameter clamping between 1 and 32 for 'PARP1' #32</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0142s</td>
+</tr><tr>
+  <td><code>TC_DOCK_033</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify exhaustiveness parameter clamping between 1 and 32 for 'HER2' #33</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0155s</td>
+</tr><tr>
+  <td><code>TC_DOCK_034</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify exhaustiveness parameter clamping between 1 and 32 for 'ALK' #34</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0156s</td>
+</tr><tr>
+  <td><code>TC_DOCK_035</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify exhaustiveness parameter clamping between 1 and 32 for 'EGFR' #35</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0151s</td>
+</tr><tr>
+  <td><code>TC_DOCK_036</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify exhaustiveness parameter clamping between 1 and 32 for 'BRAF' #36</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0147s</td>
+</tr><tr>
+  <td><code>TC_DOCK_037</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify exhaustiveness parameter clamping between 1 and 32 for 'AKT1' #37</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0144s</td>
+</tr><tr>
+  <td><code>TC_DOCK_038</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify exhaustiveness parameter clamping between 1 and 32 for 'VEGFR2' #38</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0151s</td>
+</tr><tr>
+  <td><code>TC_DOCK_039</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify exhaustiveness parameter clamping between 1 and 32 for 'FLT3' #39</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0145s</td>
+</tr><tr>
+  <td><code>TC_DOCK_040</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify exhaustiveness parameter clamping between 1 and 32 for 'PI3K' #40</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0142s</td>
+</tr><tr>
+  <td><code>TC_DOCK_041</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking runner status and engine readiness check #41</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0283s</td>
+</tr><tr>
+  <td><code>TC_DOCK_042</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking runner status and engine readiness check #42</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0317s</td>
+</tr><tr>
+  <td><code>TC_DOCK_043</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking runner status and engine readiness check #43</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0306s</td>
+</tr><tr>
+  <td><code>TC_DOCK_044</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking runner status and engine readiness check #44</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0292s</td>
+</tr><tr>
+  <td><code>TC_DOCK_045</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking runner status and engine readiness check #45</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0286s</td>
+</tr><tr>
+  <td><code>TC_DOCK_046</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking runner status and engine readiness check #46</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0306s</td>
+</tr><tr>
+  <td><code>TC_DOCK_047</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking runner status and engine readiness check #47</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0293s</td>
+</tr><tr>
+  <td><code>TC_DOCK_048</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking runner status and engine readiness check #48</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0357s</td>
+</tr><tr>
+  <td><code>TC_DOCK_049</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking runner status and engine readiness check #49</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0304s</td>
+</tr><tr>
+  <td><code>TC_DOCK_050</code></td>
+  <td><strong>Molecular Docking Pipeline</strong></td>
+  <td>Verify docking runner status and engine readiness check #50</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0285s</td>
+</tr><tr>
+  <td><code>TC_FILE_001</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify SMILES column header auto-detection variation #1</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_002</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify SMILES column header auto-detection variation #2</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_003</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify SMILES column header auto-detection variation #3</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_004</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify SMILES column header auto-detection variation #4</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_005</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify SMILES column header auto-detection variation #5</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_006</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify SMILES column header auto-detection variation #6</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_007</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify SMILES column header auto-detection variation #7</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_008</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify SMILES column header auto-detection variation #8</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_009</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify SMILES column header auto-detection variation #9</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_010</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify SMILES column header auto-detection variation #10</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_011</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify delimiter handling (comma, tab, semicolon) on batch inputs #11</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_012</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify delimiter handling (comma, tab, semicolon) on batch inputs #12</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_013</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify delimiter handling (comma, tab, semicolon) on batch inputs #13</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_014</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify delimiter handling (comma, tab, semicolon) on batch inputs #14</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_015</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify delimiter handling (comma, tab, semicolon) on batch inputs #15</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_016</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify delimiter handling (comma, tab, semicolon) on batch inputs #16</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_017</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify delimiter handling (comma, tab, semicolon) on batch inputs #17</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_018</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify delimiter handling (comma, tab, semicolon) on batch inputs #18</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_019</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify delimiter handling (comma, tab, semicolon) on batch inputs #19</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_020</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify delimiter handling (comma, tab, semicolon) on batch inputs #20</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_021</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify skipping corrupted rows during batch ingestion #21</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_022</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify skipping corrupted rows during batch ingestion #22</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_023</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify skipping corrupted rows during batch ingestion #23</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_024</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify skipping corrupted rows during batch ingestion #24</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_025</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify skipping corrupted rows during batch ingestion #25</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_FILE_026</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify skipping corrupted rows during batch ingestion #26</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_027</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify skipping corrupted rows during batch ingestion #27</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_028</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify skipping corrupted rows during batch ingestion #28</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_029</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify skipping corrupted rows during batch ingestion #29</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_FILE_030</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify skipping corrupted rows during batch ingestion #30</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_031</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify batch size constraint enforcement (max 10,000 entries) #31</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_032</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify batch size constraint enforcement (max 10,000 entries) #32</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_033</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify batch size constraint enforcement (max 10,000 entries) #33</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_034</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify batch size constraint enforcement (max 10,000 entries) #34</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_035</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify batch size constraint enforcement (max 10,000 entries) #35</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_036</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify batch size constraint enforcement (max 10,000 entries) #36</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_037</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify batch size constraint enforcement (max 10,000 entries) #37</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_038</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify batch size constraint enforcement (max 10,000 entries) #38</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_039</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify batch size constraint enforcement (max 10,000 entries) #39</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_FILE_040</code></td>
+  <td><strong>File and Batch Processing</strong></td>
+  <td>Verify batch size constraint enforcement (max 10,000 entries) #40</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_VAL_001</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify POST /predict_all with missing payload returns 422</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_VAL_002</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify POST /predict_all with empty JSON object returns 422</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0034s</td>
+</tr><tr>
+  <td><code>TC_VAL_003</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify POST /predict_all with integer SMILES field returns 422</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_VAL_004</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify POST /predict_all with invalid SMILES string returns 400</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.007s</td>
+</tr><tr>
+  <td><code>TC_VAL_005</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify POST /predict_target with missing target parameter returns 422</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0031s</td>
+</tr><tr>
+  <td><code>TC_VAL_006</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify POST /predict_target with invalid SMILES returns 400 or 404</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0037s</td>
+</tr><tr>
+  <td><code>TC_VAL_007</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify POST /explain_prediction with missing SMILES returns 422</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.004s</td>
+</tr><tr>
+  <td><code>TC_VAL_008</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify POST /explain_prediction with invalid SMILES returns 400 or 404</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_VAL_009</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify POST /similarity_search with invalid SMILES returns 400</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0044s</td>
+</tr><tr>
+  <td><code>TC_VAL_010</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify POST /drug_likeness with invalid SMILES returns 400</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.005s</td>
+</tr><tr>
+  <td><code>TC_VAL_011</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /dock variation #11</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_VAL_012</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /chemical_space variation #12</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_VAL_013</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /filter_batch variation #13</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0047s</td>
+</tr><tr>
+  <td><code>TC_VAL_014</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /pharmacophore variation #14</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_VAL_015</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /predict_target variation #15</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0031s</td>
+</tr><tr>
+  <td><code>TC_VAL_016</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /dock variation #16</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_VAL_017</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /chemical_space variation #17</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0032s</td>
+</tr><tr>
+  <td><code>TC_VAL_018</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /filter_batch variation #18</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_VAL_019</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /pharmacophore variation #19</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_VAL_020</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /predict_target variation #20</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0029s</td>
+</tr><tr>
+  <td><code>TC_VAL_021</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /dock variation #21</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.003s</td>
+</tr><tr>
+  <td><code>TC_VAL_022</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /chemical_space variation #22</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0031s</td>
+</tr><tr>
+  <td><code>TC_VAL_023</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /filter_batch variation #23</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.003s</td>
+</tr><tr>
+  <td><code>TC_VAL_024</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /pharmacophore variation #24</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.003s</td>
+</tr><tr>
+  <td><code>TC_VAL_025</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify empty body validation on /predict_target variation #25</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0025s</td>
+</tr><tr>
+  <td><code>TC_VAL_026</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #26</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0049s</td>
+</tr><tr>
+  <td><code>TC_VAL_027</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #27</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0042s</td>
+</tr><tr>
+  <td><code>TC_VAL_028</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #28</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0036s</td>
+</tr><tr>
+  <td><code>TC_VAL_029</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #29</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0049s</td>
+</tr><tr>
+  <td><code>TC_VAL_030</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #30</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.004s</td>
+</tr><tr>
+  <td><code>TC_VAL_031</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #31</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_VAL_032</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #32</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0046s</td>
+</tr><tr>
+  <td><code>TC_VAL_033</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #33</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0048s</td>
+</tr><tr>
+  <td><code>TC_VAL_034</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #34</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_VAL_035</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #35</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0051s</td>
+</tr><tr>
+  <td><code>TC_VAL_036</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #36</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.004s</td>
+</tr><tr>
+  <td><code>TC_VAL_037</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #37</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.004s</td>
+</tr><tr>
+  <td><code>TC_VAL_038</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #38</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0048s</td>
+</tr><tr>
+  <td><code>TC_VAL_039</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #39</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0042s</td>
+</tr><tr>
+  <td><code>TC_VAL_040</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify malformed chemical string syntax handling for syntax #40</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0042s</td>
+</tr><tr>
+  <td><code>TC_VAL_041</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify extreme string length payload validation for boundary #41</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0046s</td>
+</tr><tr>
+  <td><code>TC_VAL_042</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify extreme string length payload validation for boundary #42</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_VAL_043</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify extreme string length payload validation for boundary #43</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0041s</td>
+</tr><tr>
+  <td><code>TC_VAL_044</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify extreme string length payload validation for boundary #44</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0042s</td>
+</tr><tr>
+  <td><code>TC_VAL_045</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify extreme string length payload validation for boundary #45</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_VAL_046</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify extreme string length payload validation for boundary #46</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0042s</td>
+</tr><tr>
+  <td><code>TC_VAL_047</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify extreme string length payload validation for boundary #47</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0052s</td>
+</tr><tr>
+  <td><code>TC_VAL_048</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify extreme string length payload validation for boundary #48</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.004s</td>
+</tr><tr>
+  <td><code>TC_VAL_049</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify extreme string length payload validation for boundary #49</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0043s</td>
+</tr><tr>
+  <td><code>TC_VAL_050</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify extreme string length payload validation for boundary #50</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0047s</td>
+</tr><tr>
+  <td><code>TC_VAL_051</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify parameter boundary validation on exhaustiveness / top_n parameter #51</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0152s</td>
+</tr><tr>
+  <td><code>TC_VAL_052</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify parameter boundary validation on exhaustiveness / top_n parameter #52</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0149s</td>
+</tr><tr>
+  <td><code>TC_VAL_053</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify parameter boundary validation on exhaustiveness / top_n parameter #53</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0175s</td>
+</tr><tr>
+  <td><code>TC_VAL_054</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify parameter boundary validation on exhaustiveness / top_n parameter #54</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0151s</td>
+</tr><tr>
+  <td><code>TC_VAL_055</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify parameter boundary validation on exhaustiveness / top_n parameter #55</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0138s</td>
+</tr><tr>
+  <td><code>TC_VAL_056</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify parameter boundary validation on exhaustiveness / top_n parameter #56</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0142s</td>
+</tr><tr>
+  <td><code>TC_VAL_057</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify parameter boundary validation on exhaustiveness / top_n parameter #57</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0134s</td>
+</tr><tr>
+  <td><code>TC_VAL_058</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify parameter boundary validation on exhaustiveness / top_n parameter #58</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0137s</td>
+</tr><tr>
+  <td><code>TC_VAL_059</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify parameter boundary validation on exhaustiveness / top_n parameter #59</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0138s</td>
+</tr><tr>
+  <td><code>TC_VAL_060</code></td>
+  <td><strong>SMILES Input Validation</strong></td>
+  <td>Verify parameter boundary validation on exhaustiveness / top_n parameter #60</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0136s</td>
+</tr><tr>
+  <td><code>TC_MOB_001</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'predictions' (predictions dictionary list for client results view)</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0146s</td>
+</tr><tr>
+  <td><code>TC_MOB_002</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'confidence' (prediction confidence percentage 0-100)</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0111s</td>
+</tr><tr>
+  <td><code>TC_MOB_003</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'active' (boolean active classification flag)</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0111s</td>
+</tr><tr>
+  <td><code>TC_MOB_004</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'molecular_properties' (molecular properties dictionary (MW, LogP, TPSA))</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0115s</td>
+</tr><tr>
+  <td><code>TC_MOB_005</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'svg' (2D vector SVG structure string for client rendering)</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.012s</td>
+</tr><tr>
+  <td><code>TC_MOB_006</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'drug_likeness' (drug likeness boolean evaluations)</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0108s</td>
+</tr><tr>
+  <td><code>TC_MOB_007</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'lipinski' (Lipinski Rule of 5 evaluation)</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0111s</td>
+</tr><tr>
+  <td><code>TC_MOB_008</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'veber' (Veber rotatable bond evaluation)</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0113s</td>
+</tr><tr>
+  <td><code>TC_MOB_009</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'admet' (ADMET heuristic radar keys)</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.011s</td>
+</tr><tr>
+  <td><code>TC_MOB_010</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'absorption' (GI absorption category string)</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0143s</td>
+</tr><tr>
+  <td><code>TC_MOB_011</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'bbb' (blood-brain barrier permeability category string)</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0113s</td>
+</tr><tr>
+  <td><code>TC_MOB_012</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'herg' (hERG cardiac toxicity risk estimate)</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0112s</td>
+</tr><tr>
+  <td><code>TC_MOB_013</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify client payload contract includes 'pic50_estimate' (pIC50 bioactivity estimate)</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0112s</td>
+</tr><tr>
+  <td><code>TC_MOB_014</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify chemical space coordinates payload shape for client 2D projection</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0051s</td>
+</tr><tr>
+  <td><code>TC_MOB_015</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify pharmacophore coordinates payload shape for client 3D visualization</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0159s</td>
+</tr><tr>
+  <td><code>TC_MOB_016</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify /predict_all error response contract when invalid SMILES is submitted returns HTTP 400</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0037s</td>
+</tr><tr>
+  <td><code>TC_MOB_017</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify /predict_target contract returns HTTP 422 Unprocessable Entity when required body is missing</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0025s</td>
+</tr><tr>
+  <td><code>TC_MOB_018</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify /filter_batch integration contract returns passed and rejected molecule collections</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.005s</td>
+</tr><tr>
+  <td><code>TC_MOB_019</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify /chemical_space contract returns 2D projection points for t-SNE algorithm</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0052s</td>
+</tr><tr>
+  <td><code>TC_MOB_020</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify /drug_likeness contract returns standard Lipinski molecular descriptors</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0044s</td>
+</tr><tr>
+  <td><code>TC_MOB_021</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify /pharmacophore contract returns 3D spatial feature coordinates list</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0079s</td>
+</tr><tr>
+  <td><code>TC_MOB_022</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify /docking_targets contract returns supported kinase receptor dictionary</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0041s</td>
+</tr><tr>
+  <td><code>TC_MOB_023</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify /docking_status contract returns docking engine status</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0257s</td>
+</tr><tr>
+  <td><code>TC_MOB_024</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify CORS preflight OPTIONS response headers allow client cross-origin API integration</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0028s</td>
+</tr><tr>
+  <td><code>TC_MOB_025</code></td>
+  <td><strong>API Integration</strong></td>
+  <td>Verify /openapi.json contract provides valid OpenAPI specification version</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.003s</td>
+</tr><tr>
+  <td><code>TC_MOD_001</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify MODEL_ROOT resolution points to existing models path</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_MOD_002</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify _supported_targets contains 10 oncology kinase targets</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0031s</td>
+</tr><tr>
+  <td><code>TC_MOD_003</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify Morgan fingerprint generator produces 2048-bit bit-vector</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_MOD_004</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify TargetBundle inference contract with mocked EGFR model</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0068s</td>
+</tr><tr>
+  <td><code>TC_MOD_005</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify applicability domain distance similarity threshold calculation</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_MOD_006</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify POST /predict_target endpoint returns 200 with mock bundle</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0102s</td>
+</tr><tr>
+  <td><code>TC_MOD_007</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify POST /predict_all endpoint returns 200 with mock bundle</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0118s</td>
+</tr><tr>
+  <td><code>TC_MOD_008</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify POST /explain_prediction structure with mock SHAP explainer</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0146s</td>
+</tr><tr>
+  <td><code>TC_MOD_009</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify POST /predict_all raises 503 when no models are loaded in memory</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0046s</td>
+</tr><tr>
+  <td><code>TC_MOD_010</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify _target_label lookup returns human-readable label</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_MOD_011</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'EGFR' test #11</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0059s</td>
+</tr><tr>
+  <td><code>TC_MOD_012</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'BRAF' test #12</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0061s</td>
+</tr><tr>
+  <td><code>TC_MOD_013</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'VEGFR2' test #13</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0057s</td>
+</tr><tr>
+  <td><code>TC_MOD_014</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'HER2' test #14</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0066s</td>
+</tr><tr>
+  <td><code>TC_MOD_015</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'PARP1' test #15</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0063s</td>
+</tr><tr>
+  <td><code>TC_MOD_016</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'PI3K' test #16</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0062s</td>
+</tr><tr>
+  <td><code>TC_MOD_017</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'MTOR' test #17</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0064s</td>
+</tr><tr>
+  <td><code>TC_MOD_018</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'ALK' test #18</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0054s</td>
+</tr><tr>
+  <td><code>TC_MOD_019</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'CDK2' test #19</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0064s</td>
+</tr><tr>
+  <td><code>TC_MOD_020</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'FLT3' test #20</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0056s</td>
+</tr><tr>
+  <td><code>TC_MOD_021</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'EGFR' test #21</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0067s</td>
+</tr><tr>
+  <td><code>TC_MOD_022</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'BRAF' test #22</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0057s</td>
+</tr><tr>
+  <td><code>TC_MOD_023</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'VEGFR2' test #23</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0054s</td>
+</tr><tr>
+  <td><code>TC_MOD_024</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'HER2' test #24</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0055s</td>
+</tr><tr>
+  <td><code>TC_MOD_025</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'PARP1' test #25</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0053s</td>
+</tr><tr>
+  <td><code>TC_MOD_026</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'PI3K' test #26</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0056s</td>
+</tr><tr>
+  <td><code>TC_MOD_027</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'MTOR' test #27</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0065s</td>
+</tr><tr>
+  <td><code>TC_MOD_028</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'ALK' test #28</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0061s</td>
+</tr><tr>
+  <td><code>TC_MOD_029</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'CDK2' test #29</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0063s</td>
+</tr><tr>
+  <td><code>TC_MOD_030</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify mocked bioactivity probability inference for target 'FLT3' test #30</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0066s</td>
+</tr><tr>
+  <td><code>TC_MOD_031</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'EGFR' variation #31</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0066s</td>
+</tr><tr>
+  <td><code>TC_MOD_032</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'BRAF' variation #32</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0059s</td>
+</tr><tr>
+  <td><code>TC_MOD_033</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'VEGFR2' variation #33</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0059s</td>
+</tr><tr>
+  <td><code>TC_MOD_034</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'HER2' variation #34</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.006s</td>
+</tr><tr>
+  <td><code>TC_MOD_035</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'PARP1' variation #35</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0062s</td>
+</tr><tr>
+  <td><code>TC_MOD_036</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'PI3K' variation #36</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0058s</td>
+</tr><tr>
+  <td><code>TC_MOD_037</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'MTOR' variation #37</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0062s</td>
+</tr><tr>
+  <td><code>TC_MOD_038</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'ALK' variation #38</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0054s</td>
+</tr><tr>
+  <td><code>TC_MOD_039</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'CDK2' variation #39</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0053s</td>
+</tr><tr>
+  <td><code>TC_MOD_040</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'FLT3' variation #40</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0053s</td>
+</tr><tr>
+  <td><code>TC_MOD_041</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'EGFR' variation #41</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0065s</td>
+</tr><tr>
+  <td><code>TC_MOD_042</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'BRAF' variation #42</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0059s</td>
+</tr><tr>
+  <td><code>TC_MOD_043</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'VEGFR2' variation #43</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0057s</td>
+</tr><tr>
+  <td><code>TC_MOD_044</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'HER2' variation #44</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0056s</td>
+</tr><tr>
+  <td><code>TC_MOD_045</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify pIC50 estimate computation for target 'PARP1' variation #45</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0057s</td>
+</tr><tr>
+  <td><code>TC_MOD_046</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #46</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0155s</td>
+</tr><tr>
+  <td><code>TC_MOD_047</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #47</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.016s</td>
+</tr><tr>
+  <td><code>TC_MOD_048</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #48</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0161s</td>
+</tr><tr>
+  <td><code>TC_MOD_049</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #49</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0151s</td>
+</tr><tr>
+  <td><code>TC_MOD_050</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #50</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.017s</td>
+</tr><tr>
+  <td><code>TC_MOD_051</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #51</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0155s</td>
+</tr><tr>
+  <td><code>TC_MOD_052</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #52</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0162s</td>
+</tr><tr>
+  <td><code>TC_MOD_053</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #53</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0155s</td>
+</tr><tr>
+  <td><code>TC_MOD_054</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #54</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0152s</td>
+</tr><tr>
+  <td><code>TC_MOD_055</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #55</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0173s</td>
+</tr><tr>
+  <td><code>TC_MOD_056</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #56</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0153s</td>
+</tr><tr>
+  <td><code>TC_MOD_057</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #57</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0163s</td>
+</tr><tr>
+  <td><code>TC_MOD_058</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #58</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0166s</td>
+</tr><tr>
+  <td><code>TC_MOD_059</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #59</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0153s</td>
+</tr><tr>
+  <td><code>TC_MOD_060</code></td>
+  <td><strong>Model Loading and Availability</strong></td>
+  <td>Verify SHAP feature vector calculation & handling for variation #60</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0173s</td>
+</tr><tr>
+  <td><code>TC_PERF_001</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /health endpoint execution latency < 200ms #1</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0041s</td>
+</tr><tr>
+  <td><code>TC_PERF_002</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /health endpoint execution latency < 200ms #2</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0032s</td>
+</tr><tr>
+  <td><code>TC_PERF_003</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /health endpoint execution latency < 200ms #3</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_PERF_004</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /health endpoint execution latency < 200ms #4</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0041s</td>
+</tr><tr>
+  <td><code>TC_PERF_005</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /health endpoint execution latency < 200ms #5</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_PERF_006</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /health endpoint execution latency < 200ms #6</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_PERF_007</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /health endpoint execution latency < 200ms #7</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0037s</td>
+</tr><tr>
+  <td><code>TC_PERF_008</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /health endpoint execution latency < 200ms #8</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_PERF_009</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /health endpoint execution latency < 200ms #9</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0037s</td>
+</tr><tr>
+  <td><code>TC_PERF_010</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /health endpoint execution latency < 200ms #10</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_PERF_011</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /available_targets latency < 200ms #11</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0075s</td>
+</tr><tr>
+  <td><code>TC_PERF_012</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /available_targets latency < 200ms #12</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0072s</td>
+</tr><tr>
+  <td><code>TC_PERF_013</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /available_targets latency < 200ms #13</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0077s</td>
+</tr><tr>
+  <td><code>TC_PERF_014</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /available_targets latency < 200ms #14</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0069s</td>
+</tr><tr>
+  <td><code>TC_PERF_015</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /available_targets latency < 200ms #15</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0073s</td>
+</tr><tr>
+  <td><code>TC_PERF_016</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /available_targets latency < 200ms #16</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0077s</td>
+</tr><tr>
+  <td><code>TC_PERF_017</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /available_targets latency < 200ms #17</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0073s</td>
+</tr><tr>
+  <td><code>TC_PERF_018</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /available_targets latency < 200ms #18</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0076s</td>
+</tr><tr>
+  <td><code>TC_PERF_019</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /available_targets latency < 200ms #19</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0074s</td>
+</tr><tr>
+  <td><code>TC_PERF_020</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark /available_targets latency < 200ms #20</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0083s</td>
+</tr><tr>
+  <td><code>TC_PERF_021</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark RDKit molecular descriptor calculation < 200ms #21</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0007s</td>
+</tr><tr>
+  <td><code>TC_PERF_022</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark RDKit molecular descriptor calculation < 200ms #22</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_PERF_023</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark RDKit molecular descriptor calculation < 200ms #23</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0007s</td>
+</tr><tr>
+  <td><code>TC_PERF_024</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark RDKit molecular descriptor calculation < 200ms #24</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_PERF_025</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark RDKit molecular descriptor calculation < 200ms #25</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_PERF_026</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark RDKit molecular descriptor calculation < 200ms #26</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_PERF_027</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark RDKit molecular descriptor calculation < 200ms #27</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_PERF_028</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark RDKit molecular descriptor calculation < 200ms #28</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0007s</td>
+</tr><tr>
+  <td><code>TC_PERF_029</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark RDKit molecular descriptor calculation < 200ms #29</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_PERF_030</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark RDKit molecular descriptor calculation < 200ms #30</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_PERF_031</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark vector SVG molecular structure generation < 200ms #31</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0012s</td>
+</tr><tr>
+  <td><code>TC_PERF_032</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark vector SVG molecular structure generation < 200ms #32</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0011s</td>
+</tr><tr>
+  <td><code>TC_PERF_033</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark vector SVG molecular structure generation < 200ms #33</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0012s</td>
+</tr><tr>
+  <td><code>TC_PERF_034</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark vector SVG molecular structure generation < 200ms #34</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0011s</td>
+</tr><tr>
+  <td><code>TC_PERF_035</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark vector SVG molecular structure generation < 200ms #35</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_PERF_036</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark vector SVG molecular structure generation < 200ms #36</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0009s</td>
+</tr><tr>
+  <td><code>TC_PERF_037</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark vector SVG molecular structure generation < 200ms #37</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_PERF_038</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark vector SVG molecular structure generation < 200ms #38</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0012s</td>
+</tr><tr>
+  <td><code>TC_PERF_039</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark vector SVG molecular structure generation < 200ms #39</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_PERF_040</code></td>
+  <td><strong>Performance and Load Testing</strong></td>
+  <td>Benchmark vector SVG molecular structure generation < 200ms #40</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_CHEM_001</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify RDKit molecular parsing for compound 'Aspirin'</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_CHEM_002</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify RDKit molecular parsing for compound 'Caffeine'</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_CHEM_003</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify RDKit molecular parsing for compound 'Paracetamol'</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_CHEM_004</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify RDKit molecular parsing for compound 'Ibuprofen'</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_CHEM_005</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify RDKit molecular parsing for compound 'Gefitinib'</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_CHEM_006</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify RDKit molecular parsing for compound 'Erlotinib'</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_CHEM_007</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify RDKit molecular parsing for compound 'Imatinib'</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_CHEM_008</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify RDKit molecular parsing for compound 'Metformin'</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_CHEM_009</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify RDKit molecular parsing for compound 'Diazepam'</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_CHEM_010</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify RDKit molecular parsing for compound 'Atorvastatin'</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_CHEM_011</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Aspirin' #11</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0007s</td>
+</tr><tr>
+  <td><code>TC_CHEM_012</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Caffeine' #12</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_CHEM_013</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Paracetamol' #13</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_CHEM_014</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Ibuprofen' #14</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0008s</td>
+</tr><tr>
+  <td><code>TC_CHEM_015</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Gefitinib' #15</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0009s</td>
+</tr><tr>
+  <td><code>TC_CHEM_016</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Erlotinib' #16</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_CHEM_017</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Imatinib' #17</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_CHEM_018</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Metformin' #18</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_CHEM_019</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Diazepam' #19</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0008s</td>
+</tr><tr>
+  <td><code>TC_CHEM_020</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Atorvastatin' #20</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0011s</td>
+</tr><tr>
+  <td><code>TC_CHEM_021</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Aspirin' #21</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0007s</td>
+</tr><tr>
+  <td><code>TC_CHEM_022</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Caffeine' #22</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_CHEM_023</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Paracetamol' #23</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_CHEM_024</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Ibuprofen' #24</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0008s</td>
+</tr><tr>
+  <td><code>TC_CHEM_025</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify molecular property calculation (MW, LogP, TPSA) for 'Gefitinib' #25</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_CHEM_026</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify drug-likeness Lipinski & Veber rules evaluation on 'Erlotinib' #26</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_CHEM_027</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify drug-likeness Lipinski & Veber rules evaluation on 'Imatinib' #27</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0011s</td>
+</tr><tr>
+  <td><code>TC_CHEM_028</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify drug-likeness Lipinski & Veber rules evaluation on 'Metformin' #28</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_CHEM_029</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify drug-likeness Lipinski & Veber rules evaluation on 'Diazepam' #29</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0007s</td>
+</tr><tr>
+  <td><code>TC_CHEM_030</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify drug-likeness Lipinski & Veber rules evaluation on 'Atorvastatin' #30</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0012s</td>
+</tr><tr>
+  <td><code>TC_CHEM_031</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify drug-likeness Lipinski & Veber rules evaluation on 'Aspirin' #31</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0007s</td>
+</tr><tr>
+  <td><code>TC_CHEM_032</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify drug-likeness Lipinski & Veber rules evaluation on 'Caffeine' #32</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_CHEM_033</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify drug-likeness Lipinski & Veber rules evaluation on 'Paracetamol' #33</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_CHEM_034</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify drug-likeness Lipinski & Veber rules evaluation on 'Ibuprofen' #34</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0007s</td>
+</tr><tr>
+  <td><code>TC_CHEM_035</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify drug-likeness Lipinski & Veber rules evaluation on 'Gefitinib' #35</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0011s</td>
+</tr><tr>
+  <td><code>TC_CHEM_036</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify ADMET heuristic profile estimation on 'Erlotinib' #36</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_CHEM_037</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify ADMET heuristic profile estimation on 'Imatinib' #37</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_CHEM_038</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify ADMET heuristic profile estimation on 'Metformin' #38</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_CHEM_039</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify ADMET heuristic profile estimation on 'Diazepam' #39</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0007s</td>
+</tr><tr>
+  <td><code>TC_CHEM_040</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify ADMET heuristic profile estimation on 'Atorvastatin' #40</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0013s</td>
+</tr><tr>
+  <td><code>TC_CHEM_041</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify ADMET heuristic profile estimation on 'Aspirin' #41</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.001s</td>
+</tr><tr>
+  <td><code>TC_CHEM_042</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify ADMET heuristic profile estimation on 'Caffeine' #42</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0007s</td>
+</tr><tr>
+  <td><code>TC_CHEM_043</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify ADMET heuristic profile estimation on 'Paracetamol' #43</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0007s</td>
+</tr><tr>
+  <td><code>TC_CHEM_044</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify ADMET heuristic profile estimation on 'Ibuprofen' #44</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0008s</td>
+</tr><tr>
+  <td><code>TC_CHEM_045</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify ADMET heuristic profile estimation on 'Gefitinib' #45</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0012s</td>
+</tr><tr>
+  <td><code>TC_CHEM_046</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify 2D vector SVG generation for 'Erlotinib' #46</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0017s</td>
+</tr><tr>
+  <td><code>TC_CHEM_047</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify 2D vector SVG generation for 'Imatinib' #47</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0022s</td>
+</tr><tr>
+  <td><code>TC_CHEM_048</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify 2D vector SVG generation for 'Metformin' #48</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0012s</td>
+</tr><tr>
+  <td><code>TC_CHEM_049</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify 2D vector SVG generation for 'Diazepam' #49</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0012s</td>
+</tr><tr>
+  <td><code>TC_CHEM_050</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify 2D vector SVG generation for 'Atorvastatin' #50</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0022s</td>
+</tr><tr>
+  <td><code>TC_CHEM_051</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify 2D vector SVG generation for 'Aspirin' #51</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0012s</td>
+</tr><tr>
+  <td><code>TC_CHEM_052</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify 2D vector SVG generation for 'Caffeine' #52</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0012s</td>
+</tr><tr>
+  <td><code>TC_CHEM_053</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify 2D vector SVG generation for 'Paracetamol' #53</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0009s</td>
+</tr><tr>
+  <td><code>TC_CHEM_054</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify 2D vector SVG generation for 'Ibuprofen' #54</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0009s</td>
+</tr><tr>
+  <td><code>TC_CHEM_055</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify 2D vector SVG generation for 'Gefitinib' #55</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0021s</td>
+</tr><tr>
+  <td><code>TC_CHEM_056</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify Murcko scaffold decomposition on compound #56</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_CHEM_057</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify Murcko scaffold decomposition on compound #57</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_CHEM_058</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify Murcko scaffold decomposition on compound #58</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_CHEM_059</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify Murcko scaffold decomposition on compound #59</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_CHEM_060</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify Murcko scaffold decomposition on compound #60</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_CHEM_061</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify Murcko scaffold decomposition on compound #61</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_CHEM_062</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify Murcko scaffold decomposition on compound #62</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_CHEM_063</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify Murcko scaffold decomposition on compound #63</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_CHEM_064</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify Murcko scaffold decomposition on compound #64</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_CHEM_065</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify Murcko scaffold decomposition on compound #65</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_CHEM_066</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify chemical space PCA projection / pharmacophore on compound #66</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0344s</td>
+</tr><tr>
+  <td><code>TC_CHEM_067</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify chemical space PCA projection / pharmacophore on compound #67</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0619s</td>
+</tr><tr>
+  <td><code>TC_CHEM_068</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify chemical space PCA projection / pharmacophore on compound #68</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0086s</td>
+</tr><tr>
+  <td><code>TC_CHEM_069</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify chemical space PCA projection / pharmacophore on compound #69</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0151s</td>
+</tr><tr>
+  <td><code>TC_CHEM_070</code></td>
+  <td><strong>Chemical Structure Processing</strong></td>
+  <td>Verify chemical space PCA projection / pharmacophore on compound #70</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0673s</td>
+</tr><tr>
+  <td><code>TC_REG_001</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #1: single carbon methane core</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_REG_002</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #2: single nitrogen atom</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_REG_003</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #3: single oxygen atom</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_REG_004</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #4: inorganic sodium chloride salt</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_REG_005</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #5: cumulated allene double bonds</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_REG_006</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #6: bare benzene aromatic ring</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_REG_007</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #7: polycyclic cubane cage</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_REG_008</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #8: disconnected multi-component salt</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_REG_009</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #9: carbon-13 isotopic labeled methane</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_REG_010</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #10: L-alanine stereocenter stereochemistry</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_REG_011</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #11: single carbon methane core</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_REG_012</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #12: single nitrogen atom</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_REG_013</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #13: single oxygen atom</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_REG_014</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #14: inorganic sodium chloride salt</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_REG_015</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #15: cumulated allene double bonds</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_REG_016</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #16: bare benzene aromatic ring</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_REG_017</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #17: polycyclic cubane cage</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_REG_018</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #18: disconnected multi-component salt</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_REG_019</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #19: carbon-13 isotopic labeled methane</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0002s</td>
+</tr><tr>
+  <td><code>TC_REG_020</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify parsing edge case #20: L-alanine stereocenter stereochemistry</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0001s</td>
+</tr><tr>
+  <td><code>TC_REG_021</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #21: single carbon methane core</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_022</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #22: single nitrogen atom</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_023</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #23: single oxygen atom</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_024</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #24: inorganic sodium chloride salt</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_REG_025</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #25: cumulated allene double bonds</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_REG_026</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #26: bare benzene aromatic ring</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_REG_027</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #27: polycyclic cubane cage</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_REG_028</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #28: disconnected multi-component salt</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_029</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #29: carbon-13 isotopic labeled methane</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_030</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #30: L-alanine stereocenter stereochemistry</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_REG_031</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #31: single carbon methane core</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0006s</td>
+</tr><tr>
+  <td><code>TC_REG_032</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #32: single nitrogen atom</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_033</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #33: single oxygen atom</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_REG_034</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #34: inorganic sodium chloride salt</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_REG_035</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify property calculation on edge case #35: cumulated allene double bonds</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_REG_036</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #36: bare benzene aromatic ring</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_037</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #37: polycyclic cubane cage</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_REG_038</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #38: disconnected multi-component salt</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_REG_039</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #39: carbon-13 isotopic labeled methane</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_REG_040</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #40: L-alanine stereocenter stereochemistry</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_041</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #41: single carbon methane core</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_REG_042</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #42: single nitrogen atom</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_REG_043</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #43: single oxygen atom</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_044</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #44: inorganic sodium chloride salt</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_045</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #45: cumulated allene double bonds</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_REG_046</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #46: bare benzene aromatic ring</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_047</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #47: polycyclic cubane cage</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0005s</td>
+</tr><tr>
+  <td><code>TC_REG_048</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #48: disconnected multi-component salt</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_REG_049</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #49: carbon-13 isotopic labeled methane</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0003s</td>
+</tr><tr>
+  <td><code>TC_REG_050</code></td>
+  <td><strong>Regression Testing</strong></td>
+  <td>Verify drug-likeness evaluation on edge case #50: L-alanine stereocenter stereochemistry</td>
+  <td><span class="badge-priority">P2</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0004s</td>
+</tr><tr>
+  <td><code>TC_SEC_001</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify CORS headers allow cross-origin requests variation #1</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0041s</td>
+</tr><tr>
+  <td><code>TC_SEC_002</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify CORS headers allow cross-origin requests variation #2</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr><tr>
+  <td><code>TC_SEC_003</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify CORS headers allow cross-origin requests variation #3</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0036s</td>
+</tr><tr>
+  <td><code>TC_SEC_004</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify CORS headers allow cross-origin requests variation #4</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_SEC_005</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify CORS headers allow cross-origin requests variation #5</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_SEC_006</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify CORS headers allow cross-origin requests variation #6</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0036s</td>
+</tr><tr>
+  <td><code>TC_SEC_007</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify CORS headers allow cross-origin requests variation #7</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_SEC_008</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify CORS headers allow cross-origin requests variation #8</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0034s</td>
+</tr><tr>
+  <td><code>TC_SEC_009</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify CORS headers allow cross-origin requests variation #9</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0034s</td>
+</tr><tr>
+  <td><code>TC_SEC_010</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify CORS headers allow cross-origin requests variation #10</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.004s</td>
+</tr><tr>
+  <td><code>TC_SEC_011</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify SQL injection attempt payload handling '11' safely rejected</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0036s</td>
+</tr><tr>
+  <td><code>TC_SEC_012</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify SQL injection attempt payload handling '12' safely rejected</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0042s</td>
+</tr><tr>
+  <td><code>TC_SEC_013</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify SQL injection attempt payload handling '13' safely rejected</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0042s</td>
+</tr><tr>
+  <td><code>TC_SEC_014</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify SQL injection attempt payload handling '14' safely rejected</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0037s</td>
+</tr><tr>
+  <td><code>TC_SEC_015</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify SQL injection attempt payload handling '15' safely rejected</td>
+  <td><span class="badge-priority">P0</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0047s</td>
+</tr><tr>
+  <td><code>TC_SEC_016</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify SQL injection attempt payload handling '16' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_SEC_017</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify SQL injection attempt payload handling '17' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0037s</td>
+</tr><tr>
+  <td><code>TC_SEC_018</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify SQL injection attempt payload handling '18' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_SEC_019</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify SQL injection attempt payload handling '19' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0041s</td>
+</tr><tr>
+  <td><code>TC_SEC_020</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify SQL injection attempt payload handling '20' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0041s</td>
+</tr><tr>
+  <td><code>TC_SEC_021</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify XSS script tag injection payload '21' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0036s</td>
+</tr><tr>
+  <td><code>TC_SEC_022</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify XSS script tag injection payload '22' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.004s</td>
+</tr><tr>
+  <td><code>TC_SEC_023</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify XSS script tag injection payload '23' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0046s</td>
+</tr><tr>
+  <td><code>TC_SEC_024</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify XSS script tag injection payload '24' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0043s</td>
+</tr><tr>
+  <td><code>TC_SEC_025</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify XSS script tag injection payload '25' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0038s</td>
+</tr><tr>
+  <td><code>TC_SEC_026</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify XSS script tag injection payload '26' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0042s</td>
+</tr><tr>
+  <td><code>TC_SEC_027</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify XSS script tag injection payload '27' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0039s</td>
+</tr><tr>
+  <td><code>TC_SEC_028</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify XSS script tag injection payload '28' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0037s</td>
+</tr><tr>
+  <td><code>TC_SEC_029</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify XSS script tag injection payload '29' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0044s</td>
+</tr><tr>
+  <td><code>TC_SEC_030</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify XSS script tag injection payload '30' safely rejected</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0057s</td>
+</tr><tr>
+  <td><code>TC_SEC_031</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify null byte injection and sanitized error message '31'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0051s</td>
+</tr><tr>
+  <td><code>TC_SEC_032</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify null byte injection and sanitized error message '32'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.005s</td>
+</tr><tr>
+  <td><code>TC_SEC_033</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify null byte injection and sanitized error message '33'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0045s</td>
+</tr><tr>
+  <td><code>TC_SEC_034</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify null byte injection and sanitized error message '34'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0041s</td>
+</tr><tr>
+  <td><code>TC_SEC_035</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify null byte injection and sanitized error message '35'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0044s</td>
+</tr><tr>
+  <td><code>TC_SEC_036</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify null byte injection and sanitized error message '36'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0041s</td>
+</tr><tr>
+  <td><code>TC_SEC_037</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify null byte injection and sanitized error message '37'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0036s</td>
+</tr><tr>
+  <td><code>TC_SEC_038</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify null byte injection and sanitized error message '38'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.004s</td>
+</tr><tr>
+  <td><code>TC_SEC_039</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify null byte injection and sanitized error message '39'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0042s</td>
+</tr><tr>
+  <td><code>TC_SEC_040</code></td>
+  <td><strong>Security Configuration</strong></td>
+  <td>Verify null byte injection and sanitized error message '40'</td>
+  <td><span class="badge-priority">P1</span></td>
+  <td><span class="badge-pass">PASSED</span></td>
+  <td>0.0035s</td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
